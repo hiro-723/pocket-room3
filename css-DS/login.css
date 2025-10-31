@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  background: #f8ecd2;
+  font-family: "Helvetica", "Yu Gothic", sans-serif;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 60px auto;
+  text-align: center;
+}
+
+.logo-area img {
+  width: 120px;
+  display: block;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-bottom: 30px;
+  font-size: 32px;
+  color: #6a4a2f;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-form label {
+  text-align: left;
+  font-size: 14px;
+  color: #444;
+}
+
+.login-form input {
+  height: 34px;
+  padding: 5px;
+  border: 1px solid #888;
+  border-radius: 4px;
+}
+
+.login-btn {
+  margin-top: 10px;
+  background: #e3a567;
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.new-link {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #444;
+}

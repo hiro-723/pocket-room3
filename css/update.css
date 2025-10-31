@@ -1,0 +1,87 @@
+body {
+  background-color: #fff1dc;
+  font-family: "Hiragino Kaku Gothic ProN", "メイリオ", sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.container {
+  width: 250px;
+  margin: 40px auto;
+  background-color: #fff1dc;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+h2 {
+  font-size: 16px;
+  color: black;
+  margin-bottom: 15px;
+}
+
+.product-card {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.image-box {
+  width: 150px;
+  height: 120px;
+  background-color: #d8d8d8;
+  margin: 0 auto 10px;
+  border-radius: 3px;
+}
+
+.product-name {
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.product-desc {
+  background-color: #eaeaea;
+  margin: 5px auto 10px;
+  padding: 5px;
+  width: 150px;
+  border-radius: 3px;
+  color: #333;
+  font-size: 13px;
+}
+
+.confirm-text {
+  margin: 10px 0;
+  font-size: 13px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+button {
+  border: 1px solid #c8a86e;
+  border-radius: 5px;
+  padding: 8px 20px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button.yes {
+  background-color: #f5d5a5;
+}
+
+button.yes:hover {
+  background-color: #f0c98c;
+}
+
+button.no {
+  background-color: #f3f3f3;
+  border-color: #ccc;
+}
+
+button.no:hover {
+  background-color: #e7e7e7;
+}

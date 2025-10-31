@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  display: flex;
+  background: #f8ecd2;
+  font-family: "Helvetica", "Yu Gothic", sans-serif;
+}
+
+/* ============= サイド ============= */
+.side {
+  width: 70px;
+  background: #e4b071;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  gap: 20px;
+}
+
+.icon {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.bear {
+  margin-top: auto;
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+/* ============= メイン ============= */
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+header h1 {
+  font-size: 22px;
+  margin: 0;
+  color: #6a4a2f;
+}
+
+header input {
+  width: 250px;
+  height: 30px;
+  border: 1px solid #888;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/* ============= カルーセル ============= */
+.carousel .card {
+  width: 300px;
+  height: 80px;
+  background: #ffffffcc;
+  border-radius: 6px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============= カテゴリ ============= */
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.categories .item {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #bebebe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

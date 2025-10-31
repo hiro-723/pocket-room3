@@ -1,0 +1,79 @@
+:root {
+  --bg-color: #fff3d6;
+  --text-color: #4b2e05;
+  --button-bg: #e3b97b;
+  --button-hover: #d6a764;
+  --input-border: #bba77a;
+  --link-color: #4b2e05;
+}
+
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-container {
+  width: 90%;
+  max-width: 360px;
+  text-align: center;
+}
+
+.logo {
+  font-family: "Georgia", serif;
+  color: var(--text-color);
+  font-size: 36px;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+  line-height: 1.2;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+label {
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: var(--text-color);
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.register-link {
+  color: var(--link-color);
+  font-size: 14px;
+  text-decoration: underline;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.login-btn {
+  background-color: var(--button-bg);
+  border: none;
+  color: var(--text-color);
+  padding: 10px 0;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-btn:hover {
+  background-color: var(--button-hover);
+}
