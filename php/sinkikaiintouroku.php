@@ -1,4 +1,5 @@
 <?php
+include('sinkikaiheader.php');
 require_once 'db_connect.php';
 $name       = $_POST['customer_name'];
 $kana       = $_POST['customer_kana'];
