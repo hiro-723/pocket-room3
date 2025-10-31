@@ -1,12 +1,15 @@
 <?php
 session_start();
+
+// ログインしていなければログインページにリダイレクト
 if (!isset($_SESSION['username'])) {
     header("Location: rogin.html");
     exit;
 }
-echo "ようこそ、" . htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8') . "さん！";
-?>
 
+// エスケープして出力
+$username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
+?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -18,7 +21,10 @@ echo "ようこそ、" . htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UT
 </head>
 <body>
   <div class="container">
-    <header><h1>POCKET ROOM</h1></header>
+    <header>
+      <h1>POCKET ROOM</h1>
+      <p>ようこそ、<?php echo $username; ?> さん！</p>
+    </header>
 
     <main>
       <div class="search-bar">
@@ -43,10 +49,9 @@ echo "ようこそ、" . htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UT
     </main>
   </div>
 
-  <!-- ↓ history.html と同じ構造のナビ部分 -->
   <nav class="bottom-nav">
     <ul>
-      <li><button class="nav-btn" onclick="location.href='home.html'">🏠<br>ホーム</button></li>
+      <li><button class="nav-btn" onclick="location.href='home.php'">🏠<br>ホーム</button></li>
       <li><button class="nav-btn" onclick="location.href='favorites.html'">❤️<br>お気に入り</button></li>
       <li><button class="nav-btn" onclick="location.href='item.html'">🧸<br></button></li>
       <li><button class="nav-btn" onclick="location.href='cart.html'">🛒<br>カート</button></li>
