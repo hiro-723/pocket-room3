@@ -1,0 +1,124 @@
+/* cart.css */
+body {
+  margin: 0;
+  font-family: "Georgia", serif;
+  background-color: #fdf6e3;
+}
+.container {
+  display: flex;
+  width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+.sidebar {
+  width: 120px;
+  background-color: #f4c48c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+.icon-list i {
+  display: block;
+  font-size: 22px;
+  color: #5c3a00;
+  margin: 20px 0;
+}
+.bear { font-size: 40px; margin-bottom: 6px; }
+
+.content {
+  flex: 1;
+  padding: 40px 60px;
+}
+h1 {
+  color: #5c3a00;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+/* cart box */
+.cart-box {
+  background: rgba(255,255,255,0.6);
+  padding: 24px;
+  border-radius: 6px;
+  max-width: 820px;
+  margin: 0 auto;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+}
+.cart-box h2 {
+  color: #3e2a00;
+  margin: 0 0 18px 0;
+  font-size: 20px;
+}
+
+/* items */
+.cart-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 80px;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 4px;
+  background: rgba(0,0,0,0.02);
+  margin-bottom: 12px;
+}
+.thumb {
+  height: 60px;
+  background: #e8e8e8;
+  border-radius: 4px;
+}
+.info .name {
+  font-size: 16px;
+  color: #3e2a00;
+  margin-bottom: 8px;
+}
+.qty {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.qty-btn {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #c9b29a;
+  background: #fff;
+  cursor: pointer;
+}
+.qty-num {
+  min-width: 20px;
+  text-align: center;
+}
+
+/* subtotal / delete */
+.subtotal {
+  text-align: center;
+  color: #8a6a4b;
+  font-size: 14px;
+}
+
+/* total */
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding: 12px 8px;
+  font-size: 18px;
+  color: #3e2a00;
+  border-top: 1px dashed rgba(0,0,0,0.08);
+}
+
+/* CTA */
+.cta {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+.primary-btn {
+  background: #e9c59b;
+  border: 1px solid #c9a67a;
+  padding: 12px 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
