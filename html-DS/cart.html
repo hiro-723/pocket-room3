@@ -2,64 +2,57 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>カート | POCKET ROOM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カート</title>
   <link rel="stylesheet" href="../css-DS/cart.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
   <div class="container">
-    <aside class="sidebar">
-      <div class="icon-list">
-        <i class="fa-solid fa-house"></i>
-        <i class="fa-solid fa-heart"></i>
-        <i class="fa-solid fa-cart-shopping"></i>
-        <i class="fa-solid fa-user"></i>
-      </div>
-      <div class="bear">🧸</div>
-    </aside>
 
-    <main class="content">
+    <!-- ✅ 左ナビ -->
+    <nav class="side-nav">
+      <button onclick="location.href='home.html'" class="nav-item">🏠<br>ホーム</button>
+      <button onclick="location.href='favorites.html'" class="nav-item">❤️<br>お気に入り</button>
+      <button onclick="location.href='cart.html'" class="nav-item">🛒<br>カート</button>
+      <button onclick="location.href='mypage.html'" class="nav-item">👤<br>マイページ</button>
+      <button onclick="location.href='item.html'" class="nav-item">🧸<br></button>
+
+    </nav>
+
+    <!-- ✅ メイン部分 -->
+    <main>
       <h1>POCKET ROOM</h1>
+      <h2>カート</h2>
 
-      <section class="cart-box">
-        <h2>カート</h2>
-
-        <div class="cart-item">
-          <div class="thumb"></div>
-          <div class="info">
-            <div class="name">商品A</div>
-            <div class="qty">
-              <button class="qty-btn">-</button>
-              <span class="qty-num">1</span>
-              <button class="qty-btn">+</button>
-            </div>
-          </div>
-          <div class="subtotal">削除</div>
+      <div class="cart-item">
+        <div class="item-box">
+          <p>カートに入っている<br>商品の表示</p>
         </div>
-
-        <div class="cart-item">
-          <div class="thumb"></div>
-          <div class="info">
-            <div class="name">商品B</div>
-            <div class="qty">
-              <button class="qty-btn">-</button>
-              <span class="qty-num">1</span>
-              <button class="qty-btn">+</button>
-            </div>
-          </div>
-          <div class="subtotal">削除</div>
+        <div class="qty">
+          <span class="plus">＋</span>
+          <span class="num">1</span>
+          <span class="minus">－</span>
         </div>
+        <button class="delete-btn">削除</button>
+      </div>
 
-        <div class="total">
-          <span>合計金額</span>
-          <strong>10000円</strong>
+      <div class="cart-item">
+        <div class="item-box">
+          <p>カートに入っている<br>商品の表示</p>
         </div>
+        <div class="qty">
+          <span class="plus">＋</span>
+          <span class="num">1</span>
+          <span class="minus">－</span>
+        </div>
+        <button class="delete-btn">削除</button>
+      </div>
 
-        <div class="cta">
-          <button class="primary-btn">購入画面へ</button>
-        </div>
-      </section>
+      <div class="total">
+        <p>合計金額 <span>10000円</span></p>
+        <button class="buy-btn">購入する</button>
+      </div>
     </main>
   </div>
 </body>
