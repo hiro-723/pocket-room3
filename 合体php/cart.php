@@ -3,7 +3,7 @@ session_start();
 require_once '../db-connect.php';
 
 if (!isset($_SESSION['username'])) {
-  header("Location: rogin.html");
+  header("Location: rogin.php");
   exit;
 }
 
