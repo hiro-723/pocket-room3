@@ -50,13 +50,11 @@ $username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
   </div>
 
   <nav class="bottom-nav">
-    <ul>
-      <li><button class="nav-btn" onclick="location.href='home.php'">🏠<br>ホーム</button></li>
-      <li><button class="nav-btn" onclick="location.href='favorites.html'">❤️<br>お気に入り</button></li>
-      <li><button class="nav-btn" onclick="location.href='item.html'">🧸<br></button></li>
-      <li><button class="nav-btn" onclick="location.href='cart.html'">🛒<br>カート</button></li>
-      <li><button class="nav-btn" onclick="location.href='mypage.html'">👤<br>マイページ</button></li>
-    </ul>
+      <div class="nav-item" onclick="location.href='home.php'">🏠<br><span>ホーム</span></div>
+      <div class="nav-item" onclick="location.href='okiniiri.php'">❤️<br><span>お気に入り</span></div>
+      <div class="nav-item" onclick="location.href=''">🧸<br><span></span></div>
+      <div class="nav-item" onclick="location.href='cart.html'">🛒<br><span>カート</span></div>
+      <div class="nav-item" onclick="location.href='mypage.html'">👤<br><span>マイページ</span></div>
   </nav>
 </body>
 </html>
