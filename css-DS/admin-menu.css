@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  background: #FAEECF;
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+.container {
+  width: 500px;
+  margin: 80px auto;
+  text-align: center;
+  background: #F8E8C6;
+  padding: 60px;
+}
+
+h1 {
+  font-size: 26px;
+  margin-bottom: 40px;
+}
+
+.btn {
+  width: 250px;
+  padding: 10px;
+  font-size: 16px;
+  margin: 12px 0;
+  border: 1px solid #E7A664;
+  background: #E7A664;
+  cursor: pointer;
+}
