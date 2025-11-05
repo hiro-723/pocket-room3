@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+  font-family: "Hiragino Maru Gothic Pro", "メイリオ", sans-serif;
+  background-color: #fdf3dc;
+}
+
+header {
+  text-align: center;
+  padding: 20px 0 10px;
+  color: #6b3e26;
+}
+
+h1 {
+  font-size: 1.4em;
+  font-weight: bold;
+  border-bottom: 1px solid #b68a5c;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.search-bar input {
+  width: 80%;
+  padding: 8px 12px;
+  border-radius: 15px;
+  border: none;
+  background-color: #e8e8e8;
+  font-size: 1em;
+}
+
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 10px;
+}
+
+.item-card {
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.item-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.item-card p {
+  margin: 5px 0;
+  font-size: 0.9em;
+}
+
+.item-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.2em;
+  margin-top: 4px;
+}
+
+.favorite, .cart {
+  cursor: pointer;
+  user-select: none;
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #e6ab64;
+  padding: 8px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.nav-item {
+  text-align: center;
+  font-size: 0.9em;
+  color: #000;
+}
+
+.nav-item span {
+  display: block;
+  font-size: 0.7em;
+}
