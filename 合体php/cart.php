@@ -7,26 +7,26 @@ if (!isset($_SESSION['username'])) {
   exit;
 }
 
-$stmt = $pdo->prepare("SELECT id FROM users WHERE username = ?");
+$stmt = $pdo->prepare("SELECT customer_id FROM users WHERE username = ?");
 $stmt->execute([$_SESSION['username']]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$user_id = $user['id'];
+$customer_id = $user['customer_id'];
 
 $sql = "
   SELECT 
-    cart.id AS cart_id,
-    items.name,
-    items.price,
-    items.image_path,
-    cart.quantity
+    cart.cart_id,
+    product.product_name,
+    product.price,
+    product.image_path,
+    cart.product_id
   FROM cart
-  JOIN items ON cart.item_id = items.id
-  WHERE cart.user_id = ?
+  JOIN product ON cart.product_id = product.product_id
+  WHERE cart.customer_id = ?
 ";
 $stmt = $pdo->prepare($sql);
-$stmt->execute([$user_id]);
-$items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->execute([$customer_id]);
+$cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>

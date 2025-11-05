@@ -1,96 +1,79 @@
 <?php
 session_start();
-require_once '../db-connect.php'; // ← DB接続
+require_once 'db-connect.php'; // PDO接続
 
-// ログインしていなければログインページへ
+// ログインチェック
 if (!isset($_SESSION['username'])) {
-  header("Location: rogin.php");
-  exit;
+    header("Location: rogin.php");
+    exit;
 }
 
-$username = $_SESSION['username'];
-
-// ユーザー情報取得（例：usersテーブルからID取得）
-$stmt = $pdo->prepare("SELECT id FROM users WHERE username = ?");
-$stmt->execute([$username]);
+// ログイン中ユーザーのIDを取得
+$stmt = $pdo->prepare("SELECT customer_id FROM users WHERE username = ?");
+$stmt->execute([$_SESSION['username']]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+$customer_id = $user['customer_id'];
 
-if (!$user) {
-  die("ユーザーが見つかりません。");
-}
-
-$user_id = $user['id'];
-
-// お気に入り商品をDBから取得
+// お気に入り一覧を取得
 $sql = "
-  SELECT items.id, items.name, items.price, items.image_path
-  FROM favorites
-  JOIN items ON favorites.item_id = items.id
-  WHERE favorites.user_id = ?
+  SELECT 
+    favorite.favorite_id,
+    product.product_id,
+    product.product_name,
+    product.price
+  FROM favorite
+  JOIN product ON favorite.product_id = product.product_id
+  WHERE favorite.customer_id = ?
 ";
 $stmt = $pdo->prepare($sql);
-$stmt->execute([$user_id]);
-$items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->execute([$customer_id]);
+$favorites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>お気に入り | POCKET ROOM</title>
-  <link rel="stylesheet" href="../合体css/favorites.css">
+  <title>お気に入り一覧</title>
+  <link rel="stylesheet" href="../合体css/okiniiri.css">
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>POCKET ROOM</h1>
-      <div class="search-bar">
-        <input type="text" id="search" placeholder="🔍 検索">
-      </div>
+      <h1>❤️ お気に入り一覧</h1>
     </header>
 
-    <main class="item-grid" id="item-list">
-      <?php if (count($items) > 0): ?>
-        <?php foreach ($items as $item): ?>
-          <div class="item-card">
-            <img src="<?= htmlspecialchars($item['image_path']) ?>" alt="<?= htmlspecialchars($item['name']) ?>">
-            <p><?= htmlspecialchars($item['name']) ?><br><?= number_format($item['price']) ?>円</p>
-            <div class="item-icons">
-              <span class="favorite" data-id="<?= $item['id'] ?>">❤️</span>
-              <span class="cart" data-id="<?= $item['id'] ?>">🛒</span>
-            </div>
-          </div>
-        <?php endforeach; ?>
+    <main>
+      <?php if (empty($favorites)): ?>
+        <p>お気に入りに登録された商品はありません。</p>
       <?php else: ?>
-        <p style="text-align:center;">お気に入りはまだありません。</p>
+        <div class="favorite-list">
+          <?php foreach ($favorites as $item): ?>
+            <div class="favorite-item">
+              <img src="<?= htmlspecialchars($item['image_path']) ?>" alt="">
+              <div class="info">
+                <h2><?= htmlspecialchars($item['product_name']) ?></h2>
+                <p class="price">¥<?= htmlspecialchars($item['price']) ?></p>
+                <div class="actions">
+                  <button class="remove-btn" data-id="<?= $item['favorite_id'] ?>">削除</button>
+                  <button class="add-cart-btn" data-id="<?= $item['product_id'] ?>">カートに追加</button>
+                </div>
+              </div>
+            </div>
+          <?php endforeach; ?>
+        </div>
       <?php endif; ?>
     </main>
   </div>
 
-  <nav class="bottom-nav">
-    <div class="nav-item" onclick="location.href='home.php'">🏠<br><span>ホーム</span></div>
-    <div class="nav-item" onclick="location.href='favorites.php'">❤️<br><span>お気に入り</span></div>
-    <div class="nav-item" onclick="location.href='cart.php'">🧸<br><span>カート</span></div>
-    <div class="nav-item" onclick="location.href='mypage.php'">👤<br><span>マイページ</span></div>
+   <nav class="bottom-nav">
+      <div class="nav-item" onclick="location.href='home.php'">🏠<br><span>ホーム</span></div>
+      <div class="nav-item" onclick="location.href='okiniiri.php'">❤️<br><span>お気に入り</span></div>
+      <div class="nav-item" onclick="location.href=''">🧸<br><span></span></div>
+      <div class="nav-item" onclick="location.href='cart.html'">🛒<br><span>カート</span></div>
+      <div class="nav-item" onclick="location.href='mypage.html'">👤<br><span>マイページ</span></div>
   </nav>
 
-  <script>
-    // 🔎 検索バー
-    document.getElementById("search").addEventListener("input", function() {
-      const keyword = this.value.toLowerCase();
-      document.querySelectorAll(".item-card").forEach(card => {
-        const name = card.querySelector("p").textContent.toLowerCase();
-        card.style.display = name.includes(keyword) ? "block" : "none";
-      });
-    });
-
-    // 🛒 カート追加（仮アラート）
-    document.querySelectorAll(".cart").forEach(btn => {
-      btn.addEventListener("click", () => {
-        alert("カートに追加しました！");
-      });
-    });
-  </script>
+  <script src="../js/favorite.js"></script>
 </body>
 </html>
