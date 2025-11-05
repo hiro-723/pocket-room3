@@ -1,5 +1,5 @@
 <?php
-require_once 'db_connect.php';
+require_once 'db-connect.php';
 
 // ▼ 登録処理（フォーム送信されたときだけ実行）
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
