@@ -77,6 +77,7 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <nav class="bottom-nav">
     <div class="nav-item" onclick="location.href='home.php'">🏠<br>ホーム</div>
     <div class="nav-item" onclick="location.href='favorites.php'">❤️<br>お気に入り</div>
+    <img src="ya.png" alt="aikon">
     <div class="nav-item" onclick="location.href='cart.php'">🧸<br>カート</div>
     <div class="nav-item" onclick="location.href='mypage.php'">👤<br>マイページ</div>
   </nav>
