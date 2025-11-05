@@ -17,7 +17,7 @@ $username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>POCKET ROOM</title>
-  <link rel="stylesheet" href="../css/home.css" />
+  <link rel="stylesheet" href="../合体css/home.css" />
 </head>
 <body>
   <div class="container">
