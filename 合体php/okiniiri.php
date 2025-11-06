@@ -40,7 +40,7 @@ $favorites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
   <div class="container">
     <header>
-      <h1>❤️ お気に入り一覧</h1>
+      <img src="../kuma/moji.png" alt="pocket room">
     </header>
 
     <main>

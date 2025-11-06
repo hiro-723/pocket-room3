@@ -40,7 +40,7 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
   <div class="container">
     <header>
-      <img src="../kuma/aikon.png" alt="カート">
+      <img src="../kuma/moji.png" alt="pocket room">
       <h2>カート</2>
     </header>
 

@@ -34,8 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
     <div class="container">
-        <img src="logo.png" alt="POCKET ROOM ロゴ">
-        <h1>POCKET<br>ROOM</h1>
+        <img src="../kuma/aikon.png" alt="POCKET ROOM">
 
         <?php if ($error): ?>
             <p class="error"><?= htmlspecialchars($error) ?></p>

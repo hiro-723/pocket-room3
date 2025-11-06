@@ -22,7 +22,7 @@ $username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
 <body>
   <div class="container">
     <header>
-      <h1>POCKET ROOM</h1>
+      <img src="../kuma/moji.png" alt="pocket room">
       <p>ようこそ、<?php echo $username; ?> さん！</p>
     </header>
 
