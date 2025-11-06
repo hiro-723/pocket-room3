@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
     <div class="container">
-        <img src="" alt="POCKET ROOM ロゴ">
+        <img src="../kuma/aikon.png" alt="POCKET ROOM ロゴ">
         <h1>新規会員登録</h1>
         <form action="rogin.php" method="post">
             <label>名前</label>
