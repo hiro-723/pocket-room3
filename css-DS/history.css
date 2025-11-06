@@ -1,56 +1,100 @@
+/* ✅ 全体背景：左ベージュ → 右クリーム */
 body {
   margin: 0;
-  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-  background: #F6EED3;
-  display: flex;
+  padding: 0;
+  font-family: "Georgia", serif;
+
+  /* ← コレが背景色の帯を作る */
+  background: linear-gradient(
+    to right,
+    #f4c48c 120px,   /* 左120px をベージュ */
+    #fdf6e3 120px    /* そこから先はクリーム色 */
+  );
 }
 
-/* ===== サイドバー ===== */
-.sidebar {
-  width: 150px;
-  height: 100vh;
-  background: #D89F5A;
+/* ✅ レイアウト全体 */
+.container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ✅ 左ナビ（同じ幅でベージュの上に置く） */
+.side-nav {
+  width: 120px;
+  background-color: transparent; /* ←背景は body で作ってる */
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+}
+
+/* ✅ ボタン感を消す */
+.side-nav .nav-item {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 0;
+  appearance: none;
+  line-height: 1.2;
+}
+
+.side-nav .nav-item:hover {
+  opacity: 0.65;
+}
+
+/* ✅ メインエリア */
+main {
+  flex: 1;
+  padding: 20px;
+  background-color: #fdf6e3; /* ← 右側をクリーム色で上書き */
+}
+
+/* ✅ 左メニュー */
+.side-nav {
+  width: 120px;
+  background-color: transparent;
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 30px 0;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 18px 20px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.sidebar li:hover {
-  opacity: 0.7;
-}
-
-.bear {
   text-align: center;
-  padding-bottom: 20px;
 }
 
-/* ===== メインコンテンツ ===== */
-.content {
+/* ✅ 「ボタンっぽくない」ボタン */
+.side-nav .nav-item {
+  background: none;
+  border: none;
+  appearance: none;
+  cursor: pointer;
+
   width: 100%;
-  padding: 40px;
+  padding: 18px 0;
+  font-size: 14px;
+  font-family: inherit;
+  line-height: 1.2;
+  color: #5c3a00;
 }
 
+.side-nav .nav-item:hover {
+  opacity: 0.65;
+}
+
+/* ✅ メイン */
+.content {
+  flex: 1;
+  padding: 40px;
+  background-color: #fdf6e3;
+  text-align: center;
+}
+
+/* 見出し */
 header h1 {
   font-size: 48px;
   font-weight: bold;
   color: #7A4E26;
-  text-align: center;
   margin-bottom: 15px;
 }
 
@@ -61,24 +105,27 @@ header hr {
   margin: 0 auto 40px;
 }
 
+/* 小見出し */
 h2 {
   font-size: 32px;
   text-align: center;
   margin-bottom: 60px;
 }
 
-/* ===== 商品カード ===== */
+/* 商品カード配置 */
 .items {
   display: flex;
   justify-content: center;
   gap: 40px;
 }
 
+/* 商品カード */
 .item-card {
   text-align: center;
   font-size: 16px;
 }
 
+/* 商品サムネ */
 .thumb {
   width: 150px;
   height: 150px;
