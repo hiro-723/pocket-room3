@@ -4,45 +4,52 @@ body {
   font-family: "Helvetica", "Yu Gothic", sans-serif;
 }
 
-.login-container {
-  width: 100%;
+/* 中央に幅を制限して配置 */
+.container {
+  width: 90%;
   max-width: 500px;
   margin: 60px auto;
   text-align: center;
 }
 
-.logo-area img {
-  width: 120px;
-  display: block;
-  margin: 0 auto;
-}
-
-h1 {
+h1.logo {
   margin-bottom: 30px;
   font-size: 32px;
   color: #6a4a2f;
 }
 
+/* 入力やボタンの幅を短くする */
 .login-form {
   display: flex;
   flex-direction: column;
+  align-items: center;   /* ★ 中央寄せ */
   gap: 15px;
 }
 
 .login-form label {
+  width: 60%;             /* ★ ラベルもそろえる */
+  max-width: 400px;
   text-align: left;
   font-size: 14px;
   color: #444;
 }
 
+/* 入力欄 */
 .login-form input {
+  width: 60%;             /* ★ 幅調整 */
+  max-width: 400px;
+  min-width: 220px;
   height: 34px;
   padding: 5px;
   border: 1px solid #888;
   border-radius: 4px;
 }
 
+/* ログインボタン */
 .login-btn {
+  width: 60%;             /* ★ 幅調整 */
+  max-width: 400px;
+  min-width: 220px;
   margin-top: 10px;
   background: #e3a567;
   border: none;
@@ -52,7 +59,8 @@ h1 {
   cursor: pointer;
 }
 
-.new-link {
+/* 新規会員登録リンク */
+.register-link {
   display: inline-block;
   margin-top: 5px;
   font-size: 12px;

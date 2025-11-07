@@ -62,13 +62,7 @@ main {
   padding: 20px 0;
 }
 
-.icon-list i {
-  display: block;
-  font-size: 22px;
-  color: #5c3a00;
-  margin: 20px 0;
-  cursor: pointer;
-}
+
 
 .bear {
   font-size: 40px;
