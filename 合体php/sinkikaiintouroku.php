@@ -12,9 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $building   = $_POST['building'];
     $phone      = $_POST['phone'];
     $email      = $_POST['email'];
-    $password   = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password   = $_POST['password'];
 
-    $sql = "INSERT INTO members (name, kana, birth, prefecture, city, address, building, phone, email, password)
+    $sql = "INSERT INTO customer (name, kana, birth, prefecture, city, address, building, phone, email, password)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$name, $kana, $birth, $prefecture, $city, $address, $building, $phone, $email, $password]);
