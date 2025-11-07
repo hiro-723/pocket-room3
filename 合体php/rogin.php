@@ -1,7 +1,6 @@
 <?php
-require_once 'db-connect.php';
 session_start();
-
+require_once 'db-connect.php';
 $error = '';
 
 // ▼ ログイン処理（フォーム送信時）
@@ -14,9 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->execute([$email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && password_verify($password, $user['password'])) {
+    if ($user && ($password, $user['password'])) {
         $_SESSION['user'] = $user['name'];
-        header("Location: welcome.php"); // ログイン後のページ
+        header("Location: home.php"); // ログイン後のページ
         exit;
     } else {
         $error = "メールアドレスまたはパスワードが違います。";
