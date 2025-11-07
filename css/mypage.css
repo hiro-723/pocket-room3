@@ -1,5 +1,5 @@
 body {
-  background-color: #fff1dc;
+  background-color: #FAEECF;
   font-family: "Hiragino Kaku Gothic ProN", "メイリオ", sans-serif;
   margin: 0;
   padding: 0;
@@ -8,7 +8,6 @@ body {
 .container {
   width: 250px;
   margin: 0 auto;
-  background-color: #fff1dc;
   min-height: 100vh;
   padding-bottom: 80px; /* ナビ分の余白 */
   box-sizing: border-box;
