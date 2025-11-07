@@ -4,8 +4,6 @@ require_once 'db-connect.php';
 // ▼ 登録処理（フォーム送信されたときだけ実行）
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name       = $_POST['name'];
-    $kana       = $_POST['kana'];
-    $birth      = $_POST['birth'];
     $prefecture = $_POST['prefecture'];
     $city       = $_POST['city'];
     $address    = $_POST['address'];
@@ -40,12 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <form action="rogin.php" method="post">
             <label>名前</label>
             <input type="text" name="name" required>
-
-            <label>フリガナ</label>
-            <input type="text" name="kana" required>
-
-            <label>生年月日</label>
-            <input type="date" name="birth" required>
 
             <label>都道府県</label>
             <input type="text" name="prefecture" required>
