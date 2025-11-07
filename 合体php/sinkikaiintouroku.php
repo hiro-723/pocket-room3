@@ -1,27 +1,31 @@
 <?php
-require_once 'db-connect.php';
+session_start();
+require_once 'db-connect.php'; // DB接続ファイル
 
-// ▼ 登録処理（フォーム送信されたときだけ実行）
+$message = '';
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $name       = $_POST['name'];
-    $kana       = $_POST['kana'];
-    $birth      = $_POST['birth'];
-    $prefecture = $_POST['prefecture'];
-    $city       = $_POST['city'];
-    $address    = $_POST['address'];
-    $building   = $_POST['building'];
-    $phone      = $_POST['phone'];
-    $email      = $_POST['email'];
-    $password   = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-    $sql = "INSERT INTO members (name, kana, birth, prefecture, city, address, building, phone, email, password)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$name, $kana, $birth, $prefecture, $city, $address, $building, $phone, $email, $password]);
+    // メールアドレスの重複チェック
+    $check_sql = "SELECT * FROM customer WHERE email = ?";
+    $check_stmt = $pdo->prepare($check_sql);
+    $check_stmt->execute([$email]);
+    $existing_user = $check_stmt->fetch(PDO::FETCH_ASSOC);
 
-    echo "<p class='success'>登録が完了しました。</p>";
-    echo "<p class='link'><a href='login.html'>ログインページへ</a></p>";
-    exit;
+    if ($existing_user) {
+        $message = "このメールアドレスはすでに登録されています。";
+    } else {
+        // ハッシュ化しないでそのまま保存
+        $sql = "INSERT INTO customer (email, password) VALUES (?, ?)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$email, $password]);
+
+        $message = "登録が完了しました。ログインしてください。";
+        header("Location: rogin.php");
+        exit;
+    }
 }
 ?>
 
@@ -35,40 +39,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
     <div class="container">
-        <img src="" alt="POCKET ROOM ロゴ">
-        <h1>新規会員登録</h1>
+        <h1>POCKET ROOM</h1>
+        <h2>新規会員登録</h2>
+
+        <?php if ($message): ?>
+            <p class="message"><?= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') ?></p>
+        <?php endif; ?>
+
         <form action="rogin.php" method="post">
-            <label>名前</label>
-            <input type="text" name="name" required>
-
-            <label>フリガナ</label>
-            <input type="text" name="kana" required>
-
-            <label>生年月日</label>
-            <input type="date" name="birth" required>
-
-            <label>都道府県</label>
-            <input type="text" name="prefecture" required>
-
-            <label>市区町村</label>
-            <input type="text" name="city" required>
-
-            <label>番地</label>
-            <input type="text" name="address" required>
-
-            <label>建物名・部屋番号</label>
-            <input type="text" name="building">
-
-            <label>電話番号</label>
-            <input type="tel" name="phone" required>
-
             <label>メールアドレス</label>
             <input type="email" name="email" required>
 
             <label>パスワード</label>
             <input type="password" name="password" required>
 
-            <button type="submit">登録する</button>
+            <input type="submit" value="登録する">
         </form>
     </div>
 </body>

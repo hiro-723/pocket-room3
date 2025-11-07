@@ -8,25 +8,29 @@
 </head>
 <body>
   <div class="container">
-    <aside class="sidebar">
-      <div class="icon-list">
-        <i class="fa-solid fa-house"></i>
-        <i class="fa-solid fa-heart"></i>
-        <i class="fa-solid fa-cart-shopping"></i>
-        <i class="fa-solid fa-user"></i>
-      </div>
-      <div class="bear">🧸</div>
-    </aside>
+    <nav class="side-nav">
+      <button onclick="location.href='home.html'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
+      <button onclick="location.href='favorites.html'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
+      <button onclick="location.href='cart.html'" class="nav-item"><i class="fas fa-shopping-cart"></i><br>カート</button>
+      <button onclick="location.href='mypage.html'" class="nav-item"><i class="fas fa-user"></i><br>マイページ</button>
+      <button onclick="location.href='mypage.html'" class="nav-item">🧸<br></button>
 
-    <main class="content">
+    </nav>
+  <div class="conta">
+    <header>
       <h1>POCKET ROOM</h1>
-      <ul class="menu">
-        <li><i class="fa-solid fa-user"></i> お客様情報</li>
-        <li><i class="fa-solid fa-receipt"></i> 購入履歴</li>
-        <li><i class="fa-solid fa-envelope"></i> お問い合わせ</li>
-        <li><i class="fa-solid fa-right-from-bracket"></i> ログアウト</li>
-      </ul>
+    </header>
+
+    <main>
+      <h2>マイページ</h2>
+<ul class="menu">
+        <li><button class="menu-btn" onclick="location.href='userinfo.html'"><span class="icon">👤</span> お客様情報</button></li>
+        <li><button class="menu-btn" onclick="location.href='history.html'"><span class="icon">🛍️</span> 購入履歴</button></li>
+        <li><button class="menu-btn" onclick="location.href='contact.html'"><span class="icon">💬</span> お問い合わせ</button></li>
+        <li><button class="menu-btn" onclick="location.href='logout.html'"><span class="icon">↩️</span> ログアウト</button></li>
+      </ul>    
     </main>
+    </div>
   </div>
 </body>
 </html>

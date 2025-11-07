@@ -1,56 +1,63 @@
+/* ✅ 全体背景：左ベージュ → 右クリーム */
 body {
   margin: 0;
-  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-  background: #F6EED3;
-  display: flex;
+  padding: 0;
+  font-family: "Georgia", serif;
+
+  /* ← コレが背景色の帯を作る */
+  background: linear-gradient(
+    to right,
+    #f4c48c 120px,   /* 左120px をベージュ */
+    #FAEECF 120px    /* そこから先はクリーム色 */
+  );
 }
 
-/* ===== サイドバー ===== */
-.sidebar {
-  width: 150px;
-  height: 100vh;
-  background: #D89F5A;
+/* ✅ レイアウト全体 */
+.container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ✅ 左ナビ（同じ幅でベージュの上に置く） */
+.side-nav {
+  width: 120px;
+  background-color: transparent; /* ←背景は body で作ってる */
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 30px 0;
+  gap: 20px;
+  text-align: center;
 }
 
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 18px 20px;
+/* ✅ ボタン感を消す */
+.side-nav .nav-item {
+  background: none;
+  border: none;
   font-size: 14px;
   cursor: pointer;
+  padding: 10px 0;
+  appearance: none;
+  line-height: 1.2;
 }
 
-.sidebar li:hover {
-  opacity: 0.7;
+.side-nav .nav-item:hover {
+  opacity: 0.65;
 }
 
-.bear {
-  text-align: center;
-  padding-bottom: 20px;
-}
-
-/* ===== メインコンテンツ ===== */
+/* ✅ メイン */
 .content {
-  width: 100%;
+  flex: 1;
   padding: 40px;
+  background-color: #fdf6e3;
+  text-align: center;
 }
 
+/* 見出し */
 header h1 {
   font-size: 48px;
   font-weight: bold;
   color: #7A4E26;
-  text-align: center;
   margin-bottom: 15px;
 }
 
@@ -61,27 +68,37 @@ header hr {
   margin: 0 auto 40px;
 }
 
+/* 小見出し */
 h2 {
   font-size: 32px;
   text-align: center;
   margin-bottom: 60px;
 }
 
-/* ===== 商品カード ===== */
+/* 商品カード配置 */
 .items {
   display: flex;
   justify-content: center;
   gap: 40px;
 }
 
+/* 商品カード */
 .item-card {
   text-align: center;
   font-size: 16px;
 }
 
+/* 商品サムネ */
 .thumb {
   width: 150px;
   height: 150px;
   background: #CBCBCB;
   margin: 0 auto 12px;
+}
+
+/* ✅ メインエリア */
+main {
+  flex: 1;
+  padding: 20px;
+  background-color: #fdf6e3; /* ← 右側をクリーム色で上書き */
 }

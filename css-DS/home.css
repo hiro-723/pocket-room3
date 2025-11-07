@@ -1,8 +1,110 @@
+/* ✅ 全体背景：左ベージュ → 右クリーム */
 body {
   margin: 0;
+  padding: 0;
+  font-family: "Georgia", serif;
+
+  background: linear-gradient(
+    to right,
+    #f4c48c 120px,   /* 左120px をベージュ */
+    #FAEECF 120px    /* そこから先はクリーム色 */
+  );
+}
+
+/* ✅ レイアウト全体 */
+.container {
   display: flex;
-  background: #f8ecd2;
-  font-family: "Helvetica", "Yu Gothic", sans-serif;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ✅ 左ナビ（同じ幅でベージュの上に置く） */
+/* サイドバーの設定 */
+.side-nav {
+  width: 120px; /* 幅を指定 */
+  background-color: #f4c48c; /* ベージュ色 */
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column; /* 縦に並べる */
+  gap: 20px;
+  align-items: center; /* 中央にアイコンとテキストを配置 */
+}
+
+/* ボタンのスタイル */
+.nav-item {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 0;
+  appearance: none;
+  line-height: 1.2;
+  text-align: center;
+  width: 100%; /* ボタンを全幅に */
+}
+
+.nav-item br {
+  display: none; /* 改行タグを隠す */
+}
+
+.nav-item:hover {
+  opacity: 0.65; /* ホバー時の透明度 */
+}
+
+.nav-item:focus {
+  outline: none; /* フォーカス時のアウトラインを消す */
+}
+
+/* アイコンとテキストのレイアウト調整 */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px; /* アイコンとテキストの間隔 */
+}
+
+/* 例えばアイコンサイズ調整 */
+.nav-item i {
+  font-size: 24px;
+}
+
+/* メインエリア */
+.content {
+  flex: 1;
+  padding: 20px;
+  background-color: #fdf6e3;
+}
+
+/* ✅ メインエリア */
+main {
+  flex: 1;
+  padding: 20px;
+  background-color: #fdf6e3;
+  text-align: center;
+}
+
+main h1 {
+  font-size: 32px; /* 少し大きく */
+  margin: 10px 0;
+  color: #6a4a2f;
+}
+
+.help {
+  list-style: none;
+  padding: 0;
+  margin-top: 40px;
+}
+
+.help li {
+  font-size: 18px;
+  color: #6a4a2f;
+  margin: 15px 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.help li:hover {
+  opacity: 0.7;
 }
 
 /* ============= サイド ============= */
@@ -41,7 +143,7 @@ header {
 }
 
 header h1 {
-  font-size: 22px;
+  font-size: 26px; /* 少し大きく */
   margin: 0;
   color: #6a4a2f;
 }

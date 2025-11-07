@@ -3,7 +3,7 @@ session_start();
 require_once '../db-connect.php';
 
 if (!isset($_SESSION['username'])) {
-  header("Location: rogin.html");
+  header("Location: rogin.php");
   exit;
 }
 
@@ -40,8 +40,8 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
   <div class="container">
     <header>
-      <h1>POCKET ROOM</h1>
-      <h2>カート</h2>
+      <img src="../kuma/moji.png" alt="pocket room">
+      <h2>カート</2>
     </header>
 
     <main id="cart-container">
@@ -77,6 +77,7 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <nav class="bottom-nav">
     <div class="nav-item" onclick="location.href='home.php'">🏠<br>ホーム</div>
     <div class="nav-item" onclick="location.href='favorites.php'">❤️<br>お気に入り</div>
+    <img src="ya.png" alt="aikon">
     <div class="nav-item" onclick="location.href='cart.php'">🧸<br>カート</div>
     <div class="nav-item" onclick="location.href='mypage.php'">👤<br>マイページ</div>
   </nav>
