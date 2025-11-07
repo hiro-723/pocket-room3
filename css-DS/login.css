@@ -1,60 +1,113 @@
 body {
   margin: 0;
-  background: #f8ecd2;
+  background: #FAEECF;
   font-family: "Helvetica", "Yu Gothic", sans-serif;
 }
 
-.login-container {
-  width: 100%;
+/* コンテナ全体 */
+.container {
+  width: 90%;
   max-width: 500px;
   margin: 60px auto;
   text-align: center;
 }
 
-.logo-area img {
-  width: 120px;
-  display: block;
-  margin: 0 auto;
-}
-
-h1 {
+h1.logo {
   margin-bottom: 30px;
   font-size: 32px;
   color: #6a4a2f;
 }
 
+/* 入力フォーム全体 */
 .login-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 15px;
 }
 
+/* ラベル */
 .login-form label {
+  width: 80%;
+  max-width: 400px;
   text-align: left;
   font-size: 14px;
   color: #444;
 }
 
+/* 入力欄 */
 .login-form input {
-  height: 34px;
-  padding: 5px;
+  width: 80%;
+  max-width: 400px;
+  min-width: 220px;
+  height: 40px;
+  padding: 8px;
   border: 1px solid #888;
-  border-radius: 4px;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
+/* ログインボタン */
 .login-btn {
+  width: 80%;
+  max-width: 400px;
+  min-width: 220px;
   margin-top: 10px;
   background: #e3a567;
   border: none;
-  border-radius: 3px;
-  padding: 10px;
+  border-radius: 5px;
+  padding: 12px;
   font-size: 16px;
   cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: background 0.2s;
 }
 
-.new-link {
+.login-btn:hover {
+  background: #d18b4f;
+}
+
+/* 新規登録リンク */
+.register-link {
   display: inline-block;
-  margin-top: 5px;
-  font-size: 12px;
+  margin-top: 8px;
+  font-size: 13px;
   color: #444;
+  text-decoration: none;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+/* --------------------
+   ▼ ここからPC向け拡大調整
+-------------------- */
+@media screen and (min-width: 768px) {
+  .container {
+    margin-top: 100px;
+  }
+
+  h1.logo {
+    font-size: 40px;
+  }
+
+  .login-form label {
+    font-size: 16px;
+  }
+
+  .login-form input {
+    height: 45px;
+    font-size: 16px;
+  }
+
+  .login-btn {
+    font-size: 18px;
+    padding: 14px;
+  }
+
+  .register-link {
+    font-size: 14px;
+  }
 }
