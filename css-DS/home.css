@@ -7,7 +7,7 @@ body {
   background: linear-gradient(
     to right,
     #f4c48c 120px,   /* 左120px をベージュ */
-    #fdf6e3 120px    /* そこから先はクリーム色 */
+    #FAEECF 120px    /* そこから先はクリーム色 */
   );
 }
 
