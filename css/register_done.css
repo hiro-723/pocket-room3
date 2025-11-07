@@ -1,5 +1,5 @@
 body {
-  background-color: #fff1dc;
+  background-color: #FAEECF;
   font-family: "Hiragino Kaku Gothic ProN", "メイリオ", sans-serif;
   margin: 0;
   padding: 0;
@@ -9,7 +9,6 @@ body {
 .container {
   width: 250px;
   margin: 100px auto;
-  background-color: #fff1dc;
   border-radius: 10px;
   padding: 40px 20px;
 }
