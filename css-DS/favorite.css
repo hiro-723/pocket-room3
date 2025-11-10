@@ -36,15 +36,24 @@ body {
   padding: 10px 0;
   line-height: 1.2;
   color: #5c3a00;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
 
 .side-nav .nav-item:hover {
   opacity: 0.65;
 }
 
+/* ナビアイコンサイズ */
+.side-nav .nav-item i {
+  font-size: clamp(18px, 2vw, 24px); /* 最小18px、画面幅の2%、最大24px */
+}
+
 /* 🧸 クマの画像（PC・タブレット時） */
 .bear-icon {
-  width: clamp(25px, 4vw, 45px); /* 画面幅に応じて変化 */
+  width: clamp(25px, 4vw, 45px);
   height: auto;
   object-fit: contain;
   margin-top: auto; /* 一番下に押し下げ */
@@ -158,6 +167,11 @@ h1 {
   /* タイトル画像をスマホ用に大きく */
   .moji {
     width: clamp(160px, 35vw, 220px);
+  }
+
+  /* ナビアイコンもスマホ用に拡大 */
+  .side-nav .nav-item i {
+    font-size: clamp(20px, 6vw, 24px);
   }
 }
 
