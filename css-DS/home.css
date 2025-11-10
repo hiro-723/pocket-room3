@@ -277,8 +277,8 @@ header input {
 }
 サイドの熊のサイズ
 .bear-icon {
-  width: 60px;   /* 横幅 */
-  height: 60px;  /* 高さ */
+  width: 20px;   /* 横幅 */
+  height: 20px;  /* 高さ */
   object-fit: contain; /* 画像の比率を維持して収める */
 }
  
@@ -287,5 +287,16 @@ header input {
   width: 120px;
   height: auto;
   margin: 20px auto;
+  display: block;
+}
+.categories .item img {
+  width: 50px;  /* 小さめで丸枠に収まるサイズ感 */
+  height: 50px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+header .moji {
+  width: 160px;   /* 横幅を調整（元が大きいならこのくらいが自然） */
+  height: auto;
   display: block;
 }
