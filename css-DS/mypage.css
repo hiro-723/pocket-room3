@@ -1,4 +1,6 @@
+/* ===================================================== */
 /* ✅ 全体背景：左ベージュ → 右クリーム */
+/* ===================================================== */
 body {
   margin: 0;
   padding: 0;
@@ -6,32 +8,37 @@ body {
   background: linear-gradient(to right, #f4c48c 120px, #FAEECF 120px);
 }
 
+/* ===================================================== */
 /* ✅ レイアウト全体 */
+/* ===================================================== */
 .container {
   display: flex;
   width: 100%;
   min-height: 100vh;
+  transition: all 0.3s ease;
 }
 
-/* ✅ 左ナビ（PC・タブレット時） */
+/* ===================================================== */
+/* ✅ 左ナビ（PC・タブレット） */
+/* ===================================================== */
 .side-nav {
   width: 120px;
-  background-color: transparent; /* 背景は body で作る */
+  background-color: transparent;
   padding: 20px 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* 上から順に並べる */
+  justify-content: flex-start;
   align-items: center;
   gap: 20px;
-  position: relative; /* クマを絶対位置で固定するため */
+  position: relative;
   text-align: center;
 }
 
-/* ✅ ナビボタン */
+/* ナビボタン */
 .side-nav .nav-item {
   background: none;
   border: none;
-  font-size: clamp(10px, 1.2vw, 14px); /* アイコンサイズも調整 */
+  font-size: clamp(10px, 1.2vw, 14px);
   cursor: pointer;
   padding: 10px 0;
   display: flex;
@@ -42,35 +49,37 @@ body {
 }
 
 .side-nav .nav-item i {
-  font-size: clamp(18px, 2vw, 24px); /* アイコンサイズ */
+  font-size: clamp(18px, 2vw, 24px);
 }
 
 .side-nav .nav-item:hover {
   opacity: 0.65;
 }
 
-/* 🧸 クマの画像 */
+/* 🧸 クマ画像 */
 .bear-icon {
-  width: clamp(25px, 4vw, 45px); /* クマサイズ */
+  width: clamp(25px, 4vw, 45px);
   height: auto;
   object-fit: contain;
   position: absolute;
-  bottom: 15px; /* ナビの一番下 */
+  bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
 }
 
+/* ===================================================== */
 /* ✅ メインエリア */
+/* ===================================================== */
 main {
   flex: 1;
   padding: 20px;
   background-color: #fdf6e3;
 }
 
-/* ✅ タイトル画像 */
+/* タイトル画像 */
 .moji {
   display: block;
-  width: clamp(140px, 28vw, 250px); /* タイトルサイズ */
+  width: clamp(140px, 28vw, 250px);
   height: auto;
   margin: 0 auto 15px;
   object-fit: contain;
@@ -84,10 +93,9 @@ main {
 @media screen and (max-width: 599px) {
   .container {
     flex-direction: column;
-    padding-bottom: 70px; /* 下ナビ分の余白 */
+    padding-bottom: 70px;
   }
 
-  /* ナビを下に固定して横並びに */
   .side-nav {
     position: fixed;
     bottom: 0;
@@ -107,7 +115,7 @@ main {
   }
 
   .bear-icon {
-    display: none; /* スマホ時はクマ非表示 */
+    display: none;
   }
 }
 
