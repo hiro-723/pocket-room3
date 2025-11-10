@@ -9,7 +9,6 @@ body {
 /* ✅ レイアウト全体 */
 .container {
   display: flex;
-  flex-direction: row;
   width: 100%;
   min-height: 100vh;
 }
@@ -18,17 +17,16 @@ body {
 .side-nav {
   width: 120px;
   background-color: #f4c48c;
-  padding: 20px 0 80px; /* 下に余白を少し追加（クマ分） */
+  padding: 20px 0 80px; /* 下に余白を追加（クマ分） */
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
-  flex-shrink: 0;
+  gap: 20px;
   position: relative;
   transition: all 0.3s ease;
 }
 
-/* ✅ ナビアイテム */
+/* ✅ ナビボタン */
 .nav-item {
   background: none;
   border: none;
@@ -51,8 +49,16 @@ body {
 .nav-item:hover {
   opacity: 0.65;
 }
-.nav-item:focus {
-  outline: none;
+
+/* 🧸 サイドのクマ */
+.bear-icon {
+  width: clamp(25px, 4vw, 45px);
+  height: auto;
+  object-fit: contain;
+  position: absolute;
+  bottom: 15px; /* ナビの一番下 */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* ✅ メインエリア */
@@ -63,24 +69,6 @@ main {
   text-align: center;
 }
 
-main h1 {
-  font-size: clamp(20px, 2.5vw, 32px);
-  margin: 10px 0;
-  color: #6a4a2f;
-}
-
-/* 🧸 サイドの熊（←固定位置に変更！） */
-.bear-icon {
-  width: clamp(25px, 4vw, 45px);
-  height: auto;
-  object-fit: contain;
-  position: absolute;
-  bottom: 15px; /* ← ナビの一番下に配置 */
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* ============= メイン ============= */
 header {
   display: flex;
   flex-direction: column;
@@ -124,6 +112,14 @@ header input {
   justify-content: center;
 }
 
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+}
+
 .categories .item {
   width: clamp(60px, 10vw, 80px);
   height: clamp(60px, 10vw, 80px);
@@ -139,6 +135,11 @@ header input {
   height: clamp(35px, 6vw, 50px);
   object-fit: contain;
   border-radius: 50%;
+}
+
+.item-label {
+  font-size: clamp(12px, 1.5vw, 16px);
+  color: #5c3a00;
 }
 
 /* ===================================================== */
@@ -172,7 +173,6 @@ header input {
     flex: 1;
   }
 
-  /* 🧸 クマ：スマホ時も下固定 */
   .bear-icon {
     position: fixed;
     bottom: 10px;
@@ -180,6 +180,10 @@ header input {
     left: auto;
     transform: none;
     width: 40px;
+  }
+
+  .categories {
+    gap: 15px;
   }
 }
 
@@ -192,7 +196,6 @@ header input {
   .side-nav {
     position: relative;
     width: 120px;
-    border-top: none;
   }
 
   .bear-icon {
