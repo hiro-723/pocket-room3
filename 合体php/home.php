@@ -22,10 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 // ▼ セッションがなければログインページへ
-if (!isset($_SESSION['username'])) {
-    header("Location: rogin.php");
-    exit;
-}
+
 
 // ▼ HTML出力部分
 $username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
