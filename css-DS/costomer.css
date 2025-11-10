@@ -13,12 +13,6 @@ body {
   text-align: center;
 }
 
-h1 {
-  color: #6b3d16;
-  border-bottom: 1px solid #d4a373;
-  display: inline-block;
-  padding-bottom: 4px;
-}
 
 form {
   display: flex;
@@ -39,4 +33,12 @@ button {
   border: none;
   padding: 10px;
   cursor: pointer;
+}
+
+.moji {
+  display: block;
+  width: clamp(140px, 28vw, 250px); /* ホーム画面で覚えたサイズを反映 */
+  height: auto;
+  margin: 0 auto 15px; /* 中央寄せ + 下に余白 */
+  object-fit: contain;
 }
