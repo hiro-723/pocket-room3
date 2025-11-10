@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <p class="error"><?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
 
-        <form action="home.php" method="post">
+        <form action="" method="post">
             <label>メールアドレス</label>
             <input type="email" name="email" required>
 

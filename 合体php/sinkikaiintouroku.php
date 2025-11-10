@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <p class="message"><?= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') ?></p>
         <?php endif; ?>
 
-        <form action="rogin.php" method="post">
+        <form action="" method="post">
             <label>メールアドレス</label>
             <input type="email" name="email" required>
 
