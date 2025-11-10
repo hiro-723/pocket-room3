@@ -1,16 +1,35 @@
 <?php
 session_start();
+require_once 'db-connect.php';
 
-// ログインしていなければログインページにリダイレクト
+// ▼ ログインフォームからPOSTされた場合（ログイン処理）
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM customer WHERE email = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$email]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // パスワードチェック（今回はハッシュ化していない前提）
+    if ($user && $password === $user['password']) {
+        $_SESSION['username'] = $user['name']; // ← ここを「username」に統一
+    } else {
+        header("Location: rogin.php?error=1");
+        exit;
+    }
+}
+
+// ▼ セッションがなければログインページへ
 if (!isset($_SESSION['username'])) {
     header("Location: rogin.php");
     exit;
 }
 
-// エスケープして出力
+// ▼ HTML出力部分
 $username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
 ?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -53,8 +72,8 @@ $username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
       <div class="nav-item" onclick="location.href='home.php'">🏠<br><span>ホーム</span></div>
       <div class="nav-item" onclick="location.href='okiniiri.php'">❤️<br><span>お気に入り</span></div>
       <div class="nav-item" onclick="location.href=''">🧸<br><span></span></div>
-      <div class="nav-item" onclick="location.href='cart.html'">🛒<br><span>カート</span></div>
-      <div class="nav-item" onclick="location.href='mypage.html'">👤<br><span>マイページ</span></div>
+      <div class="nav-item" onclick="location.href='cart.php'">🛒<br><span>カート</span></div>
+      <div class="nav-item" onclick="location.href='mypage.php'">👤<br><span>マイページ</span></div>
   </nav>
 </body>
 </html>
