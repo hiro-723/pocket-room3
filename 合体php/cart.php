@@ -2,17 +2,25 @@
 session_start();
 require_once 'db-connect.php';
 
+// セッションチェック
 if (!isset($_SESSION['username'])) {
   header("Location: rogin.php");
   exit;
 }
 
+// ログイン中のユーザー情報取得
 $stmt = $pdo->prepare("SELECT customer_id FROM customer WHERE email = ?");
 $stmt->execute([$_SESSION['username']]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+if (!$user) {
+  echo "ユーザー情報が見つかりません。";
+  exit;
+}
+
 $customer_id = $user['customer_id'];
 
+// カート情報取得
 $sql = "
   SELECT 
     cart.cart_id,
@@ -42,7 +50,7 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <div class="container">
     <header>
       <img src="../kuma/moji.png" alt="pocket room">
-      <h2>カート</2>
+      <h2>カート</h2>
     </header>
 
     <main id="cart-container">
@@ -51,7 +59,7 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <div class="cart-item" data-id="<?= $item['cart_id'] ?>">
             <div class="cart-info">
               <img src="<?= htmlspecialchars($item['image_path']) ?>" alt="">
-              <p><?= htmlspecialchars($item['name']) ?><br><?= number_format($item['price']) ?>円</p>
+              <p><?= htmlspecialchars($item['product_name']) ?><br><?= number_format($item['price']) ?>円</p>
             </div>
 
             <div class="cart-control">
@@ -78,73 +86,9 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <nav class="bottom-nav">
     <div class="nav-item" onclick="location.href='home.php'">🏠<br>ホーム</div>
     <div class="nav-item" onclick="location.href='favorites.php'">❤️<br>お気に入り</div>
-    <img src="ya.png" alt="aikon">
+    <img src="../kuma/ya.png" alt="aikon">
     <div class="nav-item" onclick="location.href='cart.php'">🧸<br>カート</div>
     <div class="nav-item" onclick="location.href='mypage.php'">👤<br>マイページ</div>
   </nav>
-
-  <script>
-    // JSで数量操作
-    document.querySelectorAll('.cart-item').forEach(item => {
-      const id = item.dataset.id;
-      const quantityEl = item.querySelector('.quantity');
-      const price = parseInt(item.querySelector('p').textContent.match(/\d+/)[0]);
-      const totalEl = document.getElementById('total');
-
-      const updateTotal = () => {
-        let total = 0;
-        document.querySelectorAll('.cart-item').forEach(ci => {
-          const q = parseInt(ci.querySelector('.quantity').textContent);
-          const p = parseInt(ci.querySelector('p').textContent.match(/\d+/)[0]);
-          total += q * p;
-        });
-        totalEl.textContent = total.toLocaleString();
-      };
-
-      // ＋ボタン
-      item.querySelector('.increase').addEventListener('click', async () => {
-        const newQty = parseInt(quantityEl.textContent) + 1;
-        const res = await fetch('cart_api.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'increase', id })
-        });
-        if (res.ok) {
-          quantityEl.textContent = newQty;
-          updateTotal();
-        }
-      });
-
-      // −ボタン
-      item.querySelector('.decrease').addEventListener('click', async () => {
-        const current = parseInt(quantityEl.textContent);
-        if (current <= 1) return;
-        const newQty = current - 1;
-        const res = await fetch('cart_api.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'decrease', id })
-        });
-        if (res.ok) {
-          quantityEl.textContent = newQty;
-          updateTotal();
-        }
-      });
-
-      // 削除ボタン
-      item.querySelector('.delete').addEventListener('click', async () => {
-        if (!confirm("削除しますか？")) return;
-        const res = await fetch('cart_api.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'delete', id })
-        });
-        if (res.ok) {
-          item.remove();
-          updateTotal();
-        }
-      });
-    });
-  </script>
 </body>
 </html>
