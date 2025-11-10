@@ -3,34 +3,35 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Georgia", serif;
-
   background: linear-gradient(
     to right,
-    #f4c48c 120px,   /* 左120px をベージュ */
-    #FAEECF 120px    /* そこから先はクリーム色 */
+    #f4c48c 120px,
+    #FAEECF 120px
   );
 }
 
 /* ✅ レイアウト全体 */
 .container {
   display: flex;
+  flex-direction: row;
   width: 100%;
   min-height: 100vh;
 }
 
-/* ✅ 左ナビ（同じ幅でベージュの上に置く） */
-/* サイドバーの設定 */
+/* ✅ 左ナビ */
 .side-nav {
-  width: 120px; /* 幅を指定 */
-  background-color: #f4c48c; /* ベージュ色 */
+  width: 120px;
+  background-color: #f4c48c;
   padding: 20px 0;
   display: flex;
-  flex-direction: column; /* 縦に並べる */
+  flex-direction: column;
   gap: 20px;
-  align-items: center; /* 中央にアイコンとテキストを配置 */
+  align-items: center;
+  flex-shrink: 0;
+  position: relative; /* デフォルトでは固定しない */
 }
 
-/* ボタンのスタイル */
+/* ✅ ナビアイテム */
 .nav-item {
   background: none;
   border: none;
@@ -40,42 +41,26 @@ body {
   appearance: none;
   line-height: 1.2;
   text-align: center;
-  width: 100%; /* ボタンを全幅に */
-}
-
-.nav-item br {
-  display: none; /* 改行タグを隠す */
-}
-
-.nav-item:hover {
-  opacity: 0.65; /* ホバー時の透明度 */
-}
-
-.nav-item:focus {
-  outline: none; /* フォーカス時のアウトラインを消す */
-}
-
-/* アイコンとテキストのレイアウト調整 */
-.nav-item {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px; /* アイコンとテキストの間隔 */
+  gap: 5px;
 }
 
-/* 例えばアイコンサイズ調整 */
 .nav-item i {
   font-size: 24px;
 }
 
-/* メインエリア */
-.content {
-  flex: 1;
-  padding: 20px;
-  background-color: #fdf6e3;
+.nav-item:hover {
+  opacity: 0.65;
+}
+.nav-item:focus {
+  outline: none;
 }
 
 /* ✅ メインエリア */
+.content,
 main {
   flex: 1;
   padding: 20px;
@@ -84,17 +69,17 @@ main {
 }
 
 main h1 {
-  font-size: 32px; /* 少し大きく */
+  font-size: 32px;
   margin: 10px 0;
   color: #6a4a2f;
 }
 
+/* ✅ ヘルプリスト */
 .help {
   list-style: none;
   padding: 0;
   margin-top: 40px;
 }
-
 .help li {
   font-size: 18px;
   color: #6a4a2f;
@@ -102,7 +87,6 @@ main h1 {
   cursor: pointer;
   text-decoration: underline;
 }
-
 .help li:hover {
   opacity: 0.7;
 }
@@ -143,7 +127,7 @@ header {
 }
 
 header h1 {
-  font-size: 26px; /* 少し大きく */
+  font-size: 26px;
   margin: 0;
   color: #6a4a2f;
 }
@@ -184,4 +168,110 @@ header input {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* ===================================================== */
+/* ✅ レスポンシブ対応（スマホ～PC） */
+/* ===================================================== */
+
+/* 📱 スマホ向け（～599px） */
+@media screen and (max-width: 599px) {
+  body {
+    background: #FAEECF; /* 背景を単色化 */
+  }
+
+  .container {
+    flex-direction: column;
+    padding-bottom: 70px; /* 下のナビ分の余白を確保 */
+  }
+
+  /* ↓ スマホではナビを画面下に固定 */
+  .side-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #f4c48c;
+    padding: 10px 0;
+    border-top: 2px solid #e4b071;
+    z-index: 1000;
+  }
+
+  .nav-item {
+    font-size: 12px;
+    flex: 1;
+  }
+
+  .nav-item i {
+    font-size: 20px;
+  }
+
+  main h1 {
+    font-size: 24px;
+  }
+
+  .help li {
+    font-size: 16px;
+  }
+
+  header input {
+    width: 90%;
+    max-width: 280px;
+  }
+
+  .carousel .card {
+    width: 90%;
+    height: 70px;
+  }
+
+  .categories .item {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* 💻 タブレット向け（600px～1024px） */
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+  .side-nav {
+    width: 100px;
+    gap: 15px;
+  }
+
+  .nav-item i {
+    font-size: 22px;
+  }
+
+  .nav-item {
+    font-size: 13px;
+  }
+
+  main h1 {
+    font-size: 28px;
+  }
+
+  .carousel .card {
+    width: 250px;
+  }
+
+  .categories .item {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* 🖥 PC向け（1025px～） */
+@media screen and (min-width: 1025px) {
+  .side-nav {
+    width: 120px;
+  }
+
+  main h1 {
+    font-size: 32px;
+  }
+
+  .carousel .card {
+    width: 300px;
+  }
 }
