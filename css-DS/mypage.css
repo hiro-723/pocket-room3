@@ -73,7 +73,14 @@ body {
 main {
   flex: 1;
   padding: 20px;
-  background-color: #FAEECF;
+  background-color: #FAEECF; /* フッターと同じ色 */
+  
+  /* 中央揃え */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 上下中央 */
+  align-items: center;     /* 左右中央 */
+  text-align: center;
 }
 
 /* タイトル画像 */
