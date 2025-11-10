@@ -1,100 +1,119 @@
+/* ===================================================== */
 /* ✅ 全体背景：左ベージュ → 右クリーム */
+/* ===================================================== */
 body {
   margin: 0;
   padding: 0;
   font-family: "Georgia", serif;
-
-  /* ← コレが背景色の帯を作る */
   background: linear-gradient(
     to right,
-    #f4c48c 120px,   /* 左120px をベージュ */
-    #FAEECF 120px    /* そこから先はクリーム色 */
+    #f4c48c 120px,
+    #FAEECF 120px
   );
 }
 
+/* ===================================================== */
 /* ✅ レイアウト全体 */
+/* ===================================================== */
 .container {
   display: flex;
   width: 100%;
   min-height: 100vh;
 }
 
-/* ✅ 左ナビ（同じ幅でベージュの上に置く） */
+/* ===================================================== */
+/* ✅ 左ナビ */
 .side-nav {
   width: 120px;
-  background-color: transparent; /* ←背景は body で作ってる */
+  background-color: transparent; /* 背景は body で作る */
   padding: 20px 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center;
+  position: relative;
   text-align: center;
 }
 
-/* ✅ ボタン感を消す */
+/* ナビボタン */
 .side-nav .nav-item {
   background: none;
   border: none;
-  font-size: 14px;
+  font-size: clamp(10px, 1.2vw, 14px);
   cursor: pointer;
   padding: 10px 0;
-  appearance: none;
-  line-height: 1.2;
-}
-
-.sidebar {
-  width: 70px;
-  background-color: #e6b27e;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  gap: 5px;
+  color: #5c3a00;
 }
 
-.sidebar li {
-  list-style: none;
-  margin: 20px 0;
-  color: #fff;
-  font-size: 18px;
+.side-nav .nav-item i {
+  font-size: clamp(18px, 2vw, 24px);
 }
 
+.side-nav .nav-item:hover {
+  opacity: 0.65;
+}
+
+/* 🧸 クマアイコン */
 .bear {
   font-size: 28px;
 }
 
+/* ===================================================== */
+/* ✅ メインコンテンツ */
 .content {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* 上寄せ */
+  align-items: center; /* 左右中央 */
   text-align: center;
   padding: 50px;
+  background-color: #FAEECF; /* フッター・右側と統一 */
 }
 
+/* タイトル */
 h1 {
   color: #6b3d16;
   border-bottom: 1px solid #d4a373;
   display: inline-block;
   margin-bottom: 30px;
+  font-size: clamp(20px, 2.5vw, 26px);
 }
 
+/* 検索バー */
 .searchbar input {
-  width: 250px;
+  width: clamp(180px, 30vw, 250px);
   padding: 6px;
   border: 1px solid #ccc;
   margin-bottom: 20px;
+  border-radius: 5px;
+  font-size: clamp(12px, 1.5vw, 16px);
 }
 
+/* 結果表示 */
 .results {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
 }
 
+/* 個別アイテム */
 .item {
-  width: 100px;
+  width: clamp(80px, 10vw, 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.img {
-  width: 100px;
-  height: 100px;
+.item .img {
+  width: clamp(60px, 8vw, 100px);
+  height: clamp(60px, 8vw, 100px);
   background-color: #ddd;
   margin-bottom: 10px;
+  border-radius: 8px;
 }
