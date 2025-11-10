@@ -19,11 +19,12 @@ body {
 /* ✅ タイトル画像 */
 .moji {
   display: block;
-  width: clamp(140px, 35vw, 280px); /* 最大280pxまで拡大 */
+  width: 200px; /* 固定サイズ */
   height: auto;
   margin: 0 auto 15px;
   object-fit: contain;
 }
+
 
 /* ===================================================== */
 /* ✅ ページ見出し */
