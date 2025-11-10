@@ -21,11 +21,12 @@ body {
   padding: 20px 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
+  gap: 20px;
   flex-shrink: 0;
   position: relative;
-  transition: all 0.3s ease; /* スムーズな切替 */
+  transition: all 0.3s ease;
+  justify-content: flex-start; /* 上詰め配置 */
 }
 
 /* ✅ ナビアイテム */
@@ -42,6 +43,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 5px;
+  color: #5c3a00;
 }
 
 .nav-item i {
@@ -53,6 +55,15 @@ body {
 }
 .nav-item:focus {
   outline: none;
+}
+
+/* 🧸 クマの画像 */
+.bear-icon {
+  width: clamp(25px, 3vw, 35px);
+  height: auto;
+  object-fit: contain;
+  margin-top: auto; /* 一番下に押し下げる */
+  margin-bottom: 10px; /* 少し余白 */
 }
 
 /* ✅ メインエリア */
@@ -69,14 +80,7 @@ main h1 {
   color: #6a4a2f;
 }
 
-/* 🧸 サイドの熊 */
-.bear-icon {
-  width: clamp(25px, 3vw, 35px);
-  height: auto;
-  object-fit: contain;
-}
-
-/* ============= メイン ============= */
+/* ============= ヘッダー部分 ============= */
 header {
   display: flex;
   flex-direction: column;
@@ -126,8 +130,11 @@ header input {
   border-radius: 50%;
   background: #bebebe;
   display: flex;
+  flex-direction: column; /* 画像と文字を縦並びに */
   align-items: center;
   justify-content: center;
+  gap: 5px;
+  text-align: center;
 }
 
 .categories .item img {
@@ -152,40 +159,32 @@ header input {
     padding-bottom: 70px; /* 下にナビ分の余白 */
   }
 
-/* ✅ 左ナビ */
-.side-nav {
-  width: 120px;
-  background-color: #f4c48c;
-  padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  flex-shrink: 0;
-  position: relative;
-  transition: all 0.3s ease;
-  justify-content: flex-start; /* ← 上から並べる */
-}
-
-/* 🧸 クマの画像 */
-.bear-icon {
-  width: clamp(25px, 3vw, 35px);
-  height: auto;
-  object-fit: contain;
-  margin-top: auto; /* ← 一番下に押し下げる！ */
-}
-
+  .side-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #f4c48c;
+    padding: 10px 0;
+    border-top: 2px solid #e4b071;
+    z-index: 1000;
+  }
 
   .nav-item {
     flex: 1;
   }
 
+  .bear-icon {
+    display: none; /* スマホでは非表示 */
+  }
 }
 
 /* 💻 タブレット〜PC（600px以上） */
 @media screen and (min-width: 600px) {
   .container {
-    flex-direction: row; /* 横並び */
+    flex-direction: row;
   }
 
   .side-nav {
