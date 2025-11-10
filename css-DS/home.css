@@ -152,26 +152,34 @@ header input {
     padding-bottom: 70px; /* 下にナビ分の余白 */
   }
 
-  .side-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: #f4c48c;
-    padding: 10px 0;
-    border-top: 2px solid #e4b071;
-    z-index: 1000;
-  }
+/* ✅ 左ナビ */
+.side-nav {
+  width: 120px;
+  background-color: #f4c48c;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.3s ease;
+  justify-content: flex-start; /* ← 上から並べる */
+}
+
+/* 🧸 クマの画像 */
+.bear-icon {
+  width: clamp(25px, 3vw, 35px);
+  height: auto;
+  object-fit: contain;
+  margin-top: auto; /* ← 一番下に押し下げる！ */
+}
+
 
   .nav-item {
     flex: 1;
   }
 
-  .bear-icon {
-    display: none; /* 熊は小画面では非表示（圧迫回避） */
-  }
 }
 
 /* 💻 タブレット〜PC（600px以上） */
