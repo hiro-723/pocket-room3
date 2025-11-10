@@ -28,12 +28,13 @@ $sql = "
     cart.cart_id,
     product.product_name,
     product.price,
-    cart.product_id,
-    cart.quantity
+    product.img,
+    cart.product_id
   FROM cart
   JOIN product ON cart.product_id = product.product_id
   WHERE cart.customer_id = ?
 ";
+
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$customer_id]);
 $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -59,13 +60,13 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($cartItems as $item): ?>
           <div class="cart-item" data-id="<?= $item['cart_id'] ?>">
             <div class="cart-info">
-              <!--<img src="<?= htmlspecialchars($item['img']) ?>" alt="">-->
+              <img src="<?= htmlspecialchars($item['img']) ?>" alt="">
               <p><?= htmlspecialchars($item['product_name']) ?><br><?= number_format($item['price']) ?>円</p>
             </div>
 
             <div class="cart-control">
               <button class="btn increase">＋</button>
-              <span class="quantity"><?= $item['quantity'] ?></span>
+              <span class="quantity">1</span>
               <button class="btn decrease">−</button>
               <button class="btn delete">削除</button>
             </div>
