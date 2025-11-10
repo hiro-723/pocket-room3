@@ -46,7 +46,7 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>カート | POCKET ROOM</title>
-  <link rel="stylesheet" href="../合体css/cart.css">
+  <link rel="stylesheet" href="../css-DS/cart.css">
 </head>
 <body>
   <div class="container">
@@ -85,12 +85,13 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </main>
   </div>
 
-  <nav class="bottom-nav">
-    <div class="nav-item" onclick="location.href='home.php'">🏠<br>ホーム</div>
-    <div class="nav-item" onclick="location.href='favorites.php'">❤️<br>お気に入り</div>
-    <img src="../kuma/ya.png" alt="aikon">
-    <div class="nav-item" onclick="location.href='cart.php'">🧸<br>カート</div>
-    <div class="nav-item" onclick="location.href='mypage.php'">👤<br>マイページ</div>
-  </nav>
+  <nav class="side-nav">
+      <button onclick="location.href='home.html'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
+      <button onclick="location.href='favorites.html'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
+      <button onclick="location.href='cart.html'" class="nav-item"><i class="fas fa-shopping-cart"></i><br>カート</button>
+      <button onclick="location.href='mypage.html'" class="nav-item"><i class="fas fa-user"></i><br>マイページ</button>
+      <img src="../kuma/kuma.png" class="bear-icon">
+    </nav>
+
 </body>
 </html>
