@@ -28,7 +28,6 @@ $sql = "
     cart.cart_id,
     product.product_name,
     product.price,
-    product.image_path,
     cart.product_id,
     cart.quantity
   FROM cart
@@ -60,7 +59,7 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($cartItems as $item): ?>
           <div class="cart-item" data-id="<?= $item['cart_id'] ?>">
             <div class="cart-info">
-              <img src="<?= htmlspecialchars($item['image_path']) ?>" alt="">
+              <!--<img src="<?= htmlspecialchars($item['img']) ?>" alt="">-->
               <p><?= htmlspecialchars($item['product_name']) ?><br><?= number_format($item['price']) ?>円</p>
             </div>
 
