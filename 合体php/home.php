@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // パスワードチェック（今回はハッシュ化していない前提）
     if ($user && $password === $user['password']) {
-        $_SESSION['username'] = $user['name']; // ← ここを「username」に統一
+        $_SESSION['username'] = $user['email']; // ← ここを「username」に統一
     } else {
         header("Location: rogin.php?error=1");
         exit;
