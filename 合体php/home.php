@@ -35,45 +35,40 @@ $username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>POCKET ROOM</title>
-  <link rel="stylesheet" href="../合体css/home.css" />
+  <title>ホーム</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../css-DS/home.css" />
 </head>
 <body>
-  <div class="container">
+
+    <nav class="side-nav">
+      <button onclick="location.href='home.html'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
+      <button onclick="location.href='favorites.html'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
+      <button onclick="location.href='cart.html'" class="nav-item"><i class="fas fa-shopping-cart"></i><br>カート</button>
+      <button onclick="location.href='mypage.html'" class="nav-item"><i class="fas fa-user"></i><br>マイページ</button>
+      <img src="../kuma/kuma.png" class="bear-icon">
+
+    </nav>
+
+  <main class="main">
     <header>
-      <img src="../kuma/moji.png" alt="pocket room">
-      <p>ようこそ、<?php echo $username; ?> さん！</p>
+      <img src="../kuma/moji.png" class="moji">
+      <input type="text" placeholder="検索">
     </header>
 
-    <main>
-      <div class="search-bar">
-        <input type="text" placeholder="🔍 検索" />
-      </div>
+    <section class="carousel">
+      <div class="card">おすすめ商品表示</div>
+    </section>
 
-      <div class="banner">
-        <p>おススメと新着入荷をバナーで流す</p>
-        <div class="dots">
-          <span></span><span></span><span></span><span></span><span></span>
-        </div>
-      </div>
+    <section class="categories">
+      <div class="item"> <img src="../home/リビング.png"></div>
+      <div class="item">キッチン</div>
+      <div class="item">ダイニング</div>
+      <div class="item">寝室</div>
+      <div class="item">書斎</div>
+      <div class="item">バスルーム</div>
+    </section>
+  </main>
 
-      <section class="categories">
-        <div class="circle"><p>リビング</p></div>
-        <div class="circle"><p>キッチン</p></div>
-        <div class="circle"><p>ダイニング</p></div>
-        <div class="circle"><p>寝室</p></div>
-        <div class="circle"><p>書斎・子供部屋</p></div>
-        <div class="circle"><p>バスルーム</p></div>
-      </section>
-    </main>
-  </div>
-
-  <nav class="bottom-nav">
-      <div class="nav-item" onclick="location.href='home.php'">🏠<br><span>ホーム</span></div>
-      <div class="nav-item" onclick="location.href='okiniiri.php'">❤️<br><span>お気に入り</span></div>
-      <div class="nav-item" onclick="location.href=''">🧸<br><span></span></div>
-      <div class="nav-item" onclick="location.href='cart.php'">🛒<br><span>カート</span></div>
-      <div class="nav-item" onclick="location.href='mypage.php'">👤<br><span>マイページ</span></div>
-  </nav>
 </body>
 </html>

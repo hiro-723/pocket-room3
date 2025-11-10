@@ -28,17 +28,16 @@ body {
   gap: 20px;
   align-items: center;
   flex-shrink: 0;
-  position: relative; /* デフォルトでは固定しない */
+  position: relative;
 }
 
 /* ✅ ナビアイテム */
 .nav-item {
   background: none;
   border: none;
-  font-size: 14px;
+  font-size: clamp(10px, 1.2vw, 14px); /* 画面幅に応じて変化 */
   cursor: pointer;
   padding: 10px 0;
-  appearance: none;
   line-height: 1.2;
   text-align: center;
   width: 100%;
@@ -49,7 +48,7 @@ body {
 }
 
 .nav-item i {
-  font-size: 24px;
+  font-size: clamp(18px, 2vw, 24px);
 }
 
 .nav-item:hover {
@@ -69,7 +68,7 @@ main {
 }
 
 main h1 {
-  font-size: 32px;
+  font-size: clamp(20px, 2.5vw, 32px);
   margin: 10px 0;
   color: #6a4a2f;
 }
@@ -81,7 +80,7 @@ main h1 {
   margin-top: 40px;
 }
 .help li {
-  font-size: 18px;
+  font-size: clamp(14px, 1.8vw, 18px);
   color: #6a4a2f;
   margin: 15px 0;
   cursor: pointer;
@@ -110,7 +109,21 @@ main h1 {
 .bear {
   margin-top: auto;
   margin-bottom: 20px;
-  font-size: 30px;
+}
+
+/* 🧸 サイドの熊 */
+.bear-icon {
+  width: clamp(25px, 3vw, 35px);  /* 画面幅に応じて小さく変化 */
+  height: auto;
+  object-fit: contain;
+}
+
+/* 🧸 購入完了画面専用（complete.css） */
+.bear-ojigi {
+  width: clamp(80px, 10vw, 120px);
+  height: auto;
+  margin: 20px auto;
+  display: block;
 }
 
 /* ============= メイン ============= */
@@ -126,30 +139,34 @@ header {
   gap: 10px;
 }
 
-header h1 {
-  font-size: 26px;
-  margin: 0;
-  color: #6a4a2f;
+/* タイトルロゴ画像 */
+header .moji {
+  width: clamp(100px, 18vw, 160px);
+  height: auto;
+  display: block;
 }
 
+/* 検索フォーム */
 header input {
-  width: 250px;
-  height: 30px;
+  width: clamp(180px, 25vw, 300px);
+  height: clamp(26px, 3.2vw, 34px);
   border: 1px solid #888;
   border-radius: 5px;
-  padding: 5px;
+  padding: 5px 10px;
+  font-size: clamp(12px, 1.6vw, 16px);
 }
 
 /* ============= カルーセル ============= */
 .carousel .card {
-  width: 300px;
-  height: 80px;
+  width: clamp(200px, 40vw, 300px);
+  height: clamp(60px, 8vw, 80px);
   background: #ffffffcc;
   border-radius: 6px;
   margin: 20px auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: clamp(14px, 1.8vw, 18px);
 }
 
 /* ============= カテゴリ ============= */
@@ -161,8 +178,8 @@ header input {
 }
 
 .categories .item {
-  width: 80px;
-  height: 80px;
+  width: clamp(60px, 10vw, 80px);
+  height: clamp(60px, 10vw, 80px);
   border-radius: 50%;
   background: #bebebe;
   display: flex;
@@ -170,22 +187,28 @@ header input {
   justify-content: center;
 }
 
+.categories .item img {
+  width: clamp(35px, 6vw, 50px);
+  height: clamp(35px, 6vw, 50px);
+  object-fit: contain;
+  border-radius: 50%;
+}
+
 /* ===================================================== */
-/* ✅ レスポンシブ対応（スマホ～PC） */
+/* ✅ レスポンシブナビゲーション */
 /* ===================================================== */
 
-/* 📱 スマホ向け（～599px） */
+/* 📱 スマホ（～599px） */
 @media screen and (max-width: 599px) {
   body {
-    background: #FAEECF; /* 背景を単色化 */
+    background: #FAEECF;
   }
 
   .container {
     flex-direction: column;
-    padding-bottom: 70px; /* 下のナビ分の余白を確保 */
+    padding-bottom: 70px;
   }
 
-  /* ↓ スマホではナビを画面下に固定 */
   .side-nav {
     position: fixed;
     bottom: 0;
@@ -200,78 +223,6 @@ header input {
   }
 
   .nav-item {
-    font-size: 12px;
     flex: 1;
-  }
-
-  .nav-item i {
-    font-size: 20px;
-  }
-
-  main h1 {
-    font-size: 24px;
-  }
-
-  .help li {
-    font-size: 16px;
-  }
-
-  header input {
-    width: 90%;
-    max-width: 280px;
-  }
-
-  .carousel .card {
-    width: 90%;
-    height: 70px;
-  }
-
-  .categories .item {
-    width: 60px;
-    height: 60px;
-  }
-}
-
-/* 💻 タブレット向け（600px～1024px） */
-@media screen and (min-width: 600px) and (max-width: 1024px) {
-  .side-nav {
-    width: 100px;
-    gap: 15px;
-  }
-
-  .nav-item i {
-    font-size: 22px;
-  }
-
-  .nav-item {
-    font-size: 13px;
-  }
-
-  main h1 {
-    font-size: 28px;
-  }
-
-  .carousel .card {
-    width: 250px;
-  }
-
-  .categories .item {
-    width: 70px;
-    height: 70px;
-  }
-}
-
-/* 🖥 PC向け（1025px～） */
-@media screen and (min-width: 1025px) {
-  .side-nav {
-    width: 120px;
-  }
-
-  main h1 {
-    font-size: 32px;
-  }
-
-  .carousel .card {
-    width: 300px;
   }
 }
