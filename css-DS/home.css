@@ -3,17 +3,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Georgia", serif;
-  background: linear-gradient(
-    to right,
-    #f4c48c 120px,
-    #FAEECF 120px
-  );
+  background: linear-gradient(to right, #f4c48c 120px, #FAEECF 120px);
 }
 
 /* ✅ レイアウト全体 */
 .container {
   display: flex;
-  flex-direction: row;
+  flex-direction: row; /* ← 通常は横並び（PC用） */
   width: 100%;
   min-height: 100vh;
 }
@@ -29,13 +25,14 @@ body {
   align-items: center;
   flex-shrink: 0;
   position: relative;
+  transition: all 0.3s ease; /* スムーズな切替 */
 }
 
 /* ✅ ナビアイテム */
 .nav-item {
   background: none;
   border: none;
-  font-size: clamp(10px, 1.2vw, 14px); /* 画面幅に応じて変化 */
+  font-size: clamp(10px, 1.2vw, 14px);
   cursor: pointer;
   padding: 10px 0;
   line-height: 1.2;
@@ -59,7 +56,6 @@ body {
 }
 
 /* ✅ メインエリア */
-.content,
 main {
   flex: 1;
   padding: 20px;
@@ -73,65 +69,14 @@ main h1 {
   color: #6a4a2f;
 }
 
-/* ✅ ヘルプリスト */
-.help {
-  list-style: none;
-  padding: 0;
-  margin-top: 40px;
-}
-.help li {
-  font-size: clamp(14px, 1.8vw, 18px);
-  color: #6a4a2f;
-  margin: 15px 0;
-  cursor: pointer;
-  text-decoration: underline;
-}
-.help li:hover {
-  opacity: 0.7;
-}
-
-/* ============= サイド ============= */
-.side {
-  width: 70px;
-  background: #e4b071;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-  gap: 20px;
-}
-
-.icon {
-  font-size: 22px;
-  cursor: pointer;
-}
-
-.bear {
-  margin-top: auto;
-  margin-bottom: 20px;
-}
-
 /* 🧸 サイドの熊 */
 .bear-icon {
-  width: clamp(25px, 3vw, 35px);  /* 画面幅に応じて小さく変化 */
+  width: clamp(25px, 3vw, 35px);
   height: auto;
   object-fit: contain;
 }
 
-/* 🧸 購入完了画面専用（complete.css） */
-.bear-ojigi {
-  width: clamp(80px, 10vw, 120px);
-  height: auto;
-  margin: 20px auto;
-  display: block;
-}
-
 /* ============= メイン ============= */
-.main {
-  flex: 1;
-  padding: 20px;
-}
-
 header {
   display: flex;
   flex-direction: column;
@@ -139,14 +84,12 @@ header {
   gap: 10px;
 }
 
-/* タイトルロゴ画像 */
 header .moji {
   width: clamp(100px, 18vw, 160px);
   height: auto;
   display: block;
 }
 
-/* 検索フォーム */
 header input {
   width: clamp(180px, 25vw, 300px);
   height: clamp(26px, 3.2vw, 34px);
@@ -156,7 +99,7 @@ header input {
   font-size: clamp(12px, 1.6vw, 16px);
 }
 
-/* ============= カルーセル ============= */
+/* カルーセル */
 .carousel .card {
   width: clamp(200px, 40vw, 300px);
   height: clamp(60px, 8vw, 80px);
@@ -169,7 +112,7 @@ header input {
   font-size: clamp(14px, 1.8vw, 18px);
 }
 
-/* ============= カテゴリ ============= */
+/* カテゴリ */
 .categories {
   display: flex;
   flex-wrap: wrap;
@@ -205,8 +148,8 @@ header input {
   }
 
   .container {
-    flex-direction: column;
-    padding-bottom: 70px;
+    flex-direction: column; /* ナビを下に配置 */
+    padding-bottom: 70px; /* 下にナビ分の余白 */
   }
 
   .side-nav {
@@ -224,5 +167,26 @@ header input {
 
   .nav-item {
     flex: 1;
+  }
+
+  .bear-icon {
+    display: none; /* 熊は小画面では非表示（圧迫回避） */
+  }
+}
+
+/* 💻 タブレット〜PC（600px以上） */
+@media screen and (min-width: 600px) {
+  .container {
+    flex-direction: row; /* 横並び */
+  }
+
+  .side-nav {
+    position: relative;
+    width: 120px;
+    border-top: none;
+  }
+
+  .bear-icon {
+    display: block;
   }
 }
