@@ -1,13 +1,13 @@
 <?php
 session_start();
-require_once '../db-connect.php';
+require_once 'db-connect.php';
 
 if (!isset($_SESSION['username'])) {
   header("Location: rogin.php");
   exit;
 }
 
-$stmt = $pdo->prepare("SELECT customer_id FROM users WHERE username = ?");
+$stmt = $pdo->prepare("SELECT customer_id FROM customer WHERE email = ?");
 $stmt->execute([$_SESSION['username']]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -19,7 +19,8 @@ $sql = "
     product.product_name,
     product.price,
     product.image_path,
-    cart.product_id
+    cart.product_id,
+    cart.quantity
   FROM cart
   JOIN product ON cart.product_id = product.product_id
   WHERE cart.customer_id = ?
@@ -45,8 +46,8 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </header>
 
     <main id="cart-container">
-      <?php if ($items): ?>
-        <?php foreach ($items as $item): ?>
+      <?php if ($cartItems): ?>
+        <?php foreach ($cartItems as $item): ?>
           <div class="cart-item" data-id="<?= $item['cart_id'] ?>">
             <div class="cart-info">
               <img src="<?= htmlspecialchars($item['image_path']) ?>" alt="">
@@ -67,7 +68,7 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       <div class="cart-total">
         <p>合計金額: <span id="total">
-          <?= number_format(array_sum(array_map(fn($i) => $i['price'] * $i['quantity'], $items))) ?>
+          <?= number_format(array_sum(array_map(fn($i) => $i['price'] * $i['quantity'], $cartItems))) ?>
         </span>円</p>
         <button class="buy-btn">購入する</button>
       </div>
