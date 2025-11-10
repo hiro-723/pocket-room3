@@ -277,8 +277,8 @@ header input {
 }
 サイドの熊のサイズ
 .bear-icon {
-  width: 5px;   /* 横幅 */
-  height: 5px;  /* 高さ */
+  width: 0.1px;   /* 横幅 */
+  height: 0.1px;  /* 高さ */
   object-fit: contain; /* 画像の比率を維持して収める */
 }
  
