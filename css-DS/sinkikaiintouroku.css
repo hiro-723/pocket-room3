@@ -8,55 +8,46 @@ body {
 
 /* ===================================================== */
 /* ✅ コンテナ全体 */
-.register-container {
+.sinkikaiintouroku-container {
   width: 90%;
   max-width: 700px;
   margin: 40px auto;
+  text-align: center;
 }
 
 /* ===================================================== */
-/* ✅ ロゴエリア */
-.logo-area {
-  text-align: center;
-}
-
-/* タイトル画像 */
-.logo-area img {
-  width: clamp(180px, 32vw, 280px); /* 最大200pxまで拡大、スマホでも潰れない */
+/* ✅ タイトル画像 */
+.moji {
+  display: block;
+  width: clamp(140px, 28vw, 200px); /* 最小140px～最大200px */
   height: auto;
-  margin-bottom: 8px;
+  margin: 0 auto 15px;
   object-fit: contain;
 }
 
-/* 見出し */
-h1 {
-  font-size: clamp(24px, 4vw, 30px);
+/* ===================================================== */
+/* ✅ ページ見出し */
+.page-title {
+  font-size: clamp(20px, 3vw, 26px);
   color: #6a4a2f;
   margin-bottom: 20px;
-  text-align: center;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: clamp(18px, 3vw, 20px);
-  color: #333;
 }
 
 /* ===================================================== */
 /* ✅ 登録フォーム */
-.register-form {
+.sinkikaiintouroku-form {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.register-form label {
+.sinkikaiintouroku-form label {
   font-size: clamp(12px, 1.5vw, 14px);
   color: #333;
+  text-align: left;
 }
 
-.register-form input {
+.sinkikaiintouroku-form input {
   width: 100%;
   height: clamp(30px, 3vw, 40px);
   padding: 5px;
@@ -66,7 +57,7 @@ h2 {
 }
 
 /* 登録ボタン */
-.register-btn {
+.sinkikaiintouroku-btn {
   width: 100%;
   background: #e3a567;
   padding: clamp(10px, 2vw, 14px);
@@ -80,31 +71,27 @@ h2 {
   transition: background 0.2s;
 }
 
-.register-btn:hover {
+.sinkikaiintouroku-btn:hover {
   background: #d18b4f;
 }
 
 /* ===================================================== */
 /* ✅ PC向け拡大調整 */
 @media screen and (min-width: 768px) {
-  .register-container {
+  .sinkikaiintouroku-container {
     margin: 60px auto;
   }
 
-  h1 {
-    font-size: 30px;
+  .page-title {
+    font-size: 24px;
   }
 
-  h2 {
-    font-size: 20px;
-  }
-
-  .register-form input {
+  .sinkikaiintouroku-form input {
     height: 35px;
     font-size: 14px;
   }
 
-  .register-btn {
+  .sinkikaiintouroku-btn {
     padding: 12px;
     font-size: 16px;
   }
