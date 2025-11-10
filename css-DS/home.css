@@ -275,3 +275,17 @@ header input {
     width: 300px;
   }
 }
+サイドの熊のサイズ
+.bear-icon {
+  width: 60px;   /* 横幅 */
+  height: 60px;  /* 高さ */
+  object-fit: contain; /* 画像の比率を維持して収める */
+}
+ 
+購入完了画面の熊のサイズ（complete.css）のみ使用
+.bear-ojigi {
+  width: 120px;
+  height: auto;
+  margin: 20px auto;
+  display: block;
+}
