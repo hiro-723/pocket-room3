@@ -77,7 +77,7 @@ header {
 }
 
 header .moji {
-  width: clamp(120px, 22vw, 200px);
+  width: clamp(140px, 28vw, 250px);
   height: auto;
   display: block;
 }
