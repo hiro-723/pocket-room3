@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <label>パスワード</label>
             <input type="password" name="password" required>
 
-            <input type="submit" value="登録する">
+            <button type="submit">ログインする</button>    
         </form>
     </div>
 </body>
