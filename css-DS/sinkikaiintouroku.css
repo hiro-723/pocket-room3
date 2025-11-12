@@ -1,0 +1,98 @@
+/* ===================================================== */
+/* ✅ 全体背景・フォント */
+body {
+  margin: 0;
+  background: #FAEECF;
+  font-family: "Helvetica", "Yu Gothic", sans-serif;
+}
+
+/* ===================================================== */
+/* ✅ コンテナ全体 */
+.sinkikaiintouroku-container {
+  width: 90%;
+  max-width: 700px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+/* ===================================================== */
+/* ✅ タイトル画像 */
+.moji {
+  display: block;
+  width: 200px; /* 固定サイズ */
+  height: auto;
+  margin: 0 auto 15px;
+  object-fit: contain;
+}
+
+/* ===================================================== */
+/* ✅ ページ見出し */
+.page-title {
+  font-size: clamp(20px, 3vw, 26px);
+  color: #6a4a2f;
+  margin-bottom: 20px;
+}
+
+/* ===================================================== */
+/* ✅ 登録フォーム */
+.sinkikaiintouroku-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sinkikaiintouroku-form label {
+  font-size: clamp(12px, 1.5vw, 14px);
+  color: #333;
+  text-align: left;
+}
+
+.sinkikaiintouroku-form input {
+  width: 100%;
+  height: clamp(30px, 3vw, 40px);
+  padding: 5px;
+  border: 1px solid #888;
+  border-radius: 4px;
+  font-size: clamp(12px, 1.5vw, 14px);
+}
+
+/* 登録ボタン */
+.sinkikaiintouroku-btn {
+  width: 100%;
+  background: #e3a567;
+  padding: clamp(10px, 2vw, 14px);
+  border: none;
+  border-radius: 3px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: clamp(14px, 2vw, 16px);
+  color: #fff;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.sinkikaiintouroku-btn:hover {
+  background: #d18b4f;
+}
+
+/* ===================================================== */
+/* ✅ PC向け拡大調整 */
+@media screen and (min-width: 768px) {
+  .sinkikaiintouroku-container {
+    margin: 60px auto;
+  }
+
+  .page-title {
+    font-size: 24px;
+  }
+
+  .sinkikaiintouroku-form input {
+    height: 35px;
+    font-size: 14px;
+  }
+
+  .sinkikaiintouroku-btn {
+    padding: 12px;
+    font-size: 16px;
+  }
+}

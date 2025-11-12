@@ -1,0 +1,200 @@
+/* ✅ 全体背景：左ベージュ → 右クリーム */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Georgia", serif;
+  background: linear-gradient(to right, #f4c48c 120px, #FAEECF 120px);
+}
+
+/* ✅ レイアウト全体 */
+.container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ✅ 左ナビ */
+.side-nav {
+  width: 120px;
+  background-color: #f4c48c;
+  padding: 20px 0 80px; /* 下に余白を追加（クマ分） */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* ✅ ナビボタン */
+.nav-item {
+  background: none;
+  border: none;
+  font-size: clamp(10px, 1.2vw, 14px);
+  cursor: pointer;
+  padding: 10px 0;
+  line-height: 1.2;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-item i {
+  font-size: clamp(18px, 2vw, 24px);
+}
+
+.nav-item:hover {
+  opacity: 0.65;
+}
+
+/* 🧸 サイドのクマ */
+.bear-icon {
+  width: clamp(25px, 4vw, 45px);
+  height: auto;
+  object-fit: contain;
+  position: absolute;
+  bottom: 15px; /* ナビの一番下 */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ✅ メインエリア */
+main {
+  flex: 1;
+  padding: 20px;
+  background-color: #fdf6e3;
+  text-align: center;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+header .moji {
+  width: clamp(140px, 28vw, 250px);
+  height: auto;
+  display: block;
+}
+
+header input {
+  width: clamp(180px, 25vw, 300px);
+  height: clamp(26px, 3.2vw, 34px);
+  border: 1px solid #888;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: clamp(12px, 1.6vw, 16px);
+}
+
+/* カルーセル */
+.carousel .card {
+  width: clamp(200px, 40vw, 300px);
+  height: clamp(60px, 8vw, 80px);
+  background: #ffffffcc;
+  border-radius: 6px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(14px, 1.8vw, 18px);
+}
+
+/* カテゴリ */
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+}
+
+
+.categories .item img {
+  width: clamp(50px, 8vw, 70px);
+  height: clamp(50, 8vw, 70px);
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.item-label {
+  font-size: clamp(12px, 1.5vw, 16px);
+  color: #5c3a00;
+}
+
+/* ===================================================== */
+/* ✅ レスポンシブナビゲーション */
+/* ===================================================== */
+
+/* 📱 スマホ（～599px） */
+@media screen and (max-width: 599px) {
+  body {
+    background: #FAEECF;
+  }
+
+  .container {
+    flex-direction: column;
+    padding-bottom: 70px;
+  }
+
+  .side-nav {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #f4c48c;
+    padding: 0;
+  }
+
+  .nav-item {
+    flex: 1;
+  }
+
+  .bear-icon {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    left: auto;
+    transform: none;
+    width: 40px;
+  }
+
+  .categories {
+    gap: 15px;
+  }
+
+  /* タイトル画像のサイズをスマホ用に大きく */
+  header .moji {
+    width: clamp(160px, 35vw, 220px);
+  }
+}
+
+/* 💻 タブレット〜PC（600px以上） */
+@media screen and (min-width: 600px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .side-nav {
+    position: relative;
+    width: 120px;
+  }
+
+  .bear-icon {
+    display: block;
+  }
+}

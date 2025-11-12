@@ -1,0 +1,161 @@
+/* ✅ 全体背景：左ベージュ → 右クリーム */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Georgia", serif;
+  background: linear-gradient(
+    to right,
+    #f4c48c 120px,
+    #FAEECF 120px
+  );
+}
+
+/* ✅ レイアウト全体 */
+.container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+/* ✅ 左ナビ（PC・タブレット時） */
+.side-nav {
+  width: 120px;
+  background-color: transparent;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: center;
+}
+
+/* ✅ ボタン感を消す */
+.side-nav .nav-item {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 0;
+  appearance: none;
+  line-height: 1.2;
+}
+
+.side-nav .nav-item:hover {
+  opacity: 0.65;
+}
+.sidebar {
+  width: 120px;
+  background-color: #f4c48c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+.icon-list i { display:block; font-size:22px; color:#5c3a00; margin: 20px 0; }
+.bear { font-size: 40px; }
+
+.content { flex:1; padding:40px 60px; }
+h1 { color:#5c3a00; font-size:26px; margin-bottom:20px; }
+
+/* logout box */
+.logout-box {
+  background: rgba(255,255,255,0.6);
+  padding: 24px;
+  border-radius: 6px;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.logout-box h2 { color:#3e2a00; margin-bottom:8px; font-size:20px; }
+
+.buttons { display:flex; flex-direction:column; gap:12px; margin-top:18px; align-items:center; }
+.primary-btn, .secondary-btn {
+  width: 60%;
+  padding: 12px 16px;
+  border-radius: 4px;
+  border: 1px solid #c9a67a;
+  cursor: pointer;
+}
+.primary-btn { background: #e9c59b; font-weight:bold; }
+.secondary-btn { background: #efefef; 
+}
+
+/* ===================================================== */
+/* ✅ レスポンシブナビゲーション */
+/* ===================================================== */
+
+/* 📱 スマホ（～599px） */
+@media screen and (max-width: 599px) {
+  body {
+    background: #FAEECF;
+  }
+
+  .container {
+    flex-direction: column;
+    padding-bottom: 70px; /* 下ナビの余白 */
+  }
+
+  /* ↓ ナビを下に固定して横並びに */
+  .side-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #f4c48c;
+    padding: 10px 0;
+    border-top: 2px solid #e4b071;
+    z-index: 1000;
+  }
+
+  .side-nav .nav-item {
+    flex: 1;
+    font-size: clamp(10px, 3vw, 13px);
+  }
+
+  .bear-icon {
+    display: none; /* 熊はスマホ時は非表示に */
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
+  }
+}
+
+/* 💻 タブレット～PC（600px以上） */
+@media screen and (min-width: 600px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .side-nav {
+    position: relative;
+    width: 120px;
+    border-top: none;
+  }
+
+  .bear-icon {
+    display: block;
+  }
+}
+/* ✅ タイトル画像（ロゴ部分） */
+.moji {
+  display: block;
+  width: clamp(120px, 30vw, 250px); /* 画面幅に応じて可変（最小120px〜最大250px） */
+  height: auto;
+  margin: 0 auto 15px; /* 中央寄せ + 下に余白 */
+  object-fit: contain;
+}
+
+/* 🧸 クマの画像 */
+.bear-icon {
+  width: clamp(25px, 4vw, 45px); /* 画面幅に応じて変化 */
+  height: auto;
+  object-fit: contain;
+  margin-top: auto;
+}
+
