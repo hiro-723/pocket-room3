@@ -34,10 +34,19 @@ $sql = "
   JOIN product ON cart.product_id = product.product_id
   WHERE cart.customer_id = ?
 ";
-
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$customer_id]);
 $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// ✅ 合計金額を最初に初期化
+$total = 0;
+
+// ✅ 商品がある場合のみ計算
+if ($cartItems) {
+  foreach ($cartItems as $item) {
+    $total += (int)$item['price']; // 数量1として計算
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -93,7 +102,6 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </main>
   </div>
 
-  <!-- ✅ サイドナビ -->
   <nav class="side-nav">
     <button onclick="location.href='home.php'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
     <button onclick="location.href='favorites.php'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
