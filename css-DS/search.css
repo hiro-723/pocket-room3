@@ -1,4 +1,7 @@
 /* ✅ 全体背景：左ベージュ → 右クリーム */
+/* ===================================================== */
+/* ✅ 全体背景：左ベージュ → 右クリーム（統一） */
+/* ===================================================== */
 body {
   margin: 0;
   padding: 0;
@@ -85,6 +88,7 @@ main {
   flex: 1;
   padding: 20px;
   background-color: #FAEECF;
+  background-color: #FAEECF; /* ← 1つ目のコードに合わせた淡いベージュ */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -105,6 +109,7 @@ main {
 .mypage-menu h2 {
   font-size: clamp(20px, 2.5vw, 26px);
   margin-bottom: 20px;
+  color: #5c3a00;
 }
 
 .menu {
@@ -128,6 +133,7 @@ main {
   border: 1px solid #888;
   border-radius: 8px;
   background-color: #fff;
+  color: #5c3a00;
   cursor: pointer;
 }
 
@@ -140,6 +146,7 @@ main {
 /* ===================================================== */
 
 /* 📱 スマホ（～599px） */
+/* ✅ レスポンシブナビ（スマホ時） */
 @media screen and (max-width: 599px) {
   body {
     background: #FAEECF;

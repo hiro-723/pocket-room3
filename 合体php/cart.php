@@ -28,8 +28,8 @@ $sql = "
     cart.cart_id,
     product.product_name,
     product.price,
-    cart.product_id,
-    cart.quantity
+    product.img,
+    cart.product_id
   FROM cart
   JOIN product ON cart.product_id = product.product_id
   WHERE cart.customer_id = ?
@@ -37,6 +37,16 @@ $sql = "
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$customer_id]);
 $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// ✅ 合計金額を最初に初期化
+$total = 0;
+
+// ✅ 商品がある場合のみ計算
+if ($cartItems) {
+  foreach ($cartItems as $item) {
+    $total += (int)$item['price']; // 数量1として計算
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -45,8 +55,10 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>カート | POCKET ROOM</title>
-  <link rel="stylesheet" href="../合体css/cart.css">
+  <link rel="stylesheet" href="../css-DS/cart.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
   <div class="container">
     <header>
@@ -59,15 +71,21 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($cartItems as $item): ?>
           <div class="cart-item" data-id="<?= $item['cart_id'] ?>">
             <div class="cart-info">
-              <!--<img src="<?= htmlspecialchars($item['img']) ?>" alt="">-->
+              <?php if (!empty($item['img'])): ?>
+                <img src="../img/<?= htmlspecialchars($item['img']) ?>" alt="商品画像">
+              <?php endif; ?>
               <p><?= htmlspecialchars($item['product_name']) ?><br><?= number_format($item['price']) ?>円</p>
             </div>
 
             <div class="cart-control">
               <button class="btn increase">＋</button>
-              <span class="quantity"><?= $item['quantity'] ?></span>
+              <span class="quantity">1</span>
               <button class="btn decrease">−</button>
-              <button class="btn delete">削除</button>
+
+              <form action="cart-delete.php" method="post" style="display:inline;">
+                <input type="hidden" name="cart_id" value="<?= htmlspecialchars($item['cart_id']) ?>">
+                <button type="submit" class="btn delete">削除</button>
+              </form>
             </div>
           </div>
         <?php endforeach; ?>
@@ -76,20 +94,61 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <?php endif; ?>
 
       <div class="cart-total">
-        <p>合計金額: <span id="total">
-          <?= number_format(array_sum(array_map(fn($i) => $i['price'] * $i['quantity'], $cartItems))) ?>
-        </span>円</p>
-        <button class="buy-btn">購入する</button>
+        <p>合計金額: <span id="total"><?= number_format($total) ?></span>円</p>
+        <form action="purchase.php" method="post">
+          <button type="submit" class="buy-btn">購入する</button>
+        </form>
       </div>
     </main>
   </div>
 
-  <nav class="bottom-nav">
-    <div class="nav-item" onclick="location.href='home.php'">🏠<br>ホーム</div>
-    <div class="nav-item" onclick="location.href='favorites.php'">❤️<br>お気に入り</div>
-    <img src="../kuma/ya.png" alt="aikon">
-    <div class="nav-item" onclick="location.href='cart.php'">🧸<br>カート</div>
-    <div class="nav-item" onclick="location.href='mypage.php'">👤<br>マイページ</div>
+  <nav class="side-nav">
+    <button onclick="location.href='home.php'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
+    <button onclick="location.href='favorites.php'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
+    <button onclick="location.href='cart.php'" class="nav-item"><i class="fas fa-shopping-cart"></i><br>カート</button>
+    <button onclick="location.href='mypage.php'" class="nav-item"><i class="fas fa-user"></i><br>マイページ</button>
+    <img src="../kuma/kuma.png" class="bear-icon">
   </nav>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const cartItems = document.querySelectorAll('.cart-item');
+  const totalDisplay = document.getElementById('total');
+
+  function updateTotal() {
+    let total = 0;
+    cartItems.forEach(item => {
+      const quantityEl = item.querySelector('.quantity');
+      const price = parseInt(quantityEl.dataset.price);
+      const quantity = parseInt(quantityEl.textContent);
+      total += price * quantity;
+    });
+    totalDisplay.textContent = total.toLocaleString();
+  }
+
+  cartItems.forEach(item => {
+    const increaseBtn = item.querySelector('.increase');
+    const decreaseBtn = item.querySelector('.decrease');
+    const quantityEl = item.querySelector('.quantity');
+
+    increaseBtn.addEventListener('click', () => {
+      let qty = parseInt(quantityEl.textContent);
+      quantityEl.textContent = qty + 1;
+      updateTotal();
+    });
+
+    decreaseBtn.addEventListener('click', () => {
+      let qty = parseInt(quantityEl.textContent);
+      if (qty > 1) {
+        quantityEl.textContent = qty - 1;
+        updateTotal();
+      }
+    });
+  });
+
+  // 初期計算
+  updateTotal();
+});
+</script>
+
 </body>
 </html>

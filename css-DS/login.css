@@ -1,10 +1,13 @@
+/* ===================================================== */
+/* ✅ 全体背景・フォント */
 body {
   margin: 0;
   background: #FAEECF;
   font-family: "Helvetica", "Yu Gothic", sans-serif;
 }
 
-/* コンテナ全体 */
+/* ===================================================== */
+/* ✅ コンテナ全体 */
 .container {
   width: 90%;
   max-width: 500px;
@@ -12,13 +15,24 @@ body {
   text-align: center;
 }
 
+/* ロゴタイトル */
 h1.logo {
   margin-bottom: 30px;
   font-size: 32px;
   color: #6a4a2f;
 }
 
-/* 入力フォーム全体 */
+/* タイトル画像 */
+.moji {
+  display: block;
+  width: clamp(180px, 32vw, 280px);
+  height: auto;
+  margin: 0 auto 15px;
+  object-fit: contain;
+}
+
+/* ===================================================== */
+/* ✅ 入力フォーム */
 .login-form {
   display: flex;
   flex-direction: column;
@@ -81,7 +95,8 @@ h1.logo {
   text-decoration: underline;
 }
 
-/* PC向け拡大調整 */
+/* ===================================================== */
+/* ✅ PC向け拡大調整 */
 @media screen and (min-width: 768px) {
   .container {
     margin-top: 100px;
@@ -108,13 +123,4 @@ h1.logo {
   .register-link {
     font-size: 14px;
   }
-}
-
-/* 画像 */
-.moji {
-  display: block;
-  width: clamp(120px, 30vw, 250px);
-  height: auto;
-  margin: 0 auto 15px;
-  object-fit: contain;
 }
