@@ -120,19 +120,10 @@ header input {
   text-align: center;
 }
 
-.categories .item {
-  width: clamp(60px, 10vw, 80px);
-  height: clamp(60px, 10vw, 80px);
-  border-radius: 50%;
-  background: #bebebe;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .categories .item img {
-  width: clamp(35px, 6vw, 50px);
-  height: clamp(35px, 6vw, 50px);
+  width: clamp(50px, 8vw, 70px);
+  height: clamp(50, 8vw, 70px);
   object-fit: contain;
   border-radius: 50%;
 }
