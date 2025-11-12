@@ -1,5 +1,5 @@
 /* ===================================================== */
-/* ✅ 全体背景：左ベージュ → 右クリーム */
+/* ✅ 全体背景：左ベージュ → 右クリーム（統一） */
 /* ===================================================== */
 body {
   margin: 0;
@@ -26,7 +26,7 @@ body {
 /* ===================================================== */
 .side-nav {
   width: 120px;
-  background-color: transparent; /* 背景はbody側で描画 */
+  background-color: transparent; /* 背景はbodyのグラデーションに任せる */
   padding: 20px 0;
   display: flex;
   flex-direction: column;
@@ -69,7 +69,7 @@ body {
 .content {
   flex: 1;
   padding: clamp(20px, 4vw, 60px);
-  background-color: #FAEECF;
+  background-color: #fdf6e3; /* ← 1つ目のコードに合わせた淡いベージュ */
   text-align: center;
 }
 
@@ -86,17 +86,18 @@ body {
 /* ✅ 購入ボックス */
 /* ===================================================== */
 .purchase-box {
-  background: rgba(255, 255, 255, 0.8);
+  background: #fff8ec; /* ← ほんのり温かみを持たせた白ベージュ */
   padding: clamp(16px, 3vw, 24px);
   border-radius: 10px;
   max-width: 700px;
   margin: 0 auto;
   text-align: left;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(92, 58, 0, 0.1);
+  border: 1px solid #f0e0c5;
 }
 
 .purchase-box h2 {
-  color: #3e2a00;
+  color: #5c3a00;
   margin: 0 0 16px 0;
   font-size: clamp(18px, 2vw, 20px);
   text-align: center;
@@ -114,12 +115,12 @@ body {
   background: #fff;
   padding: 10px 12px;
   border-radius: 6px;
-  border: 1px solid #e0d1bf;
+  border: 1px solid #e6d5b8;
   display: flex;
   align-items: center;
   gap: 10px;
   font-size: 15px;
-  color: #3e2a00;
+  color: #5c3a00;
 }
 
 /* 確認テキスト & ボタン */
@@ -140,28 +141,29 @@ body {
 .confirm-no {
   padding: 10px 18px;
   border-radius: 4px;
-  border: 1px solid #c9a67a;
+  border: 1px solid #d4b68d;
   cursor: pointer;
   font-size: 14px;
   transition: background 0.3s, transform 0.1s;
+  color: #5c3a00;
 }
 
 .confirm-yes {
-  background: #e9c59b;
+  background: #f1d2a5; /* ← 優しいベージュ系 */
   font-weight: bold;
 }
 
 .confirm-yes:hover {
-  background: #d6a96f;
+  background: #e2b97b;
   transform: scale(1.03);
 }
 
 .confirm-no {
-  background: #efefef;
+  background: #faf4e5;
 }
 
 .confirm-no:hover {
-  background: #ddd;
+  background: #efe3cb;
   transform: scale(1.03);
 }
 
@@ -169,6 +171,10 @@ body {
 /* ✅ スマホ対応 */
 /* ===================================================== */
 @media screen and (max-width: 599px) {
+  body {
+    background: #FAEECF;
+  }
+
   .container {
     flex-direction: column;
   }
