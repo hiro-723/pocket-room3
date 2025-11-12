@@ -1,0 +1,159 @@
+/* ===================================================== */
+/* ✅ 共通デザイン設定（全ページ統一） */
+/* ===================================================== */
+
+/* 背景と基本設定 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Georgia", serif;
+  background: linear-gradient(to right, #f4c48c 120px, #FAEECF 120px);
+}
+
+/* ===================================================== */
+/* ✅ レイアウト全体構造 */
+/* ===================================================== */
+.container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ===================================================== */
+/* ✅ サイドナビ（左のベージュ部分） */
+/* ===================================================== */
+.side-nav {
+  width: 120px;
+  background-color: #f4c48c;
+  padding: 20px 0 80px; /* クマの分だけ下に余白 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* ナビボタン共通設定 */
+.nav-item {
+  background: none;
+  border: none;
+  font-size: clamp(10px, 1.2vw, 14px);
+  cursor: pointer;
+  padding: 10px 0;
+  line-height: 1.2;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-item i {
+  font-size: clamp(18px, 2vw, 24px);
+}
+
+.nav-item:hover {
+  opacity: 0.65;
+}
+
+/* サイドのクマ画像 */
+.bear-icon {
+  width: clamp(25px, 4vw, 45px);
+  height: auto;
+  object-fit: contain;
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ===================================================== */
+/* ✅ メインエリア共通構造 */
+/* ===================================================== */
+main {
+  flex: 1;
+  padding: 20px;
+  background-color: #FAEECF;
+  text-align: center;
+}
+
+/* ===================================================== */
+/* ✅ ヘッダー（タイトルロゴなど） */
+/* ===================================================== */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* タイトルロゴ画像 */
+header .moji {
+  width: clamp(140px, 28vw, 250px);
+  height: auto;
+  display: block;
+}
+
+/* ===================================================== */
+/* ✅ レスポンシブ対応（スマホ・タブレット） */
+/* ===================================================== */
+
+/* 📱 スマホ（〜599px） */
+@media screen and (max-width: 599px) {
+  body {
+    background: #FAEECF;
+  }
+
+  .container {
+    flex-direction: column;
+    padding-bottom: 70px;
+  }
+
+  .side-nav {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #f4c48c;
+    padding: 0;
+  }
+
+  .nav-item {
+    flex: 1;
+  }
+
+  .bear-icon {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    left: auto;
+    transform: none;
+    width: 40px;
+  }
+
+  /* タイトルロゴを少し大きく */
+  header .moji {
+    width: clamp(160px, 35vw, 220px);
+  }
+}
+
+/* 💻 PC（600px以上） */
+@media screen and (min-width: 600px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .side-nav {
+    position: relative;
+    width: 120px;
+  }
+
+  .bear-icon {
+    display: block;
+  }
+}
