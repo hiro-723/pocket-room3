@@ -1,33 +1,40 @@
-/* ✅ 全体背景：左ベージュ → 右クリーム */
+/* ===================================================== */
+/* ✅ 全体背景：左ベージュ → 右クリーム（統一） */
+/* ===================================================== */
 body {
   margin: 0;
   padding: 0;
   font-family: "Georgia", serif;
-
-  /* ← コレが背景色の帯を作る */
   background: linear-gradient(
     to right,
-    #f4c48c 120px,   /* 左120px をベージュ */
-    #FAEECF 120px    /* そこから先はクリーム色 */
+    #f4c48c 120px,  /* 左120pxをベージュ */
+    #FAEECF 120px   /* 右側をクリーム色 */
   );
 }
 
+/* ===================================================== */
 /* ✅ レイアウト全体 */
+/* ===================================================== */
 .container {
   display: flex;
   width: 100%;
   min-height: 100vh;
 }
 
-/* ✅ 左ナビ（同じ幅でベージュの上に置く） */
+/* ===================================================== */
+/* ✅ 左ナビ（背景ベージュ部分に配置） */
+/* ===================================================== */
 .side-nav {
   width: 120px;
-  background-color: transparent; /* ←背景は body で作ってる */
+  background-color: transparent; /* 背景はbodyのグラデーションに任せる */
   padding: 20px 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   gap: 20px;
   text-align: center;
+  position: relative;
 }
 
 /* タイトル画像 */
@@ -40,52 +47,236 @@ body {
 }
 
 /* ✅ ボタン感を消す */
+/* ナビボタン */
 .side-nav .nav-item {
   background: none;
   border: none;
-  font-size: 14px;
+  font-size: clamp(10px, 1.2vw, 14px);
   cursor: pointer;
   padding: 10px 0;
-  appearance: none;
   line-height: 1.2;
+  color: #5c3a00;
+  transition: opacity 0.3s;
 }
-.sidebar {
-  width: 120px;
-  background-color: #f4c48c;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 0;
+
+.icon-list i { 
+  display:block; 
+  font-size:22px; 
+  color:#5c3a00; 
+  margin: 20px 0; 
 }
-.icon-list i { display:block; font-size:22px; color:#5c3a00; margin: 20px 0; }
-.bear { font-size: 40px; }
 
-.content { flex:1; padding:40px 60px; }
-h1 { color:#5c3a00; font-size:26px; margin-bottom:20px; }
+.content { 
+  flex:1; 
+  padding:40px 60px; 
+}
 
-/* purchase box */
+h1 { 
+  color:#5c3a00; 
+  font-size:26px; 
+  margin-bottom:20px; 
+}
+
+.side-nav .nav-item:hover {
+  opacity: 0.65;
+}
+
+/* クマアイコン */
+.bear-icon {
+  width: clamp(60px, 6vw, 80px);
+  height: auto;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ===================================================== */
+/* ✅ コンテンツ部分 */
+/* ===================================================== */
+.content {
+  flex: 1;
+  padding: clamp(20px, 4vw, 60px);
+  background-color: #FAEECF; /* ← 1つ目のコードに合わせた淡いベージュ */
+  text-align: center;
+}
+
+/* タイトル画像（moji） */
+.moji {
+  display: block;
+  width: clamp(120px, 25vw, 180px);
+  height: auto;
+  margin: 0 auto 24px;
+  object-fit: contain;
+}
+
+/* ===================================================== */
+/* ✅ 購入ボックス */
+/* ===================================================== */
 .purchase-box {
-  background: rgba(255,255,255,0.6);
-  padding: 24px;
-  border-radius: 6px;
-  max-width: 720px;
+  background: #fff8ec; /* ← ほんのり温かみを持たせた白ベージュ */
+  padding: clamp(16px, 3vw, 24px);
+  border-radius: 10px;
+  max-width: 700px;
   margin: 0 auto;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(92, 58, 0, 0.1);
+  border: 1px solid #f0e0c5;
 }
-.purchase-box h2 { color:#3e2a00; margin:0 0 16px 0; font-size:20px; }
+
+.purchase-box h2 {
+  color: #5c3a00;
+  margin: 0 0 16px 0;
+  font-size: clamp(18px, 2vw, 20px);
+  text-align: center;
+}
+
+.purchase-box h2 { 
+  color:#3e2a00; 
+  margin:0 0 16px 0; 
+  font-size:20px; 
+}
 
 /* payment options */
-.payment-methods { display:flex; flex-direction:column; gap:12px; margin-bottom:18px; }
-.pm { background:#fff; padding:10px 12px; border-radius:6px; border:1px solid #e0d1bf; display:flex; align-items:center; gap:10px; font-size:15px; color:#3e2a00; }
+.payment-methods { 
+  display:flex; 
+  flex-direction:column; 
+  gap:12px; 
+  margin-bottom:18px; 
+}
+
+.pm { 
+  background:#fff; 
+  padding:10px 12px; 
+  border-radius:6px; 
+  border:1px solid #e0d1bf; 
+  display:flex; 
+  align-items:center; 
+  gap:10px; 
+}
 
 /* confirm text & buttons */
-.confirm { margin: 8px 0 12px 0; color:#5c3a00; font-size:16px; }
-.buttons { display:flex; gap:12px; }
+.confirm { 
+  margin: 8px 0 12px 0; 
+  color:#5c3a00; 
+  font-size:16px; 
+}
+
+.buttons { 
+  display:flex; 
+  gap:12px; 
+}
+
 .confirm-yes, .confirm-no {
   padding: 10px 16px;
-  border-radius: 4px;
-  border: 1px solid #c9a67a;
-  cursor: pointer;
 }
-.confirm-yes { background: #e9c59b; font-weight:bold; }
-.confirm-no { background: #efefef; }
+
+/* 支払い方法 */
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.pm {
+  background: #fff;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #e6d5b8;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: #5c3a00;
+}
+
+/* 確認テキスト & ボタン */
+.confirm {
+  margin: 12px 0 16px 0;
+  color: #5c3a00;
+  font-size: 16px;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.confirm-yes,
+.confirm-no {
+  padding: 10px 18px;
+  border-radius: 4px;
+  border: 1px solid #d4b68d;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s, transform 0.1s;
+  color: #5c3a00;
+}
+
+.confirm-yes {
+  background: #f1d2a5; /* ← 優しいベージュ系 */
+  font-weight: bold;
+}
+
+.confirm-yes:hover {
+  background: #e2b97b;
+  transform: scale(1.03);
+}
+
+.confirm-no {
+  background: #faf4e5;
+}
+
+.confirm-no:hover {
+  background: #efe3cb;
+  transform: scale(1.03);
+}
+
+/* ===================================================== */
+/* ✅ スマホ対応 */
+/* ===================================================== */
+@media screen and (max-width: 599px) {
+  body {
+    background: #FAEECF;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .side-nav {
+    flex-direction: row;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #f4c48c;
+    border-top: 2px solid #e4b071;
+    padding: 10px 0;
+    z-index: 1000;
+  }
+
+  .bear-icon {
+    display: none;
+  }
+
+  .content {
+    padding-bottom: 100px; /* ナビ分の余白 */
+  }
+
+  .purchase-box {
+    width: 90%;
+  }
+}
+
+.confirm-yes { 
+  background: #e9c59b; 
+  font-weight:bold; 
+}
+
+.confirm-no { 
+  background: #efefef; 
+}

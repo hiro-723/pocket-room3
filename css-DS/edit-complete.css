@@ -23,3 +23,64 @@ h1 {
   border: 1px solid #E7A664;
   cursor: pointer;
 }
+
+/* ===================================================== */
+/* ✅ レスポンシブナビゲーション */
+/* ===================================================== */
+
+/* 📱 スマホ（～599px） */
+@media screen and (max-width: 599px) {
+  body {
+    background: #FAEECF;
+  }
+
+  .container {
+    flex-direction: column;
+    padding-bottom: 70px; /* 下ナビの余白 */
+  }
+
+  /* ↓ ナビを下に固定して横並びに */
+  .side-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #f4c48c;
+    padding: 10px 0;
+    border-top: 2px solid #e4b071;
+    z-index: 1000;
+  }
+
+  .side-nav .nav-item {
+    flex: 1;
+    font-size: clamp(10px, 3vw, 13px);
+  }
+
+  .bear-icon {
+    display: none; /* 熊はスマホ時は非表示に */
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
+  }
+}
+
+/* 💻 タブレット～PC（600px以上） */
+@media screen and (min-width: 600px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .side-nav {
+    position: relative;
+    width: 120px;
+    border-top: none;
+  }
+
+  .bear-icon {
+    display: block;
+  }
+}
+
