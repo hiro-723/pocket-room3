@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Georgia", serif;
-  background: linear-gradient(to right, #f4c48c 120px, #FAEECF 120px);
+  background: linear-gradient(to right, #f4c48c 120px, #faf4e5 120px);
 }
 
 /* ✅ レイアウト全体 */
@@ -46,7 +46,7 @@ body {
 main {
   flex: 1;
   padding: 20px;
-  background-color: #fdf6e3; /* ← 右側をクリーム色で上書き */
+  background-color: #faf4e5; /* ← 右側をクリーム色で上書き */
 }
 
 .sidebar {
@@ -108,7 +108,7 @@ main {
 /* 📱 スマホ（～599px） */
 @media screen and (max-width: 599px) {
   body {
-    background: #FAEECF;
+    background: #faf4e5;
   }
 
   .container {
