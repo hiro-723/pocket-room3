@@ -65,6 +65,8 @@ h1 {
   color:#5c3a00; 
   font-size:26px; 
   margin-bottom:20px; 
+}
+
 .side-nav .nav-item:hover {
   opacity: 0.65;
 }
@@ -157,6 +159,7 @@ h1 {
 
 .confirm-yes, .confirm-no {
   padding: 10px 16px;
+}
 
 /* 支払い方法 */
 .payment-methods {
