@@ -38,10 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["confirm"])) {
   $delete = $pdo->prepare("DELETE FROM cart WHERE customer_id = ?");
   $delete->execute([$customer_id]);
 
-  echo "<p>購入が完了しました！ありがとうございました。</p>";
-  echo "<a href='home.php'>ホームに戻る</a>";
+  header("Location: complete.php");
   exit;
-}
+} 
 ?>
 
 <!DOCTYPE html>
