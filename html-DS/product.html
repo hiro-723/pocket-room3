@@ -27,9 +27,18 @@
       <div class="actions">
         <p>商品名</p>
         <div class="ine-cart">
-          <button>♡</button>
+          <span id="favorite" class="heart">♡</span>
           <button><i class="fa-solid fa-cart-plus"></i> カートに追加</button>
         </div>
+
+        <script>
+          const heart = document.getElementById('favorite');
+          heart.addEventListener('click', () => {
+            heart.textContent = heart.textContent === '♡' ? '♥' : '♡';
+            heart.classList.toggle('active');
+          });
+        </script>
+        
       </div>
     </main>
   </div>
