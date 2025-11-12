@@ -65,7 +65,7 @@ body {
 main {
   flex: 1;
   padding: 20px;
-  background-color: #fdf6e3;
+  background-color: #FAEECF;
   text-align: center;
 }
 
@@ -145,39 +145,45 @@ header input {
 
   .container {
     flex-direction: column;
-    padding-bottom: 70px; /* 下ナビの余白 */
+    padding-bottom: 70px;
   }
 
-  /* ↓ ナビを下に固定して横並びに */
   .side-nav {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 70px;
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
-    height: 50px;
-    flex-direction: row;
-    justify-content: space-around;
     background-color: #f4c48c;
-    padding: 10px 0;
-    border-top: 2px solid #e4b071;
-    z-index: 1000;
+    padding: 0;
   }
 
-  .side-nav .nav-item {
+  .nav-item {
     flex: 1;
-    font-size: clamp(10px, 3vw, 13px);
   }
 
   .bear-icon {
-    display: none; /* 熊はスマホ時は非表示に */
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    left: auto;
+    transform: none;
+    width: 40px;
   }
 
-  .grid {
-    grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
+  .categories {
+    gap: 15px;
+  }
+
+  /* タイトル画像のサイズをスマホ用に大きく */
+  header .moji {
+    width: clamp(160px, 35vw, 220px);
   }
 }
 
-/* 💻 タブレット～PC（600px以上） */
+/* 💻 タブレット〜PC（600px以上） */
 @media screen and (min-width: 600px) {
   .container {
     flex-direction: row;
@@ -186,11 +192,9 @@ header input {
   .side-nav {
     position: relative;
     width: 120px;
-    border-top: none;
   }
 
   .bear-icon {
     display: block;
   }
 }
-
