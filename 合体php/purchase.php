@@ -56,28 +56,41 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["confirm"])) {
 <body>
   <div class="container">
     <nav class="side-nav">
-      <button onclick="location.href='home.php'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
-      <button onclick="location.href='favorites.php'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
-      <button onclick="location.href='cart.php'" class="nav-item"><i class="fas fa-shopping-cart"></i><br>カート</button>
-      <button onclick="location.href='mypage.php'" class="nav-item"><i class="fas fa-user"></i><br>マイページ</button>
+      <button onclick="location.href='home.html'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
+      <button onclick="location.href='favorites.html'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
+      <button onclick="location.href='cart.html'" class="nav-item"><i class="fas fa-shopping-cart"></i><br>カート</button>
+      <button onclick="location.href='mypage.html'" class="nav-item"><i class="fas fa-user"></i><br>マイページ</button>
       <img src="../kuma/kuma.png" class="bear-icon">
+
     </nav>
 
-    <main>
-      <h1>POCKET ROOM</h1>
-      <h2>購入</h2>
+    <main class="content">
+      <img src="../kuma/moji.png" class="moji">
 
-      <form method="post">
-        <div class="payment-options">
-          <label><input type="radio" name="payment" value="credit" checked> クレジットカード</label><br>
-          <label><input type="radio" name="payment" value="paypay"> PayPay</label><br>
-          <label><input type="radio" name="payment" value="payday"> 後払い（ペイディ）</label>
-        </div>
+      <section class="purchase-box">
+        <h2>購入</h2>
 
-        <p>購入いたしますか？</p>
-        <button type="submit" name="confirm" class="yes-btn">はい</button>
-        <button type="button" class="no-btn" onclick="location.href='cart.php'">いいえ</button>
-      </form>
+        <form>
+          <div class="payment-methods">
+            <label class="pm">
+              <input type="radio" name="pay" checked> クレジットカード
+            </label>
+            <label class="pm">
+              <input type="radio" name="pay"> PayPay
+            </label>
+            <label class="pm">
+              <input type="radio" name="pay"> 銀行振込（ペイディ）
+            </label>
+          </div>
+
+          <p class="confirm">購入いたしますか？</p>
+
+          <div class="buttons">
+            <button type="button" class="confirm-yes">はい</button>
+            <button type="button" class="confirm-no">いいえ</button>
+          </div>
+        </form>
+      </section>
     </main>
   </div>
 </body>
