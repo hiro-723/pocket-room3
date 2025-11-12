@@ -116,7 +116,7 @@ main {
     padding-bottom: 70px; /* 下ナビの余白 */
   }
 
-  /* ナビを下に固定して横並びに */
+  /* ↓ ナビを下に固定して横並びに */
   .side-nav {
     position: fixed;
     bottom: 0;
@@ -136,21 +136,11 @@ main {
   }
 
   .bear-icon {
-    display: none; /* 熊はスマホ時非表示 */
+    display: none; /* 熊はスマホ時は非表示に */
   }
 
   .grid {
     grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
-  }
-
-  /* タイトル画像をスマホ用に大きく */
-  .moji {
-    width: clamp(160px, 35vw, 220px);
-  }
-
-  /* ナビアイコンもスマホ用に拡大 */
-  .side-nav .nav-item i {
-    font-size: clamp(20px, 6vw, 24px);
   }
 }
 
