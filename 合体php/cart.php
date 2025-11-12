@@ -109,5 +109,46 @@ if ($cartItems) {
     <button onclick="location.href='mypage.php'" class="nav-item"><i class="fas fa-user"></i><br>マイページ</button>
     <img src="../kuma/kuma.png" class="bear-icon">
   </nav>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const cartItems = document.querySelectorAll('.cart-item');
+  const totalDisplay = document.getElementById('total');
+
+  function updateTotal() {
+    let total = 0;
+    cartItems.forEach(item => {
+      const quantityEl = item.querySelector('.quantity');
+      const price = parseInt(quantityEl.dataset.price);
+      const quantity = parseInt(quantityEl.textContent);
+      total += price * quantity;
+    });
+    totalDisplay.textContent = total.toLocaleString();
+  }
+
+  cartItems.forEach(item => {
+    const increaseBtn = item.querySelector('.increase');
+    const decreaseBtn = item.querySelector('.decrease');
+    const quantityEl = item.querySelector('.quantity');
+
+    increaseBtn.addEventListener('click', () => {
+      let qty = parseInt(quantityEl.textContent);
+      quantityEl.textContent = qty + 1;
+      updateTotal();
+    });
+
+    decreaseBtn.addEventListener('click', () => {
+      let qty = parseInt(quantityEl.textContent);
+      if (qty > 1) {
+        quantityEl.textContent = qty - 1;
+        updateTotal();
+      }
+    });
+  });
+
+  // 初期計算
+  updateTotal();
+});
+</script>
+
 </body>
 </html>
