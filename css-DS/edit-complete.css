@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background: #faf4e5;
+  background: #FAEECF;
   font-family: "Hiragino Kaku Gothic ProN", sans-serif;
 }
 
@@ -31,7 +31,7 @@ h1 {
 /* 📱 スマホ（～599px） */
 @media screen and (max-width: 599px) {
   body {
-    background: #faf4e5;
+    background: #FAEECF;
   }
 
   .container {
