@@ -22,9 +22,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start; /* ← 上詰めに変更 */
   gap: 20px;
   text-align: center;
+  position: relative; /* クマを下に固定するために必要 */
 }
 
 /* ✅ ボタン感を消す */
@@ -89,7 +90,10 @@ main {
   width: clamp(25px, 4vw, 45px);
   height: auto;
   object-fit: contain;
-  margin-top: auto; /* 一番下に押し下げ */
+  position: absolute; /* ← ここで固定 */
+  bottom: 15px;       /* 下端に配置 */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 
