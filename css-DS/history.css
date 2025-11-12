@@ -20,9 +20,9 @@ body {
 
 /* ✅ 左ナビ（PC・タブレット時） */
 .side-nav {
-  width: 140px; /* ← 120→140に拡大 */
+  flex: 0 0 140px; /* ← 幅を固定！縮まない！ */
   background-color: transparent;
-  padding: 30px 0; /* ← 縦余白アップ */
+  padding: 30px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,7 +35,7 @@ body {
 .side-nav .nav-item {
   background: none;
   border: none;
-  font-size: 16px; /* ← 少し大きく */
+  font-size: 16px;
   cursor: pointer;
   padding: 12px 0;
   appearance: none;
@@ -48,23 +48,23 @@ body {
 
 /* ✅ メイン */
 .content {
-  flex: 1;
-  padding: 60px; /* ← 40→60で広め */
+  flex: 1; /* ← ナビが固定されるので、残りを可変に */
+  padding: 60px;
   background-color: #fdf6e3;
   text-align: center;
 }
 
 /* 見出し */
 header h1 {
-  font-size: 56px; /* ← 48→56 */
+  font-size: 56px;
   font-weight: bold;
   color: #7A4E26;
-  margin-bottom: 25px; /* ← 下余白拡大 */
+  margin-bottom: 25px;
 }
 
 /* 小見出し */
 h2 {
-  font-size: 36px; /* ← 32→36 */
+  font-size: 36px;
   text-align: center;
   margin-bottom: 70px;
 }
@@ -73,29 +73,22 @@ h2 {
 .items {
   display: flex;
   justify-content: center;
-  gap: 60px; /* ← 間隔拡大 */
+  gap: 60px;
 }
 
 /* 商品カード */
 .item-card {
   text-align: center;
-  font-size: 18px; /* ← 少し大きく */
+  font-size: 18px;
 }
 
 /* 商品サムネ */
 .thumb {
-  width: 180px; /* ← 150→180 */
+  width: 180px;
   height: 180px;
   background: #CBCBCB;
   margin: 0 auto 16px;
   border-radius: 8px;
-}
-
-/* ✅ メインエリア */
-main {
-  flex: 1;
-  padding: 30px;
-  background-color: #fdf6e3;
 }
 
 /* 🧸 クマの画像 */
@@ -118,7 +111,7 @@ main {
 
   .container {
     flex-direction: column;
-    padding-bottom: 80px; /* ← 下余白少し増 */
+    padding-bottom: 80px;
   }
 
   .side-nav {
@@ -126,6 +119,7 @@ main {
     bottom: 0;
     left: 0;
     width: 100%;
+    flex: none;
     flex-direction: row;
     justify-content: space-around;
     background-color: #f4c48c;
