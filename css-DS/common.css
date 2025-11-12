@@ -25,11 +25,12 @@ body {
 .side-nav {
   width: 120px;
   background-color: #f4c48c;
-  padding: 20px 0 80px; /* クマの分だけ下に余白 */
+  padding: 20px 0 80px; /* 下に余白（クマ分） */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  justify-content: flex-start; /* ← 上詰めに変更 */
+  gap: 15px; /* ボタン間の余白を少し詰める */
   position: relative;
   transition: all 0.3s ease;
 }
@@ -40,14 +41,15 @@ body {
   border: none;
   font-size: clamp(10px, 1.2vw, 14px);
   cursor: pointer;
-  padding: 10px 0;
+  padding: 8px 0;
   line-height: 1.2;
   text-align: center;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
+  color: #5c3a00;
 }
 
 .nav-item i {
@@ -58,13 +60,13 @@ body {
   opacity: 0.65;
 }
 
-/* サイドのクマ画像 */
+/* 🧸 サイドのクマ画像（常に下寄せ） */
 .bear-icon {
   width: clamp(25px, 4vw, 45px);
   height: auto;
   object-fit: contain;
   position: absolute;
-  bottom: 15px;
+  bottom: 15px; /* ナビの最下部に固定 */
   left: 50%;
   transform: translateX(-50%);
 }
@@ -114,6 +116,7 @@ header .moji {
   .side-nav {
     flex-direction: row;
     justify-content: space-around;
+    align-items: center; /* ← 中央揃え（横並び時） */
     width: 100%;
     height: 70px;
     position: fixed;
@@ -125,6 +128,7 @@ header .moji {
 
   .nav-item {
     flex: 1;
+    gap: 2px;
   }
 
   .bear-icon {
