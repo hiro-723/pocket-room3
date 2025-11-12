@@ -6,7 +6,7 @@ body {
   background: linear-gradient(
     to right,
     #f4c48c 120px,
-    #faf4e5 120px
+    #FAEECF 120px
   );
 }
 
@@ -90,7 +90,7 @@ h1 { color:#5c3a00; font-size:26px; margin-bottom:20px; }
 /* 📱 スマホ（～599px） */
 @media screen and (max-width: 599px) {
   body {
-    background: #faf4e5;
+    background: #FAEECF;
   }
 
   .container {

@@ -75,7 +75,7 @@ body {
 main {
   flex: 1;
   padding: clamp(24px, 4vw, 60px);
-  background-color: #fdf6e3;
+  background-color: #FAEECF;
   text-align: center;
 }
 

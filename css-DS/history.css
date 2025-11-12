@@ -50,7 +50,7 @@ body {
 .content {
   flex: 1;
   padding: clamp(30px, 5vw, 60px); /* 画面幅に応じて余白を可変に */
-  background-color: #faf4e5;
+  background-color: #FAEECF;
   text-align: center;
 }
 
