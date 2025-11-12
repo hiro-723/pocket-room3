@@ -95,12 +95,20 @@ if ($cartItems) {
 
       <div class="cart-total">
         <p>合計金額: <span id="total"><?= number_format($total) ?></span>円</p>
-        <form action="purchase.php" method="post">
-          <button type="submit" class="buy-btn">購入する</button>
-        </form>
+
+        <?php if ($cartItems): ?>
+          <!-- ✅ カートに商品がある場合のみ購入可能 -->
+          <form action="purchase.php" method="post">
+            <button type="submit" class="buy-btn">購入する</button>
+          </form>
+        <?php else: ?>
+          <!-- ✅ 商品がない場合は無効化 -->
+          <button class="buy-btn" disabled style="opacity:0.6; cursor:not-allowed;">購入する</button>
+        <?php endif; ?>
       </div>
     </main>
   </div>
+
 
   <nav class="side-nav">
     <button onclick="location.href='home.php'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
