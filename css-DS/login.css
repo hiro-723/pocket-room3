@@ -25,7 +25,7 @@ h1.logo {
 /* タイトル画像 */
 .moji {
   display: block;
-  width: clamp(180px, 32vw, 280px); /* 最大200pxに縮小 */
+  width: clamp(180px, 32vw, 280px);
   height: auto;
   margin: 0 auto 15px;
   object-fit: contain;
