@@ -1,28 +1,3 @@
-<?php
-session_start();
-require_once 'db-connect.php';
-$error = '';
-
-// ▼ ログイン処理（フォーム送信時）
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    $sql = "SELECT * FROM members WHERE email = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$email]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($user && ($password, $user['password'])) {
-        $_SESSION['user'] = $user['name'];
-        header("Location: home.php"); // ログイン後のページ
-        exit;
-    } else {
-        $error = "メールアドレスまたはパスワードが違います。";
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -35,8 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="container">
         <img src="../kuma/aikon.png" alt="POCKET ROOM">
 
-        <?php if ($error): ?>
-            <p class="error"><?= htmlspecialchars($error) ?></p>
+        <?php if (isset($_GET['error'])): ?>
+            <p class="error">メールアドレスまたはパスワードが違います。</p>
         <?php endif; ?>
 
         <form action="home.php" method="post">

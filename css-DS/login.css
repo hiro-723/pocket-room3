@@ -1,11 +1,13 @@
+/* ===================================================== */
+/* ✅ 全体背景・フォント */
 body {
   margin: 0;
   background: #FAEECF;
   font-family: "Helvetica", "Yu Gothic", sans-serif;
 }
 
-/* コンテナ全体 */
-/* 中央に幅を制限して配置 */
+/* ===================================================== */
+/* ✅ コンテナ全体 */
 .container {
   width: 90%;
   max-width: 500px;
@@ -13,29 +15,34 @@ body {
   text-align: center;
 }
 
+/* ロゴタイトル */
 h1.logo {
   margin-bottom: 30px;
   font-size: 32px;
   color: #6a4a2f;
 }
 
-/* 入力フォーム全体 */
+/* タイトル画像 */
+.moji {
+  display: block;
+  width: clamp(180px, 32vw, 280px);
+  height: auto;
+  margin: 0 auto 15px;
+  object-fit: contain;
+}
+
+/* ===================================================== */
+/* ✅ 入力フォーム */
 .login-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-/* 入力やボタンの幅を短くする */
-.login-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;   /* ★ 中央寄せ */
   gap: 15px;
 }
 
 /* ラベル */
 .login-form label {
-  width: 80%;
-  width: 60%;             /* ★ ラベルもそろえる */
+  width: 60%;
   max-width: 400px;
   text-align: left;
   font-size: 14px;
@@ -44,12 +51,7 @@ h1.logo {
 
 /* 入力欄 */
 .login-form input {
-  width: 80%;
-  max-width: 400px;
-  min-width: 220px;
-  height: 40px;
-  padding: 8px;
-  width: 60%;             /* ★ 幅調整 */
+  width: 60%;
   max-width: 400px;
   min-width: 220px;
   height: 34px;
@@ -61,8 +63,7 @@ h1.logo {
 
 /* ログインボタン */
 .login-btn {
-  width: 80%;
-  width: 60%;             /* ★ 幅調整 */
+  width: 60%;
   max-width: 400px;
   min-width: 220px;
   margin-top: 10px;
@@ -82,7 +83,6 @@ h1.logo {
 }
 
 /* 新規登録リンク */
-/* 新規会員登録リンク */
 .register-link {
   display: inline-block;
   margin-top: 8px;
@@ -95,9 +95,8 @@ h1.logo {
   text-decoration: underline;
 }
 
-/* --------------------
-   ▼ ここからPC向け拡大調整
--------------------- */
+/* ===================================================== */
+/* ✅ PC向け拡大調整 */
 @media screen and (min-width: 768px) {
   .container {
     margin-top: 100px;
