@@ -1,5 +1,12 @@
+/* ===================================================== */
+/* ✅ 全体背景：左ベージュ → 右クリーム（統一） */
+/* ===================================================== */
 body {
-  background: #FAEECF;
+  background: linear-gradient(
+    to right,
+    #f4c48c 120px,  /* 左ベージュ部分 */
+    #FAEECF 120px   /* 右クリーム部分 */
+  );
   font-family: "Noto Sans JP", sans-serif;
   display: flex;
   justify-content: center;
@@ -8,12 +15,31 @@ body {
   margin: 0;
 }
 
+/* ===================================================== */
+/* ✅ 登録コンテナ */
+/* ===================================================== */
 .register {
-  width: 400px;
+  width: 380px;
+  background-color: #fdf6e3; /* ← 全ページ共通の淡いベージュ背景 */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(92, 58, 0, 0.15);
   text-align: center;
+  padding: 30px 25px;
+  border: 1px solid #f0e0c5;
 }
 
+/* タイトル画像 */
+.moji {
+  display: block;
+  width: clamp(140px, 28vw, 250px);
+  height: auto;
+  margin: 0 auto 20px;
+  object-fit: contain;
+}
 
+/* ===================================================== */
+/* ✅ フォーム部分 */
+/* ===================================================== */
 form {
   display: flex;
   flex-direction: column;
@@ -21,24 +47,56 @@ form {
 }
 
 input {
-  margin: 5px 0;
-  padding: 8px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-}
-
-button {
-  margin-top: 10px;
-  background-color: #f5c089;
-  border: none;
+  margin: 6px 0;
   padding: 10px;
-  cursor: pointer;
+  border: 1px solid #d4b68d;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 14px;
+  color: #5c3a00;
+  transition: border-color 0.3s, background-color 0.3s;
 }
 
-.moji {
-  display: block;
-  width: clamp(140px, 28vw, 250px); /* ホーム画面で覚えたサイズを反映 */
-  height: auto;
-  margin: 0 auto 15px; /* 中央寄せ + 下に余白 */
-  object-fit: contain;
+input:focus {
+  outline: none;
+  border-color: #e0a966;
+  background-color: #fff8ec;
+}
+
+/* ===================================================== */
+/* ✅ ボタン */
+/* ===================================================== */
+button {
+  margin-top: 15px;
+  background-color: #f1d2a5; /* 全ページ共通トーン */
+  border: 1px solid #d4b68d;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 15px;
+  color: #5c3a00;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+button:hover {
+  background-color: #e2b97b;
+  transform: scale(1.03);
+}
+
+/* ===================================================== */
+/* ✅ スマホ対応 */
+/* ===================================================== */
+@media screen and (max-width: 599px) {
+  body {
+    background: #FAEECF;
+  }
+
+  .register {
+    width: 90%;
+    padding: 25px 20px;
+  }
+
+  .moji {
+    width: clamp(160px, 35vw, 220px);
+  }
 }
