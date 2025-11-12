@@ -1,9 +1,15 @@
-/* ✅ 全体背景：左ベージュ → 右クリーム */
+/* ===================================================== */
+/* ✅ 全体 */
+/* ===================================================== */
 body {
   margin: 0;
   padding: 0;
   font-family: "Georgia", serif;
-  background: linear-gradient(to right, #f4c48c 120px, #FAEECF 120px);
+  background: linear-gradient(
+    to right,
+    #f4c48c 120px,
+    #FAEECF 120px
+  );
 }
 
 /* ✅ レイアウト全体 */
@@ -27,39 +33,32 @@ body {
   text-align: center;
 }
 
-/* ✅ ナビボタン */
+/* ✅ ボタン感を消す */
 .side-nav .nav-item {
   background: none;
   border: none;
-  font-size: clamp(10px, 1.2vw, 14px);
+  font-size: 14px;
   cursor: pointer;
   padding: 10px 0;
+  appearance: none;
   line-height: 1.2;
-  color: #5c3a00;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
 }
 
 .side-nav .nav-item:hover {
   opacity: 0.65;
 }
 
-/* ナビアイコンサイズ */
-.side-nav .nav-item i {
-  font-size: clamp(18px, 2vw, 24px); /* 最小18px、画面幅の2%、最大24px */
+.icon-list i { 
+  display:block; 
+  font-size:22px; 
+  color:#5c3a00; 
+  margin: 20px 0; 
+
 }
 
-/* 🧸 クマの画像（PC・タブレット時） */
-.bear-icon {
-  width: clamp(25px, 4vw, 45px);
-  height: auto;
-  object-fit: contain;
-  margin-top: auto; /* 一番下に押し下げ */
-}
-
+/* ===================================================== */
 /* ✅ メインエリア */
+/* ===================================================== */
 main {
   flex: 1;
   padding: 20px;
@@ -152,7 +151,6 @@ h1 {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 50px;
     flex-direction: row;
     justify-content: space-around;
     background-color: #f4c48c;

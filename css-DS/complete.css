@@ -1,4 +1,6 @@
-/* ✅ 全体背景：左ベージュ → 右クリーム */
+/* ===================================================== */
+/* ✅ 全体 */
+/* ===================================================== */
 body {
   margin: 0;
   padding: 0;
@@ -31,30 +33,32 @@ body {
   text-align: center;
 }
 
-/* ✅ ナビボタン */
+/* ✅ ボタン感を消す */
 .side-nav .nav-item {
   background: none;
   border: none;
-  font-size: clamp(10px, 1.2vw, 14px);
+  font-size: 14px;
   cursor: pointer;
   padding: 10px 0;
+  appearance: none;
   line-height: 1.2;
-  color: #5c3a00;
 }
 
 .side-nav .nav-item:hover {
   opacity: 0.65;
 }
 
-/* 🧸 クマの画像 */
-.bear-icon {
-  width: clamp(25px, 4vw, 45px); /* 画面幅に応じて変化 */
-  height: auto;
-  object-fit: contain;
-  margin-top: auto;
+.icon-list i { 
+  display:block; 
+  font-size:22px; 
+  color:#5c3a00; 
+  margin: 20px 0; 
+
 }
 
+/* ===================================================== */
 /* ✅ メインエリア */
+/* ===================================================== */
 main {
   flex: 1;
   padding: 20px;
@@ -171,5 +175,21 @@ button {
   .bear-icon {
     display: block;
   }
+}
+/* ✅ タイトル画像（ロゴ部分） */
+.moji {
+  display: block;
+  width: clamp(120px, 30vw, 250px); /* 画面幅に応じて可変（最小120px〜最大250px） */
+  height: auto;
+  margin: 0 auto 15px; /* 中央寄せ + 下に余白 */
+  object-fit: contain;
+}
+
+/* 🧸 クマの画像 */
+.bear-icon {
+  width: clamp(25px, 4vw, 45px); /* 画面幅に応じて変化 */
+  height: auto;
+  object-fit: contain;
+  margin-top: auto;
 }
 
