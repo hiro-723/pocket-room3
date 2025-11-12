@@ -70,7 +70,7 @@ body {
 main {
   flex: 1;
   padding: 20px;
-  background-color: #fdf6e3; /* ← 1つ目のコードに合わせた淡いベージュ */
+  background-color: #FAEECF; /* ← 1つ目のコードに合わせた淡いベージュ */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

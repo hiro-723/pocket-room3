@@ -69,7 +69,7 @@ body {
 .content {
   flex: 1;
   padding: clamp(20px, 4vw, 60px);
-  background-color: #fdf6e3; /* ← 1つ目のコードに合わせた淡いベージュ */
+  background-color: #FAEECF; /* ← 1つ目のコードに合わせた淡いベージュ */
   text-align: center;
 }
 
