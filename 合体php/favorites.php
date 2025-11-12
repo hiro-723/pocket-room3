@@ -35,44 +35,35 @@ $favorites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
   <meta charset="UTF-8">
   <title>お気に入り一覧</title>
-  <link rel="stylesheet" href="../合体css/okiniiri.css">
+  <link rel="stylesheet" href="../css-DS/favorite.css">
 </head>
 <body>
   <div class="container">
-    <header>
-      <img src="../kuma/moji.png" alt="pocket room">
-    </header>
+    <nav class="side-nav">
+      <button onclick="location.href='home.html'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
+      <button onclick="location.href='favorites.html'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
+      <button onclick="location.href='cart.html'" class="nav-item"><i class="fas fa-shopping-cart"></i><br>カート</button>
+      <button onclick="location.href='mypage.html'" class="nav-item"><i class="fas fa-user"></i><br>マイページ</button>
+      <img src="../kuma/kuma.png" class="bear-icon">
 
-    <main>
-      <?php if (empty($favorites)): ?>
-        <p>お気に入りに登録された商品はありません。</p>
-      <?php else: ?>
-        <div class="favorite-list">
-          <?php foreach ($favorites as $item): ?>
-            <div class="favorite-item">
-              <img src="<?= htmlspecialchars($item['image_path']) ?>" alt="">
-              <div class="info">
-                <h2><?= htmlspecialchars($item['product_name']) ?></h2>
-                <p class="price">¥<?= htmlspecialchars($item['price']) ?></p>
-                <div class="actions">
-                  <button class="remove-btn" data-id="<?= $item['favorite_id'] ?>">削除</button>
-                  <button class="add-cart-btn" data-id="<?= $item['product_id'] ?>">カートに追加</button>
-                </div>
-              </div>
-            </div>
-          <?php endforeach; ?>
-        </div>
-      <?php endif; ?>
+    </nav>
+
+    <main class="content">
+      <img src="../kuma/moji.png" class="moji">
+      <input type="text" placeholder="検索" class="search-bar">
+
+      <div class="grid">
+        <div class="item">商品A</div>
+        <div class="item">商品B</div>
+        <div class="item">商品C</div>
+        <div class="item">商品D</div>
+        <div class="item">商品E</div>
+        <div class="item">商品F</div>
+        <div class="item">商品G</div>
+        <div class="item">商品H</div>
+      </div>
     </main>
   </div>
-
-   <nav class="bottom-nav">
-      <div class="nav-item" onclick="location.href='home.php'">🏠<br><span>ホーム</span></div>
-      <div class="nav-item" onclick="location.href='okiniiri.php'">❤️<br><span>お気に入り</span></div>
-      <div class="nav-item" onclick="location.href=''">🧸<br><span></span></div>
-      <div class="nav-item" onclick="location.href='cart.html'">🛒<br><span>カート</span></div>
-      <div class="nav-item" onclick="location.href='mypage.html'">👤<br><span>マイページ</span></div>
-  </nav>
 
   <script src="../js/favorite.js"></script>
 </body>
