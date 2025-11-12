@@ -47,7 +47,9 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>カート | POCKET ROOM</title>
   <link rel="stylesheet" href="../css-DS/cart.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
   <div class="container">
     <header>
@@ -60,7 +62,9 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($cartItems as $item): ?>
           <div class="cart-item" data-id="<?= $item['cart_id'] ?>">
             <div class="cart-info">
-              <img src="<?= htmlspecialchars($item['img']) ?>" alt="">
+              <?php if (!empty($item['img'])): ?>
+                <img src="../img/<?= htmlspecialchars($item['img']) ?>" alt="商品画像">
+              <?php endif; ?>
               <p><?= htmlspecialchars($item['product_name']) ?><br><?= number_format($item['price']) ?>円</p>
             </div>
 
@@ -68,7 +72,11 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <button class="btn increase">＋</button>
               <span class="quantity">1</span>
               <button class="btn decrease">−</button>
-              <button class="btn delete">削除</button>
+
+              <form action="cart-delete.php" method="post" style="display:inline;">
+                <input type="hidden" name="cart_id" value="<?= htmlspecialchars($item['cart_id']) ?>">
+                <button type="submit" class="btn delete">削除</button>
+              </form>
             </div>
           </div>
         <?php endforeach; ?>
@@ -77,21 +85,21 @@ $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <?php endif; ?>
 
       <div class="cart-total">
-        <p>合計金額: <span id="total">
-          <?= number_format(array_sum(array_map(fn($i) => $i['price'] * $i['quantity'], $cartItems))) ?>
-        </span>円</p>
-        <button class="buy-btn">購入する</button>
+        <p>合計金額: <span id="total"><?= number_format($total) ?></span>円</p>
+        <form action="purchase.php" method="post">
+          <button type="submit" class="buy-btn">購入する</button>
+        </form>
       </div>
     </main>
   </div>
 
+  <!-- ✅ サイドナビ -->
   <nav class="side-nav">
-      <button onclick="location.href='home.html'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
-      <button onclick="location.href='favorites.html'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
-      <button onclick="location.href='cart.html'" class="nav-item"><i class="fas fa-shopping-cart"></i><br>カート</button>
-      <button onclick="location.href='mypage.html'" class="nav-item"><i class="fas fa-user"></i><br>マイページ</button>
-      <img src="../kuma/kuma.png" class="bear-icon">
-    </nav>
-
+    <button onclick="location.href='home.php'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
+    <button onclick="location.href='favorites.php'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
+    <button onclick="location.href='cart.php'" class="nav-item"><i class="fas fa-shopping-cart"></i><br>カート</button>
+    <button onclick="location.href='mypage.php'" class="nav-item"><i class="fas fa-user"></i><br>マイページ</button>
+    <img src="../kuma/kuma.png" class="bear-icon">
+  </nav>
 </body>
 </html>
