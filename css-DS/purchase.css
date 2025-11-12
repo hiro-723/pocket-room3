@@ -49,6 +49,22 @@ body {
   transition: opacity 0.3s;
 }
 
+.icon-list i { 
+  display:block; 
+  font-size:22px; 
+  color:#5c3a00; 
+  margin: 20px 0; 
+}
+
+.content { 
+  flex:1; 
+  padding:40px 60px; 
+}
+
+h1 { 
+  color:#5c3a00; 
+  font-size:26px; 
+  margin-bottom:20px; 
 .side-nav .nav-item:hover {
   opacity: 0.65;
 }
@@ -102,6 +118,45 @@ body {
   font-size: clamp(18px, 2vw, 20px);
   text-align: center;
 }
+
+.purchase-box h2 { 
+  color:#3e2a00; 
+  margin:0 0 16px 0; 
+  font-size:20px; 
+}
+
+/* payment options */
+.payment-methods { 
+  display:flex; 
+  flex-direction:column; 
+  gap:12px; 
+  margin-bottom:18px; 
+}
+
+.pm { 
+  background:#fff; 
+  padding:10px 12px; 
+  border-radius:6px; 
+  border:1px solid #e0d1bf; 
+  display:flex; 
+  align-items:center; 
+  gap:10px; 
+}
+
+/* confirm text & buttons */
+.confirm { 
+  margin: 8px 0 12px 0; 
+  color:#5c3a00; 
+  font-size:16px; 
+}
+
+.buttons { 
+  display:flex; 
+  gap:12px; 
+}
+
+.confirm-yes, .confirm-no {
+  padding: 10px 16px;
 
 /* 支払い方法 */
 .payment-methods {
@@ -202,4 +257,13 @@ body {
   .purchase-box {
     width: 90%;
   }
+}
+
+.confirm-yes { 
+  background: #e9c59b; 
+  font-weight:bold; 
+}
+
+.confirm-no { 
+  background: #efefef; 
 }
