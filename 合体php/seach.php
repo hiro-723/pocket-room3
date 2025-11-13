@@ -8,25 +8,16 @@ if (!isset($_SESSION['username'])) {
   exit;
 }
 
-// ログイン中のユーザー情報取得
-$stmt = $pdo->prepare("SELECT customer_id FROM customer WHERE email = ?");
-$stmt->execute([$_SESSION['username']]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!$user) {
-  echo "ユーザー情報が見つかりません。";
-  exit;
-}
-$customer_id = $user['customer_id'];
+// 検索キーワード取得
+$keyword = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
 
-// 「はい」が押された場合
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["confirm"])) {
-  // カート削除
-  $stmt = $pdo->prepare("DELETE FROM cart WHERE customer_id = ?");
-  $stmt->execute([$customer_id]);
-
-  echo "<p>購入が完了しました！ありがとうございました。</p>";
-  echo "<a href='home.php'>ホームに戻る</a>";
-  exit;
+// 検索処理
+if ($keyword !== '') {
+  $stmt = $pdo->prepare("SELECT * FROM product WHERE product_name LIKE ?");
+  $stmt->execute(['%' . $keyword . '%']);
+  $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+  $products = [];
 }
 ?>
 
@@ -35,11 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["confirm"])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>購入確認 | POCKET ROOM</title>
-  <link rel="stylesheet" href="../css-DS/purchase.css">
+  <title>検索結果 | POCKET ROOM</title>
+  <link rel="stylesheet" href="../css-DS/search.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
   <div class="container">
+
+    <!-- ✅ サイドメニュー -->
     <nav class="side-nav">
       <button onclick="location.href='home.php'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
       <button onclick="location.href='favorites.php'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
@@ -48,22 +43,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["confirm"])) {
       <img src="../kuma/kuma.png" class="bear-icon">
     </nav>
 
+    <!-- ✅ メインコンテンツ -->
     <main>
-      <h1>POCKET ROOM</h1>
-      <h2>購入</h2>
+      <h1 class="logo">POCKET ROOM</h1>
 
-      <form method="post">
-        <div class="payment-options">
-          <label><input type="radio" name="payment" value="credit" checked> クレジットカード</label><br>
-          <label><input type="radio" name="payment" value="paypay"> PayPay</label><br>
-          <label><input type="radio" name="payment" value="payday"> 後払い（ペイディ）</label>
-        </div>
-
-        <p>購入いたしますか？</p>
-        <button type="submit" name="confirm" class="yes-btn">はい</button>
-        <button type="button" class="no-btn" onclick="location.href='cart.php'">いいえ</button>
+      <!-- 🔍 検索フォーム -->
+      <form action="search.php" method="get" class="search-box">
+        <input type="text" name="keyword" value="<?= htmlspecialchars($keyword) ?>" placeholder="検索結果の値">
+        <button type="submit"><i class="fas fa-search"></i></button>
       </form>
-    </main>
-  </div>
-</body>
-</html>
+
+      <!-- 🧸 検索結果エリア -->
+      <div class="product-list">
+        <?php if ($products): ?>
+          <?php foreach ($products as $product): ?>
+            <div class="product-card">
+              <?php if (!empty($product['img'])): ?>
+                <img src="../img/<?= htmlspecialchars($product['img']) ?>" alt="商品画像">
+              <?php else: ?>
+                <div class="no-image">画像なし</div>
+              <?php endif; ?>
+
+              <p class="product-name"><?= htmlspecialchars($product['product_name']) ?></p>
+              <p class="product-price"><?= number_format($product['price']) ?>円</p>
+
+              <div class="product-actions">
+                <!-- ❤️ お気に入りボタン（※未実装なら後でadd-favorite.phpに） -->
+                <form action="add-favorite.php" method="post">
+                  <input type="hidden" name="prod
