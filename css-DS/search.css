@@ -1,6 +1,5 @@
-/* ✅ 全体背景：左ベージュ → 右クリーム */
 /* ===================================================== */
-/* ✅ 全体背景：左ベージュ → 右クリーム（統一） */
+/* ✅ 全体 */
 /* ===================================================== */
 body {
   margin: 0;
@@ -23,7 +22,7 @@ body {
 
 /* ✅ 左ナビ（PC・タブレット時） */
 .side-nav {
-  width: 120px;              /* ← サイド幅 */
+  width: 120px;
   background-color: transparent;
   padding: 20px 0;
   display: flex;
@@ -49,38 +48,15 @@ body {
   opacity: 0.65;
 }
 
-.sidebar {
-  width: 120px;
-  background-color: #f4c48c;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 0;
-}
-
 .icon-list i { 
   display:block; 
   font-size:22px; 
   color:#5c3a00; 
   margin: 20px 0; 
+
 }
 
-/* 🧸 クマアイコン */
-.bear-icon {
-  width: clamp(25px, 4vw, 45px);
-  height: auto;
-  object-fit: contain;
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-}
 
-.content { 
-  flex:1; 
-  padding:40px 60px; 
-}
 
 /* ===================================================== */
 /* ✅ メインエリア */
@@ -94,6 +70,11 @@ main {
   justify-content: flex-start;
   align-items: center;
   text-align: center;
+}
+
+.content { 
+  flex:1; 
+  padding:40px 60px; 
 }
 
 /* タイトル画像 */
@@ -146,7 +127,6 @@ main {
 /* ===================================================== */
 
 /* 📱 スマホ（～599px） */
-/* ✅ レスポンシブナビ（スマホ時） */
 @media screen and (max-width: 599px) {
   body {
     background: #FAEECF;
@@ -154,10 +134,10 @@ main {
 
   .container {
     flex-direction: column;
-    padding-bottom: 70px;
+    padding-bottom: 70px; /* 下ナビの余白 */
   }
 
-  /* 下ナビに固定し横並び */
+  /* ↓ ナビを下に固定して横並びに */
   .side-nav {
     position: fixed;
     bottom: 0;
@@ -177,11 +157,11 @@ main {
   }
 
   .bear-icon {
-    display: none;
+    display: none; /* 熊はスマホ時は非表示に */
   }
 
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
   }
 }
 
@@ -201,20 +181,20 @@ main {
     display: block;
   }
 }
-
 /* ✅ タイトル画像（ロゴ部分） */
 .moji {
   display: block;
-  width: clamp(120px, 30vw, 250px);
+  width: clamp(120px, 30vw, 250px); /* 画面幅に応じて可変（最小120px〜最大250px） */
   height: auto;
-  margin: 0 auto 15px;
+  margin: 0 auto 15px; /* 中央寄せ + 下に余白 */
   object-fit: contain;
 }
 
 /* 🧸 クマの画像 */
 .bear-icon {
-  width: clamp(25px, 4vw, 45px);
+  width: clamp(25px, 4vw, 45px); /* 画面幅に応じて変化 */
   height: auto;
   object-fit: contain;
   margin-top: auto;
 }
+

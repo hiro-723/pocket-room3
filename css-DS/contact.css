@@ -28,10 +28,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* ← 上詰めに変更 */
+  justify-content: space-between;
   gap: 20px;
   text-align: center;
-  position: relative; /* クマを下に固定するために必要 */
 }
 
 /* ✅ ボタン感を消す */
@@ -66,22 +65,6 @@ main {
   background-color: #FAEECF; /* ← 右側をクリーム色で上書き */
 }
 
-.sidebar {
-  width: 70px;
-  background-color: #e6b27e;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-}
-
-.sidebar li {
-  list-style: none;
-  margin: 20px 0;
-  color: #fff;
-  font-size: 18px;
-}
 
 
 .content {
@@ -101,16 +84,6 @@ main {
   margin: 10px 0;
 }
 
-/* 🧸 クマの画像（PC・タブレット時） */
-.bear-icon {
-  width: clamp(25px, 4vw, 45px);
-  height: auto;
-  object-fit: contain;
-  position: absolute; /* ← ここで固定 */
-  bottom: 15px;       /* 下端に配置 */
-  left: 50%;
-  transform: translateX(-50%);
-}
 
 
 .moji {
@@ -155,9 +128,6 @@ main {
     font-size: clamp(10px, 3vw, 13px);
   }
 
-  .bear-icon {
-    display: none; /* 熊はスマホ時は非表示に */
-  }
 
   .grid {
     grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
