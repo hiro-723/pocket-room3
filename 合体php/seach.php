@@ -13,8 +13,15 @@ $keyword = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
 
 // 検索処理
 if ($keyword !== '') {
-  $stmt = $pdo->prepare("SELECT * FROM product WHERE product_name LIKE ?");
-  $stmt->execute(['%' . $keyword . '%']);
+  $stmt = $pdo->prepare("
+    SELECT * FROM product 
+    WHERE product_name LIKE :kw
+       OR category LIKE :kw
+       OR color LIKE :kw
+       OR genre LIKE :kw
+  ");
+  $stmt->bindValue(':kw', "%{$keyword}%", PDO::PARAM_STR);
+  $stmt->execute();
   $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } else {
   $products = [];
@@ -49,7 +56,7 @@ if ($keyword !== '') {
 
       <!-- 🔍 検索フォーム -->
       <form action="search.php" method="get" class="search-box">
-        <input type="text" name="keyword" value="<?= htmlspecialchars($keyword) ?>" placeholder="検索結果の値">
+        <input type="text" name="keyword" value="<?= htmlspecialchars($keyword) ?>" placeholder="商品名・色・ジャンルで検索">
         <button type="submit"><i class="fas fa-search"></i></button>
       </form>
 
@@ -67,8 +74,14 @@ if ($keyword !== '') {
               <p class="product-name"><?= htmlspecialchars($product['product_name']) ?></p>
               <p class="product-price"><?= number_format($product['price']) ?>円</p>
 
+              <div class="product-info">
+                <span>カテゴリ: <?= htmlspecialchars($product['category']) ?></span><br>
+                <span>色: <?= htmlspecialchars($product['color']) ?></span><br>
+                <span>ジャンル: <?= htmlspecialchars($product['genre']) ?></span>
+              </div>
+
               <div class="product-actions">
-                <!-- ❤️ お気に入りボタン（※未実装なら後でadd-favorite.phpに） -->
+                <!-- ❤️ お気に入りボタン -->
                 <form action="add-favorite.php" method="post">
                   <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
                   <button type="submit" class="fav-btn"><i class="fas fa-heart"></i></button>
