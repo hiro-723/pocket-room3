@@ -45,16 +45,16 @@ $username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
  
     <!-- ✅ 左ナビ -->
 <nav class="side-nav">
-<button onclick="location.href='home.html'" class="nav-item">
+<button onclick="location.href='home.php'" class="nav-item">
 <i class="fas fa-home"></i><br>ホーム
 </button>
-<button onclick="location.href='favorites.html'" class="nav-item">
+<button onclick="location.href='favorites.php'" class="nav-item">
 <i class="fas fa-heart"></i><br>お気に入り
 </button>
-<button onclick="location.href='cart.html'" class="nav-item">
+<button onclick="location.href='cart.php'" class="nav-item">
 <i class="fas fa-shopping-cart"></i><br>カート
 </button>
-<button onclick="location.href='mypage.html'" class="nav-item">
+<button onclick="location.href='mypage.php'" class="nav-item">
 <i class="fas fa-user"></i><br>マイページ
 </button>
  
