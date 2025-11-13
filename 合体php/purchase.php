@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["confirm"])) {
             </label>
           </div>
 
-          <p class="confirm">購入いたしますか？</p>
+          <p class="confirm">購入なさいますか？</p>
 
           <div class="buttons">
             <button type="submit" class="confirm-yes">はい</button>
