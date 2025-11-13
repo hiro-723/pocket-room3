@@ -53,6 +53,7 @@ body {
   font-size:22px; 
   color:#5c3a00; 
   margin: 20px 0; 
+
 }
 
 /* ===================================================== */
@@ -65,19 +66,7 @@ main {
   text-align: center;
 }
 
-/* ✅ タイトルや本文 */
-h1 {
-  color: #5c3a00;
-  font-size: clamp(20px, 2.5vw, 26px);
-  margin-bottom: 20px;
-}
 
-.moji {
-  display: block;
-  width: clamp(140px, 28vw, 250px);
-  margin: 0 auto 15px;
-  object-fit: contain;
-}
 
 /* ✅ 検索 */
 .search-bar {
@@ -171,9 +160,13 @@ h1 {
 
 /* ✅ マイページメニュー ------------------ */
 .mypage-menu h2 {
-  font-size: clamp(20px, 2.5vw, 26px);
-  margin-bottom: 20px;
-  margin-top: 0;
+  font-size: clamp(22px, 2.3vw, 26px); /* ← 少し大きくして存在感を出す */
+  margin: 0 auto 25px;
+  width: fit-content; /* ← 文字幅に合わせる */
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
 }
 
 .menu {
