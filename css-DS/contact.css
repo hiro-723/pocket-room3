@@ -84,6 +84,30 @@ main {
   margin: 10px 0;
 }
 
+/* ✅ ボタンの中は左寄せ */
+.menu-btn {
+  background: none;
+  border: none;
+  color: #5c3a00;
+  font-size: clamp(14px, 1.5vw, 16px);
+  text-align: left;        /* ← ここで左揃え維持！ */
+  padding: 8px 0;
+  cursor: pointer;
+  display: flex;           /* ← アイコンと文字を横並びに */
+  align-items: center;     /* 垂直中央揃え */
+  gap: 8px;                /* アイコンと文字の間に余白 */
+}
+
+/* ✅ hover効果ちょっとだけ追加（任意） */
+.menu-btn:hover {
+  opacity: 0.8;
+}
+
+/* ✅ アイコンの見た目を微調整 */
+.menu-btn .icon i {
+  width: 20px;      /* 文字とのズレ防止 */
+  text-align: center;
+}
 
 
 .moji {
