@@ -70,4 +70,23 @@ if ($keyword !== '') {
               <div class="product-actions">
                 <!-- ❤️ お気に入りボタン（※未実装なら後でadd-favorite.phpに） -->
                 <form action="add-favorite.php" method="post">
-                  <input type="hidden" name="prod
+                  <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                  <button type="submit" class="fav-btn"><i class="fas fa-heart"></i></button>
+                </form>
+
+                <!-- 🛒 カート追加ボタン -->
+                <form action="cart-insert.php" method="post">
+                  <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                  <button type="submit" class="cart-btn"><i class="fas fa-shopping-cart"></i></button>
+                </form>
+              </div>
+            </div>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p class="no-result">該当する商品がありません。</p>
+        <?php endif; ?>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
