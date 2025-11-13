@@ -53,7 +53,6 @@ body {
   font-size:22px; 
   color:#5c3a00; 
   margin: 20px 0; 
-
 }
 
 /* ===================================================== */
@@ -87,6 +86,54 @@ h1 {
   border: 1px solid #ccc;
   border-radius: 20px;
   font-size: clamp(12px, 1.5vw, 16px);
+}
+
+/* ✅ マイページ全体を中央寄せ */
+.mypage-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* セクション全体を中央へ */
+  justify-content: center;
+  text-align: center;  /* 見出しも中央寄せ */
+  min-height: 60vh;    /* 上下の中央寄せに近づける（調整可） */
+  margin-top: 0;
+}
+
+/* ✅ メニューリスト中央寄せ（幅固定） */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;       /* ← 全体を中央寄せ */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 300px;     /* メニュー全体の幅を固定 */
+}
+
+/* ✅ ボタンの中は左寄せ */
+.menu-btn {
+  background: none;
+  border: none;
+  color: #5c3a00;
+  font-size: clamp(14px, 1.5vw, 16px);
+  text-align: left;        /* ← ここで左揃え維持！ */
+  padding: 8px 0;
+  cursor: pointer;
+  display: flex;           /* ← アイコンと文字を横並びに */
+  align-items: center;     /* 垂直中央揃え */
+  gap: 8px;                /* アイコンと文字の間に余白 */
+}
+
+/* ✅ hover効果ちょっとだけ追加（任意） */
+.menu-btn:hover {
+  opacity: 0.8;
+}
+
+/* ✅ アイコンの見た目を微調整 */
+.menu-btn .icon i {
+  width: 20px;      /* 文字とのズレ防止 */
+  text-align: center;
 }
 
 /* ✅ グリッド */
@@ -126,6 +173,7 @@ h1 {
 .mypage-menu h2 {
   font-size: clamp(20px, 2.5vw, 26px);
   margin-bottom: 20px;
+  margin-top: 0;
 }
 
 .menu {
