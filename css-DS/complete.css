@@ -1,5 +1,5 @@
 /* ===================================================== */
-/* ✅ 全体背景：左ベージュ → 右クリーム */
+/* ✅ 全体 */
 /* ===================================================== */
 body {
   margin: 0;
@@ -7,15 +7,12 @@ body {
   font-family: "Georgia", serif;
   background: linear-gradient(
     to right,
-    #f4c48c 140px, /* ベージュ部分を少し広げてバランス調整 */
-    #FAEECF 140px
+    #f4c48c 120px,
+    #FAEECF 120px
   );
-  color: #5c3a00;
 }
 
-/* ===================================================== */
 /* ✅ レイアウト全体 */
-/* ===================================================== */
 .container {
   display: flex;
   width: 100%;
@@ -23,50 +20,40 @@ body {
   transition: all 0.3s ease;
 }
 
-/* ===================================================== */
 /* ✅ 左ナビ（PC・タブレット時） */
-/* ===================================================== */
 .side-nav {
-  width: 140px;
+  width: 120px;
   background-color: transparent;
-  padding: 24px 0;
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 20px;
   text-align: center;
 }
 
-/* ✅ ナビボタン */
+/* ✅ ボタン感を消す */
 .side-nav .nav-item {
   background: none;
   border: none;
-  font-size: clamp(12px, 1.4vw, 16px);
+  font-size: 14px;
   cursor: pointer;
   padding: 10px 0;
-  line-height: 1.3;
-  color: #5c3a00;
-  font-weight: 600;
-  transition: all 0.25s;
+  appearance: none;
+  line-height: 1.2;
 }
 
 .side-nav .nav-item:hover {
-  opacity: 0.7;
-  transform: scale(1.05);
+  opacity: 0.65;
 }
 
-/* 🧸 クマの画像 */
-.bear-icon {
-  width: clamp(40px, 5vw, 65px);
-  height: auto;
-  object-fit: contain;
-  margin-top: auto;
-  transition: transform 0.2s ease;
-}
+.icon-list i { 
+  display:block; 
+  font-size:22px; 
+  color:#5c3a00; 
+  margin: 20px 0; 
 
-.bear-icon:hover {
-  transform: scale(1.08);
 }
 
 /* ===================================================== */
@@ -75,7 +62,7 @@ body {
 main {
   flex: 1;
   padding: clamp(24px, 4vw, 60px);
-  background-color: #fdf6e3;
+  background-color: #FAEECF;
   text-align: center;
 }
 
@@ -91,7 +78,7 @@ main {
 /* ===================================================== */
 /* ✅ ボタン共通デザイン */
 /* ===================================================== */
-button {
+.homebutton {
   background-color: #f2b774;
   border: none;
   padding: 12px 48px;
@@ -104,7 +91,7 @@ button {
   transition: all 0.2s ease;
 }
 
-button:hover {
+.homebutton:hover {
   background-color: #e19a50;
   transform: scale(1.04);
 }
@@ -119,34 +106,12 @@ button:hover {
   display: block;
 }
 
-/* ===================================================== */
-/* ✅ サイドバー（旧デザインとの互換） */
-/* ===================================================== */
-.sidebar {
-  width: 120px;
-  background-color: #e6b27e;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar li {
-  margin: 20px 0;
-  font-size: 18px;
-  color: #fff;
-}
 
 /* ===================================================== */
 /* ✅ レスポンシブナビゲーション */
 /* ===================================================== */
+
+/* 📱 スマホ（～599px） */
 @media screen and (max-width: 599px) {
   body {
     background: #FAEECF;
@@ -157,6 +122,7 @@ button:hover {
     padding-bottom: 70px; /* 下ナビの余白 */
   }
 
+  /* ↓ ナビを下に固定して横並びに */
   .side-nav {
     position: fixed;
     bottom: 0;
@@ -172,15 +138,15 @@ button:hover {
 
   .side-nav .nav-item {
     flex: 1;
-    font-size: clamp(10px, 3vw, 14px);
+    font-size: clamp(10px, 3vw, 13px);
   }
 
   .bear-icon {
-    display: none;
+    display: none; /* 熊はスマホ時は非表示に */
   }
 
-  main {
-    padding-bottom: 100px;
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
   }
 }
 
@@ -192,7 +158,7 @@ button:hover {
 
   .side-nav {
     position: relative;
-    width: 140px;
+    width: 120px;
     border-top: none;
   }
 
@@ -200,3 +166,20 @@ button:hover {
     display: block;
   }
 }
+/* ✅ タイトル画像（ロゴ部分） */
+.moji {
+  display: block;
+  width: clamp(120px, 30vw, 250px); /* 画面幅に応じて可変（最小120px〜最大250px） */
+  height: auto;
+  margin: 0 auto 15px; /* 中央寄せ + 下に余白 */
+  object-fit: contain;
+}
+
+/* 🧸 クマの画像 */
+.bear-icon {
+  width: clamp(25px, 4vw, 45px); /* 画面幅に応じて変化 */
+  height: auto;
+  object-fit: contain;
+  margin-top: auto;
+}
+

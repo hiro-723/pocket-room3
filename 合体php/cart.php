@@ -61,53 +61,105 @@ if ($cartItems) {
 
 <body>
   <div class="container">
-    <header>
-      <img src="../kuma/moji.png" alt="pocket room">
-      <h2>カート</h2>
-    </header>
 
-    <main id="cart-container">
+    <!-- ✅ 左ナビ -->
+    <nav class="side-nav">
+      <button onclick="location.href='home.php'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
+      <button onclick="location.href='favorites.php'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
+      <button onclick="location.href='cart.php'" class="nav-item"><i class="fas fa-shopping-cart"></i><br>カート</button>
+      <button onclick="location.href='mypage.php'" class="nav-item"><i class="fas fa-user"></i><br>マイページ</button>
+      <img src="../kuma/kuma.png" class="bear-icon">
+    </nav>
+
+    <!-- ✅ メイン部分 -->
+    <main>
+      <img src="../kuma/moji.png" class="moji">
+      <h2>カート</h2>
+
       <?php if ($cartItems): ?>
         <?php foreach ($cartItems as $item): ?>
-          <div class="cart-item" data-id="<?= $item['cart_id'] ?>">
-            <div class="cart-info">
+          <div class="cart-item">
+            <div class="item-box">
               <?php if (!empty($item['img'])): ?>
-                <img src="../img/<?= htmlspecialchars($item['img']) ?>" alt="商品画像">
+                <img src="../img/<?= htmlspecialchars($item['img']) ?>" alt="商品画像" style="width:80px; height:auto;">
               <?php endif; ?>
               <p><?= htmlspecialchars($item['product_name']) ?><br><?= number_format($item['price']) ?>円</p>
             </div>
 
-            <div class="cart-control">
-              <button class="btn increase">＋</button>
-              <span class="quantity">1</span>
-              <button class="btn decrease">−</button>
-
-              <form action="cart-delete.php" method="post" style="display:inline;">
-                <input type="hidden" name="cart_id" value="<?= htmlspecialchars($item['cart_id']) ?>">
-                <button type="submit" class="btn delete">削除</button>
-              </form>
+            <!-- ✅ 数量調整エリア -->
+            <div class="qty">
+              <span class="plus" data-price="<?= (int)$item['price'] ?>">＋</span>
+              <span class="num">1</span>
+              <span class="minus" data-price="<?= (int)$item['price'] ?>">－</span>
             </div>
+
+            <!-- ✅ 削除ボタン -->
+            <form action="cart-delete.php" method="post" style="display:inline;">
+              <input type="hidden" name="cart_id" value="<?= htmlspecialchars($item['cart_id']) ?>">
+              <button type="submit" class="delete-btn">削除</button>
+            </form>
           </div>
         <?php endforeach; ?>
       <?php else: ?>
         <p>カートに商品がありません。</p>
       <?php endif; ?>
 
-      <div class="cart-total">
-        <p>合計金額: <span id="total"><?= number_format($total) ?></span>円</p>
-        <form action="purchase.php" method="post">
-          <button type="submit" class="buy-btn">購入する</button>
-        </form>
+      <!-- ✅ 合計金額 -->
+      <div class="total">
+        <p>合計金額 <span id="total"><?= number_format($total) ?></span>円</p>
+
+        <?php if ($cartItems): ?>
+          <form action="purchase.php" method="post">
+            <button type="submit" class="buy-btn">購入する</button>
+          </form>
+        <?php else: ?>
+          <button class="buy-btn" disabled style="opacity:0.6; cursor:not-allowed;">購入する</button>
+        <?php endif; ?>
       </div>
     </main>
   </div>
 
-  <nav class="side-nav">
-    <button onclick="location.href='home.php'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
-    <button onclick="location.href='favorites.php'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
-    <button onclick="location.href='cart.php'" class="nav-item"><i class="fas fa-shopping-cart"></i><br>カート</button>
-    <button onclick="location.href='mypage.php'" class="nav-item"><i class="fas fa-user"></i><br>マイページ</button>
-    <img src="../kuma/kuma.png" class="bear-icon">
-  </nav>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const totalDisplay = document.getElementById('total');
+    const cartItems = document.querySelectorAll('.cart-item');
+
+    // ✅ 合計を再計算する関数
+    function updateTotal() {
+      let total = 0;
+      cartItems.forEach(item => {
+        const price = parseInt(item.querySelector('.plus').dataset.price);
+        const qty = parseInt(item.querySelector('.num').textContent);
+        total += price * qty;
+      });
+      totalDisplay.textContent = total.toLocaleString();
+    }
+
+    // ✅ 各商品の＋／−ボタンにイベントを付与
+    cartItems.forEach(item => {
+      const plus = item.querySelector('.plus');
+      const minus = item.querySelector('.minus');
+      const num = item.querySelector('.num');
+
+      plus.addEventListener('click', () => {
+        let qty = parseInt(num.textContent);
+        num.textContent = qty + 1;
+        updateTotal();
+      });
+
+      minus.addEventListener('click', () => {
+        let qty = parseInt(num.textContent);
+        if (qty > 1) {
+          num.textContent = qty - 1;
+          updateTotal();
+        }
+      });
+    });
+
+    // ✅ 初期計算
+    updateTotal();
+  });
+  </script>
+
 </body>
 </html>

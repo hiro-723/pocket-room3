@@ -1,14 +1,17 @@
 /* ===================================================== */
-/* ✅ 全体背景：左ベージュ → 右クリーム（統一） */
+/* ✅ 全体 */
 /* ===================================================== */
 body {
   margin: 0;
   padding: 0;
   font-family: "Georgia", serif;
-  background: linear-gradient(to right, #f4c48c 120px, #FAEECF 120px);
+  background: linear-gradient(
+    to right,
+    #f4c48c 120px,
+    #FAEECF 120px
+  );
 }
 
-/* ===================================================== */
 /* ✅ レイアウト全体 */
 .container {
   display: flex;
@@ -17,65 +20,61 @@ body {
   transition: all 0.3s ease;
 }
 
-/* ===================================================== */
-/* ✅ 左ナビ */
+/* ✅ 左ナビ（PC・タブレット時） */
 .side-nav {
   width: 120px;
   background-color: transparent;
   padding: 20px 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: space-between;
   gap: 20px;
-  position: relative;
   text-align: center;
 }
 
-/* ナビボタン */
-.nav-item {
+/* ✅ ボタン感を消す */
+.side-nav .nav-item {
   background: none;
   border: none;
-  font-size: clamp(10px, 1.2vw, 14px);
+  font-size: 14px;
   cursor: pointer;
   padding: 10px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  color: #5c3a00;
+  appearance: none;
+  line-height: 1.2;
 }
 
-.nav-item i {
-  font-size: clamp(18px, 2vw, 24px);
-}
-
-.nav-item:hover {
+.side-nav .nav-item:hover {
   opacity: 0.65;
 }
 
-/* 🧸 クマアイコン */
-.bear-icon {
-  width: clamp(25px, 4vw, 45px);
-  height: auto;
-  object-fit: contain;
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
+.icon-list i { 
+  display:block; 
+  font-size:22px; 
+  color:#5c3a00; 
+  margin: 20px 0; 
+
 }
+
+
 
 /* ===================================================== */
 /* ✅ メインエリア */
 main {
   flex: 1;
   padding: 20px;
-  background-color: #fdf6e3; /* ← 1つ目のコードに合わせた淡いベージュ */
+  background-color: #FAEECF;
+  background-color: #FAEECF; /* ← 1つ目のコードに合わせた淡いベージュ */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   text-align: center;
+}
+
+.content { 
+  flex:1; 
+  padding:40px 60px; 
 }
 
 /* タイトル画像 */
@@ -123,8 +122,43 @@ main {
   opacity: 0.8;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.item {
+  background-color: #e8e8e8;
+  padding: 40px 0;
+  border-radius: 10px;
+  font-size: clamp(12px, 1.5vw, 16px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.item img {
+  width: clamp(35px, 6vw, 50px);
+  height: clamp(35px, 6vw, 50px);
+  object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.item-label {
+  font-size: clamp(12px, 1.5vw, 16px);
+  color: #5c3a00;
+  text-align: center;
+}
+
 /* ===================================================== */
-/* ✅ レスポンシブナビ（スマホ時） */
+/* ✅ レスポンシブナビゲーション */
+/* ===================================================== */
+
+/* 📱 スマホ（～599px） */
 @media screen and (max-width: 599px) {
   body {
     background: #FAEECF;
@@ -132,9 +166,10 @@ main {
 
   .container {
     flex-direction: column;
-    padding-bottom: 70px;
+    padding-bottom: 70px; /* 下ナビの余白 */
   }
 
+  /* ↓ ナビを下に固定して横並びに */
   .side-nav {
     position: fixed;
     bottom: 0;
@@ -148,17 +183,17 @@ main {
     z-index: 1000;
   }
 
-  .nav-item {
+  .side-nav .nav-item {
     flex: 1;
     font-size: clamp(10px, 3vw, 13px);
   }
 
   .bear-icon {
-    display: none;
+    display: none; /* 熊はスマホ時は非表示に */
   }
 
-  .menu {
-    max-width: 90%;
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
   }
 }
 
@@ -171,9 +206,27 @@ main {
   .side-nav {
     position: relative;
     width: 120px;
+    border-top: none;
   }
 
   .bear-icon {
     display: block;
   }
 }
+/* ✅ タイトル画像（ロゴ部分） */
+.moji {
+  display: block;
+  width: clamp(120px, 30vw, 250px); /* 画面幅に応じて可変（最小120px〜最大250px） */
+  height: auto;
+  margin: 0 auto 15px; /* 中央寄せ + 下に余白 */
+  object-fit: contain;
+}
+
+/* 🧸 クマの画像 */
+.bear-icon {
+  width: clamp(25px, 4vw, 45px); /* 画面幅に応じて変化 */
+  height: auto;
+  object-fit: contain;
+  margin-top: auto;
+}
+

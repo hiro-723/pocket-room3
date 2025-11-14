@@ -1,56 +1,46 @@
 <?php
 session_start();
-require_once '../db-connect.php';
+require_once 'db-connect.php';
 
+// セッションチェック
 if (!isset($_SESSION['username'])) {
   header("Location: rogin.php");
   exit;
 }
 
-// 🔹 ユーザーID取得
-$stmt = $pdo->prepare("SELECT customer_id FROM users WHERE username = ?");
+// ログイン中のユーザー情報取得
+$stmt = $pdo->prepare("SELECT customer_id FROM customer WHERE email = ?");
 $stmt->execute([$_SESSION['username']]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+  echo "ユーザー情報が見つかりません。";
+  exit;
+}
+
 $customer_id = $user['customer_id'];
 
-// 🔹 購入処理（はいが押されたとき）
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm'])) {
-  $payment = $_POST['payment'];
+// ✅「はい」が押されたら購入履歴に登録してからカートを削除
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["confirm"])) {
 
-  // カートの中身を取得
-  $stmt = $pdo->prepare("
-    SELECT c.product_id
-    FROM cart c
-    WHERE c.customer_id = ?
-  ");
+  // カート内の商品を取得
+  $stmt = $pdo->prepare("SELECT product_id FROM cart WHERE customer_id = ?");
   $stmt->execute([$customer_id]);
-  $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  if (!empty($items)) {
-    try {
-      $pdo->beginTransaction();
-
-      // 🔸 購入履歴テーブルに登録
-      $stmt = $pdo->prepare("INSERT INTO purchase (customer_id, product_id) VALUES (?, ?)");
-      foreach ($items as $i) {
-        $stmt->execute([$customer_id, $i['product_id']]);
-      }
-
-      // 🔸 カートを空に
-      $stmt = $pdo->prepare("DELETE FROM cart WHERE customer_id = ?");
-      $stmt->execute([$customer_id]);
-
-      $pdo->commit();
-
-      $message = "購入が完了しました！ご利用ありがとうございました。";
-    } catch (Exception $e) {
-      $pdo->rollBack();
-      $message = "購入処理中にエラーが発生しました。";
-    }
-  } else {
-    $message = "カートが空です。";
+  // 購入履歴へ登録
+  $insert = $pdo->prepare("INSERT INTO purchase (customer_id, product_id) VALUES (?, ?)");
+  foreach ($cartItems as $item) {
+    $insert->execute([$customer_id, $item['product_id']]);
   }
-}
+
+  // カートを空にする
+  $delete = $pdo->prepare("DELETE FROM cart WHERE customer_id = ?");
+  $delete->execute([$customer_id]);
+
+  header("Location: complete.php");
+  exit;
+} 
 ?>
 
 <!DOCTYPE html>
@@ -58,41 +48,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>購入 | POCKET ROOM</title>
-  <link rel="stylesheet" href="../合体css/purchase.css">
+  <title>購入確認 | POCKET ROOM</title>
+  <link rel="stylesheet" href="../css-DS/purchase.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <div class="container">
-    <header>
-        <img src="../kuma/moji.png" alt="pocket room">
-      <h2>購入</h2>
-    </header>
+    <nav class="side-nav">
+      <button onclick="location.href='home.php'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
+      <button onclick="location.href='favorites.php'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
+      <button onclick="location.href='cart.php'" class="nav-item"><i class="fas fa-shopping-cart"></i><br>カート</button>
+      <button onclick="location.href='mypage.php'" class="nav-item"><i class="fas fa-user"></i><br>マイページ</button>
+      <img src="../kuma/kuma.png" class="bear-icon">
 
-    <main>
-      <?php if (!empty($message)): ?>
-        <p style="color:green;"><?= htmlspecialchars($message) ?></p>
-      <?php else: ?>
-        <form method="POST">
-          <div class="payment-box">
-            <label><input type="radio" name="payment" value="クレジットカード" checked> クレジットカード</label><br>
-            <label><input type="radio" name="payment" value="PayPay"> PayPay</label><br>
-            <label><input type="radio" name="payment" value="後払い（ペイディ）"> 後払い（ペイディ）</label>
+    </nav>
+
+    <main class="content">
+      <img src="../kuma/moji.png" class="moji">
+
+      <section class="purchase-box">
+        <h2>購入</h2>
+
+        <form>
+          <div class="payment-methods">
+            <label class="pm">
+              <input type="radio" name="pay" checked> クレジットカード
+            </label>
+            <label class="pm">
+              <input type="radio" name="pay"> PayPay
+            </label>
+            <label class="pm">
+              <input type="radio" name="pay"> 銀行振込（ペイディ）
+            </label>
           </div>
 
-          <h3>購入いたしますか？</h3>
+          <p class="confirm">購入なさいますか？</p>
 
-          <button type="submit" name="confirm" class="yes-btn">はい</button>
-          <button type="button" class="no-btn" onclick="location.href='cart.php'">いいえ</button>
+          <div class="buttons">
+            <button type="submit" class="confirm-yes">はい</button>
+            <button type="submit" class="confirm-no">いいえ</button>
+          </div>
         </form>
-      <?php endif; ?>
+      </section>
     </main>
   </div>
-
-  <nav class="bottom-nav">
-    <div class="nav-item" onclick="location.href='home.php'">🏠<br>ホーム</div>
-    <div class="nav-item" onclick="location.href='favorite.php'">❤️<br>お気に入り</div>
-    <div class="nav-item" onclick="location.href='cart.php'">🧸<br>カート</div>
-    <div class="nav-item" onclick="location.href='mypage.php'">👤<br>マイページ</div>
-  </nav>
 </body>
 </html>

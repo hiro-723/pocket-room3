@@ -46,26 +46,7 @@ body {
   opacity: 0.65;
 }
 
-.sidebar {
-  width: 70px;
-  background-color: #e6b27e;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-}
 
-.sidebar li {
-  list-style: none;
-  margin: 20px 0;
-  color: #fff;
-  font-size: 18px;
-}
-
-.bear {
-  font-size: 28px;
-}
 
 .content {
   flex: 1;
@@ -73,12 +54,7 @@ body {
   padding: 50px;
 }
 
-h1 {
-  color: #6b3d16;
-  border-bottom: 1px solid #d4a373;
-  display: inline-block;
-  margin-bottom: 40px;
-}
+
 
 .product {
   display: flex;
@@ -104,6 +80,30 @@ button {
   border: none;
   padding: 6px 20px;
   cursor: pointer;
+}
+
+.ine-cart {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* カートとの間に空白 */
+}
+
+/* ♡アイコンのスタイル */
+.heart {
+  font-size: 22px;
+  color: #888;
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* ♥になったときの色 */
+.heart.active {
+  color: #e63946;
 }
 
 /* ===================================================== */

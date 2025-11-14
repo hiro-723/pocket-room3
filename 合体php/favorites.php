@@ -1,11 +1,41 @@
+<?php
+session_start();
+require_once 'db-connect.php'; // PDO接続
+
+// ログインチェック
+if (!isset($_SESSION['username'])) {
+    header("Location: rogin.php");
+    exit;
+}
+
+// ログイン中ユーザーのIDを取得
+$stmt = $pdo->prepare("SELECT customer_id FROM users WHERE username = ?");
+$stmt->execute([$_SESSION['username']]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+$customer_id = $user['customer_id'];
+
+// お気に入り一覧を取得
+$sql = "
+  SELECT 
+    favorite.favorite_id,
+    product.product_id,
+    product.product_name,
+    product.price
+  FROM favorite
+  JOIN product ON favorite.product_id = product.product_id
+  WHERE favorite.customer_id = ?
+";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$customer_id]);
+$favorites = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>検索結果 | POCKET ROOM</title>
-  <link rel="stylesheet" href="../css-DS/search.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>お気に入り一覧</title>
+  <link rel="stylesheet" href="../css-DS/favorite.css">
 </head>
 <body>
   <div class="container">
@@ -20,9 +50,7 @@
 
     <main class="content">
       <img src="../kuma/moji.png" class="moji">
-      <div class="searchbar">
-        <input type="text" placeholder="検索結果の例">
-      </div>
+      <input type="text" placeholder="検索" class="search-bar">
 
       <div class="grid">
         <div class="item">商品A</div>
@@ -36,5 +64,7 @@
       </div>
     </main>
   </div>
+
+  <script src="../js/favorite.js"></script>
 </body>
 </html>

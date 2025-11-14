@@ -41,34 +41,73 @@ $username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
 </head>
 <body>
 
-    <nav class="side-nav">
-      <button onclick="location.href='home.php'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
-      <button onclick="location.href='okiniiri.php'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
-      <button onclick="location.href='cart.php'" class="nav-item"><i class="fas fa-shopping-cart"></i><br>カート</button>
-      <button onclick="location.href='mypage.php'" class="nav-item"><i class="fas fa-user"></i><br>マイページ</button>
-      <img src="../kuma/kuma.png" class="bear-icon">
-
-    </nav>
-
-  <main class="main">
-    <header>
-      <img src="../kuma/moji.png" class="moji">
-      <input type="text" placeholder="検索">
-    </header>
-
-    <section class="carousel">
-      <div class="card">おすすめ商品表示</div>
-    </section>
-
-    <section class="categories">
-      <div class="item"> <img src="../home/リビング.png"></div>
-      <div class="item">キッチン</div>
-      <div class="item">ダイニング</div>
-      <div class="item">寝室</div>
-      <div class="item">書斎</div>
-      <div class="item">バスルーム</div>
-    </section>
-  </main>
+    <div class="container">
+ 
+    <!-- ✅ 左ナビ -->
+<nav class="side-nav">
+<button onclick="location.href='home.php'" class="nav-item">
+<i class="fas fa-home"></i><br>ホーム
+</button>
+<button onclick="location.href='favorites.php'" class="nav-item">
+<i class="fas fa-heart"></i><br>お気に入り
+</button>
+<button onclick="location.href='cart.php'" class="nav-item">
+<i class="fas fa-shopping-cart"></i><br>カート
+</button>
+<button onclick="location.href='mypage.php'" class="nav-item">
+<i class="fas fa-user"></i><br>マイページ
+</button>
+ 
+      <img src="../kuma/kuma.png" class="bear-icon" alt="くまアイコン">
+</nav>
+ 
+    <!-- ✅ メインエリア -->
+<main class="main">
+<form action="seach.php" method="post">
+<header>
+<img src="../kuma/moji.png" class="moji" alt="タイトルロゴ">
+<input type="text"  name="keyword" placeholder="検索">
+</header>
+ 
+      <section class="carousel">
+<div class="card">おすすめ商品表示</div>
+</section>
+ 
+      <section class="categories">
+<div class="category">
+<div class="item"><img src="../home/リビング.png" alt="リビング"></div>
+<p class="item-label">リビング</p>
+</div>
+ 
+        <div class="category">
+<div class="item"><img src="../home/キッチン.png" alt="キッチン"></div>
+<p class="item-label">キッチン</p>
+</div>
+ 
+        <div class="category">
+<div class="item"><img src="../home/ダイニング.png" alt="ダイニング"></div>
+<p class="item-label">ダイニング</p>
+</div>
+ 
+        <div class="category">
+<div class="item"><img src="../home/寝室.png" alt="寝室"></div>
+<p class="item-label">寝室</p>
+</div>
+ 
+        <div class="category">
+<div class="item"><img src="../home/書斎.png" alt="書斎"></div>
+<p class="item-label">書斎</p>
+</div>
+ 
+        <div class="category">
+<div class="item"><img src="../home/バスルーム.png" alt="バスルーム"></div>
+<p class="item-label">バスルーム</p>
+</div>
+</section>
+</form>
+</main>
+ 
+  </div><!-- /.container -->
 
 </body>
 </html>
