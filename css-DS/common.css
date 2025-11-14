@@ -60,16 +60,7 @@ body {
   opacity: 0.65;
 }
 
-/* 🧸 クマアイコン：常に最下部に固定 */
-.bear-icon {
-  width: clamp(25px, 4vw, 45px);
-  height: auto;
-  object-fit: contain;
-  position: absolute;
-  bottom: 15px;  /* ← ナビ全体の下に固定配置 */
-  left: 50%;
-  transform: translateX(-50%);
-}
+
 
 /* ===================================================== */
 /* ✅ メインエリア */
