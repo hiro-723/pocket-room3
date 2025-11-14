@@ -53,7 +53,6 @@ body {
   font-size:22px; 
   color:#5c3a00; 
   margin: 20px 0; 
-
 }
 
 /* ===================================================== */
@@ -117,7 +116,6 @@ header input {
   text-align: center;
 }
 
-
 .categories .item img {
   width: clamp(50px, 8vw, 70px);
   height: clamp(50, 8vw, 70px);
@@ -170,12 +168,27 @@ header input {
     right: 10px;
     left: auto;
     transform: none;
-    width: 0px;
+    width: 40px;
   }
 
   .categories {
     gap: 15px;
   }
+
+  /* ⭐ ここから追加：カテゴリをスマホで2列にする */
+  .categories {
+    display: grid;                       /* ★ 追加 */
+    grid-template-columns: repeat(2, 1fr); /* ★ 追加 */
+    gap: 20px;                            /* ★ 追加 */
+    justify-items: center;                /* ★ 追加 */
+  }
+  /* ⭐ 追加ここまで */
+
+  /* ⭐ 中央に寄せるための幅調整（追加） */
+.categories {
+  max-width: 350px;   /* ← 横幅を小さくして中央に */
+  margin: 0 auto;     /* ← 中央寄せ */
+}
 
   /* タイトル画像のサイズをスマホ用に大きく */
   header .moji {
@@ -198,20 +211,20 @@ header input {
     display: block;
   }
 }
+
 /* ✅ タイトル画像（ロゴ部分） */
 .moji {
   display: block;
-  width: clamp(120px, 30vw, 250px); /* 画面幅に応じて可変（最小120px〜最大250px） */
+  width: clamp(120px, 30vw, 250px);
   height: auto;
-  margin: 0 auto 15px; /* 中央寄せ + 下に余白 */
+  margin: 0 auto 15px;
   object-fit: contain;
 }
 
 /* 🧸 クマの画像 */
 .bear-icon {
-  width: clamp(25px, 4vw, 45px); /* 画面幅に応じて変化 */
+  width: clamp(25px, 4vw, 45px);
   height: auto;
   object-fit: contain;
   margin-top: auto;
 }
-
