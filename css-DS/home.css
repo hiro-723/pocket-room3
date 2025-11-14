@@ -163,12 +163,7 @@ header input {
   }
 
   .bear-icon {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    left: auto;
-    transform: none;
-    width: 40px;
+    display: none;
   }
 
   .categories {
