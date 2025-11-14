@@ -122,6 +122,38 @@ main {
   opacity: 0.8;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.item {
+  background-color: #e8e8e8;
+  padding: 40px 0;
+  border-radius: 10px;
+  font-size: clamp(12px, 1.5vw, 16px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.item img {
+  width: clamp(35px, 6vw, 50px);
+  height: clamp(35px, 6vw, 50px);
+  object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.item-label {
+  font-size: clamp(12px, 1.5vw, 16px);
+  color: #5c3a00;
+  text-align: center;
+}
+
 /* ===================================================== */
 /* ✅ レスポンシブナビゲーション */
 /* ===================================================== */
