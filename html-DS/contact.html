@@ -22,11 +22,25 @@
     <main class="content">
       <img src="../kuma/moji.png" class="moji">
       <ul class="help">
-        <li><button class="menu-btn" onclick="location.href=''">住所変更の仕方</button></li>
-        <li><button class="menu-btn" onclick="location.href=''">購入方法</button></li>
-        <li><button class="menu-btn" onclick="location.href=''">お気に入り登録</button></li>
+        <li><button class="menu-btn" onclick="showAlertA()">住所変更の仕方</button></li>
+        <li><button class="menu-btn" onclick="showAlertB()">購入方法</button></li>
+        <li><button class="menu-btn" onclick="showAlertC()">お気に入り登録</button></li>
       </ul>
     </main>
   </div>
+
+  <script>
+    function showAlertA(){
+      if(confirm("マイページの「お客様情報」から新しい住所を入力して保存してください。\nマイページへ移動しますか？")){
+        location.href='mypage.html';
+      }
+    }
+    function showAlertB(){
+      alert("商品ページで「カートに追加」ボタンをクリックし、カート内で購入手続きを進めてください。");
+    }
+    function showAlertC(){
+      alert("商品ページで「お気に入りに追加」ボタンをクリックしてください。");
+    }
+  </script>
 </body>
 </html>
