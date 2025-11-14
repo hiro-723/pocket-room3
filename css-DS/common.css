@@ -118,14 +118,7 @@ header .moji {
     flex: 1;
   }
 
-  .bear-icon {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    left: auto;
-    transform: none;
-    width: 40px;
-  }
+
 
   header .moji {
     width: clamp(160px, 35vw, 220px);
