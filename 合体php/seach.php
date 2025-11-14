@@ -26,6 +26,9 @@ if ($keyword !== '') {
 } else {
   $products = [];
 }
+$stmt = $pdo->prepare("SELECT product_id FROM favorite WHERE customer_id = ?");
+$stmt->execute([$customer_id]);
+$favorites = $stmt->fetchAll(PDO::FETCH_COLUMN);
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +47,7 @@ if ($keyword !== '') {
     <!-- ✅ サイドメニュー -->
     <nav class="side-nav">
       <button onclick="location.href='home.php'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
-      <button onclick="location.href='favorites.php'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
+      <button onclick="location.href='favorite.php'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
       <button onclick="location.href='cart.php'" class="nav-item"><i class="fas fa-shopping-cart"></i><br>カート</button>
       <button onclick="location.href='mypage.php'" class="nav-item"><i class="fas fa-user"></i><br>マイページ</button>
       <img src="../kuma/kuma.png" class="bear-icon">
@@ -82,7 +85,7 @@ if ($keyword !== '') {
 
               <div class="product-actions">
                 <!-- ❤️ お気に入りボタン -->
-                <form action="add-favorite.php" method="post">
+                <form action="favorite-insert.php" method="post">
                   <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
                   <button type="submit" class="fav-btn"><i class="fas fa-heart"></i></button>
                 </form>
