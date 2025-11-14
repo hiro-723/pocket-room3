@@ -84,7 +84,6 @@ main {
   align-items: center; /* セクション全体を中央へ */
   justify-content: center;
   text-align: center;  /* 見出しも中央寄せ */
-  min-height: 60vh;    /* 上下の中央寄せに近づける（調整可） */
   margin-top: 0;
 }
 
