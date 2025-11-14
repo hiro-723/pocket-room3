@@ -2,11 +2,17 @@ body {
   margin: 0;
   background: #FAEECF;
   font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+
+  /* ★ ここで中央揃え！ ★ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .container {
   width: 600px;
-  margin: 150px auto;
+  margin: 0 auto;
   text-align: center;
   padding: 100px;
 }
@@ -25,21 +31,29 @@ h1 {
 }
 
 /* ===================================================== */
-/* ✅ レスポンシブナビゲーション */
-/* ===================================================== */
-
 /* 📱 スマホ（～599px） */
+/* ===================================================== */
 @media screen and (max-width: 599px) {
-  body {
-    background: #FAEECF;
-  }
 
   .container {
-    flex-direction: column;
-    padding-bottom: 70px; /* 下ナビの余白 */
+    width: 90%;        
+    max-width: 350px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    padding-bottom: 70px;
   }
 
-  /* ↓ ナビを下に固定して横並びに */
+  h1 {
+    font-size: 24px;
+  }
+
+  .back {
+    width: 100%;
+    padding: 12px;
+  }
+
   .side-nav {
     position: fixed;
     bottom: 0;
@@ -58,16 +72,14 @@ h1 {
     font-size: clamp(10px, 3vw, 13px);
   }
 
-  .bear-icon {
-    display: none; /* 熊はスマホ時は非表示に */
-  }
-
   .grid {
-    grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* 💻 タブレット～PC（600px以上） */
+/* ===================================================== */
+/* 💻 PC（600px以上） */
+/* ===================================================== */
 @media screen and (min-width: 600px) {
   .container {
     flex-direction: row;
@@ -84,3 +96,17 @@ h1 {
   }
 }
 
+.moji {
+  display: block;
+  width: clamp(120px, 30vw, 250px);
+  height: auto;
+  margin: 0 auto 15px;
+  object-fit: contain;
+}
+
+.bear-icon {
+  width: clamp(25px, 4vw, 45px);
+  height: auto;
+  object-fit: contain;
+  margin-top: auto;
+}
