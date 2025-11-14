@@ -64,17 +64,7 @@ main {
   flex: 1;
   padding: 20px;
   background-color: #FAEECF;
-  background-color: #FAEECF; /* ← 1つ目のコードに合わせた淡いベージュ */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
   text-align: center;
-}
-
-.content { 
-  flex:1; 
-  padding:40px 60px; 
 }
 
 /* タイトル画像 */
@@ -84,42 +74,6 @@ main {
   display: block;
   margin-bottom: 20px;
   object-fit: contain;
-}
-
-/* マイページメニュー */
-.mypage-menu h2 {
-  font-size: clamp(20px, 2.5vw, 26px);
-  margin-bottom: 20px;
-  color: #5c3a00;
-}
-
-.menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  max-width: 300px;
-}
-
-.menu-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  padding: 10px 15px;
-  font-size: clamp(14px, 1.5vw, 16px);
-  border: 1px solid #888;
-  border-radius: 8px;
-  background-color: #fff;
-  color: #5c3a00;
-  cursor: pointer;
-}
-
-.menu-btn:hover {
-  opacity: 0.8;
 }
 
 .grid {
@@ -220,6 +174,14 @@ main {
   height: auto;
   margin: 0 auto 15px; /* 中央寄せ + 下に余白 */
   object-fit: contain;
+}
+
+.search-bar {
+  width: clamp(180px, 50%, 400px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: clamp(12px, 1.5vw, 16px);
 }
 
 /* 🧸 クマの画像 */
