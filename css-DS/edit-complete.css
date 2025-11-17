@@ -3,28 +3,36 @@ body {
   background: #FAEECF;
   font-family: "Hiragino Kaku Gothic ProN", sans-serif;
 
-  /* ★ ここで中央揃え！ ★ */
+  /* 中央揃え */
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+
+  /* スマホで高さ不足になるため min-height にする */
+  min-height: 100vh;
 }
 
+/* ===== メインコンテナ ===== */
 .container {
-  width: 600px;
-  margin: 0 auto;
+  width: 90%;              /* 可変幅 */
+  max-width: 600px;        /* 最大幅を600に設定 */
   text-align: center;
-  padding: 100px;
+  padding: 80px 20px;      /* レスポンシブな余白 */
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
+/* ===== 見出し ===== */
 h1 {
   font-size: 32px;
   margin-bottom: 40px;
 }
 
+/* ===== ボタン ===== */
 .back {
-  width: 200px;
-  padding: 10px;
+  width: 100%;             /* スマホ対応 */
+  max-width: 200px;        /* PCでは200px */
+  padding: 12px;
   background: #E7A664;
   border: 1px solid #E7A664;
   cursor: pointer;
@@ -36,12 +44,9 @@ h1 {
 @media screen and (max-width: 599px) {
 
   .container {
-    width: 90%;        
+    width: 90%;
     max-width: 350px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
+    padding: 24px 16px;
     padding-bottom: 70px;
   }
 
@@ -65,6 +70,7 @@ h1 {
     padding: 10px 0;
     border-top: 2px solid #e4b071;
     z-index: 1000;
+    display: flex;
   }
 
   .side-nav .nav-item {
@@ -73,6 +79,7 @@ h1 {
   }
 
   .grid {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -81,14 +88,21 @@ h1 {
 /* 💻 PC（600px以上） */
 /* ===================================================== */
 @media screen and (min-width: 600px) {
+
+  /* PCではflex方向を横にする場合にはdisplay:flexが必要 */
   .container {
+    display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 
   .side-nav {
     position: relative;
     width: 120px;
     border-top: none;
+    display: flex;
+    flex-direction: column;
   }
 
   .bear-icon {
@@ -96,6 +110,7 @@ h1 {
   }
 }
 
+/* ===== 画像類 ===== */
 .moji {
   display: block;
   width: clamp(120px, 30vw, 250px);
