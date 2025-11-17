@@ -30,6 +30,6 @@ if ($check->rowCount() == 0) {
 }
 
 // 元のページに戻す
-header("Location: favorites.php");
+header("Location: favorite.php");
 exit;
 ?>
