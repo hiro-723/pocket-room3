@@ -116,6 +116,10 @@ header input {
   text-align: center;
 }
 
+.category a {
+  text-decoration: none;
+}
+
 .categories .item img {
   width: clamp(50px, 8vw, 70px);
   height: clamp(50, 8vw, 70px);
@@ -222,4 +226,53 @@ header input {
   height: auto;
   object-fit: contain;
   margin-top: auto;
+}
+
+/* ===================================================== */
+/* ✅ おすすめ商品バナー（横に流れるカルーセル） */
+/* ===================================================== */
+
+.banner-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 0;
+  margin: 20px 0;
+}
+
+.banner-track {
+  display: flex;
+  align-items: center;
+  animation: bannerScroll 18s linear infinite;
+}
+
+.banner-track a {
+  text-decoration: none;
+}
+
+.banner-track img {
+width: clamp(140px, 25vw, 180px);
+  height: auto;
+  margin-right: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px #0000001a;
+}
+
+/* アニメーション本体 */
+@keyframes bannerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* 📱 スマホ（最適化） */
+@media screen and (max-width: 599px) {
+  .banner-track img {
+    width: clamp(160px, 70vw, 220px);
+    margin-right: 16px;
+  }
+}
+
+.banner-wrapper {
+  max-width: 900px;   /* ← 好きな幅に調整できる */
+  margin: 0 auto;     /* ← 中央寄せ */
+  padding: 0 10px;
 }
