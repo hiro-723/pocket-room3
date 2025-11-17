@@ -11,7 +11,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 // ログイン中ユーザーのIDを取得
-$stmt = $pdo->prepare("SELECT customer_id FROM users WHERE username = ?");
+$stmt = $pdo->prepare("SELECT customer_id FROM customer WHERE email = ?");
 $stmt->execute([$_SESSION['username']]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
