@@ -15,5 +15,6 @@ $favorite_id = $_POST['favorite_id'];
 $stmt = $pdo->prepare("DELETE FROM favorite WHERE favorite_id = ?");
 $stmt->execute([$favorite_id]);
 
-echo "OK";
+header("Location: favorite.php");
+exit;
 ?>
