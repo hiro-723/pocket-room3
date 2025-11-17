@@ -62,14 +62,14 @@ $username = $_SESSION['username'];
           <ul class="menu">
 
               <li>
-                  <button class="menu-btn" onclick="location.href='customer-info.php'">
+                  <button class="menu-btn" onclick="location.href='okyakusamajouhou.php'">
                       <span class="icon"><i class="fas fa-user"></i></span>
                       お客様情報
                   </button>
               </li>
 
               <li>
-                  <button class="menu-btn" onclick="location.href='order-history.php'">
+                  <button class="menu-btn" onclick="location.href='purchase_history.php'">
                       <span class="icon"><i class="fas fa-shopping-bag"></i></span>
                       購入履歴
                   </button>
@@ -83,7 +83,7 @@ $username = $_SESSION['username'];
               </li>
 
               <li>
-                  <button class="menu-btn" onclick="location.href='logout.php'">
+                  <button class="menu-btn" onclick="location.href='rogout.php'">
                       <span class="icon"><i class="fas fa-right-from-bracket"></i></span>
                       ログアウト
                   </button>
