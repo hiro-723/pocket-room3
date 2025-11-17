@@ -3,6 +3,12 @@ body {
   background: #FAEECF;
   font-family: "Hiragino Kaku Gothic ProN", sans-serif;
 
+  /* 中央揃え */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;   /* ★ 高さ依存しないように修正 */
+  box-sizing: border-box;
   /* ★ ここで中央揃え！ ★ */
   display: flex;
   justify-content: center;
@@ -10,21 +16,28 @@ body {
   height: 100vh;
 }
 
+/* ===== メインコンテナ ===== */
 .container {
+  width: 90%;              /* ★ どんな画面幅でも対応 */
+  max-width: 600px;        /* 以前の600pxは最大幅として保持 */
   width: 600px;
   margin: 0 auto;
   text-align: center;
-  padding: 100px;
+  padding: 60px 20px;      /* 可変余白 */
+  box-sizing: border-box;
 }
 
+/* タイトル */
 h1 {
   font-size: 32px;
   margin-bottom: 40px;
 }
 
+/* ボタン */
 .back {
-  width: 200px;
-  padding: 10px;
+  width: 100%;               /* ★ 可変に変更 */
+  max-width: 200px;          /* 広い画面では200px */
+  padding: 12px;
   background: #E7A664;
   border: 1px solid #E7A664;
   cursor: pointer;
@@ -35,6 +48,13 @@ h1 {
 /* ===================================================== */
 @media screen and (max-width: 599px) {
 
+  /* メインコンテナ */
+  .container {
+    width: 90%;
+    max-width: 350px;
+    padding: 24px 16px;
+    padding-bottom: 70px;
+    text-align: center;
   .container {
     width: 90%;        
     max-width: 350px;
@@ -52,6 +72,10 @@ h1 {
   .back {
     width: 100%;
     padding: 12px;
+    max-width: none;     /* スマホでは完全100% */
+  }
+
+  /* 下固定ナビ */
   }
 
   .side-nav {
@@ -65,11 +89,19 @@ h1 {
     padding: 10px 0;
     border-top: 2px solid #e4b071;
     z-index: 1000;
+    display: flex;
   }
 
   .side-nav .nav-item {
     flex: 1;
     font-size: clamp(10px, 3vw, 13px);
+    text-align: center;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 
   .grid {
@@ -81,6 +113,12 @@ h1 {
 /* 💻 PC（600px以上） */
 /* ===================================================== */
 @media screen and (min-width: 600px) {
+
+  /* flex-direction を反映させるため display:flex 追加 */
+  .container {
+    display: flex;
+    flex-direction: column; /* PCでは縦積みに戻す場合 */
+    align-items: center;
   .container {
     flex-direction: row;
   }
@@ -89,6 +127,8 @@ h1 {
     position: relative;
     width: 120px;
     border-top: none;
+    display: flex;
+    flex-direction: column;
   }
 
   .bear-icon {
@@ -96,6 +136,7 @@ h1 {
   }
 }
 
+/* ===== 画像類 ===== */
 .moji {
   display: block;
   width: clamp(120px, 30vw, 250px);
