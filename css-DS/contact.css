@@ -152,6 +152,9 @@ main {
     font-size: clamp(10px, 3vw, 13px);
   }
 
+  .bear-icon {
+    display: none;
+  }
 
   .grid {
     grid-template-columns: repeat(2, 1fr); /* スマホは2列 */

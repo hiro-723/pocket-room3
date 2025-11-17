@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>お問い合わせ | POCKET ROOM</title>
-  <link rel="stylesheet" href="../css-DS/common.css">
   <link rel="stylesheet" href="../css-DS/contact.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -22,11 +21,25 @@
     <main class="content">
       <img src="../kuma/moji.png" class="moji">
       <ul class="help">
-        <li><button class="menu-btn" onclick="location.href=''">住所変更の仕方</button></li>
-        <li><button class="menu-btn" onclick="location.href=''">購入方法</button></li>
-        <li><button class="menu-btn" onclick="location.href=''">お気に入り登録</button></li>
+        <li><button class="menu-btn" onclick="showAlertA()">住所変更の仕方</button></li>
+        <li><button class="menu-btn" onclick="showAlertB()">購入方法</button></li>
+        <li><button class="menu-btn" onclick="showAlertC()">お気に入り登録</button></li>
       </ul>
     </main>
   </div>
+
+  <script>
+    function showAlertA(){
+      if(confirm("マイページの「お客様情報」から新しい住所を入力して保存してください。\nお客様情報へ移動しますか？")){
+        location.href='costomer.html';
+      }
+    }
+    function showAlertB(){
+      alert("商品ページで「カートに追加」ボタンをクリックし、カート内で購入手続きを進めてください。");
+    }
+    function showAlertC(){
+      alert("商品ページで「お気に入りに追加」ボタンをクリックしてください。");
+    }
+  </script>
 </body>
 </html>
