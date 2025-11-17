@@ -23,15 +23,14 @@ $username = $_SESSION['username'];
 
 <div class="container">
 
-  <!-- =================================== -->
-  <!-- ✔ 左サイドナビ（あなたが指定したそのまま） -->
-  <!-- =================================== -->
+ 
+  <!-- ✔ 左サイドナビ -->
   <nav class="side-nav">
       <button onclick="location.href='home.php'" class="nav-item">
         <i class="fas fa-home"></i><br>ホーム
       </button>
 
-      <button onclick="location.href='favorites.php'" class="nav-item">
+      <button onclick="location.href='favorite.php'" class="nav-item">
         <i class="fas fa-heart"></i><br>お気に入り
       </button>
 
