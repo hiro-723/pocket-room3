@@ -72,7 +72,7 @@ $favorites = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
           <?php foreach ($favorites as $item): ?>
             <div class="item">
-                <img src="<?= htmlspecialchars($item['img']) ?>" class="product-img">
+                <img src="../jpg/<?= htmlspecialchars($item['img']) ?>" class="product-img">
                 <div class="name"><?= htmlspecialchars($item['product_name']) ?></div>
                 <div class="price"><?= htmlspecialchars($item['price']) ?>円</div>
 
