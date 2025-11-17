@@ -63,7 +63,7 @@ $username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
  
     <!-- ✅ メインエリア -->
 <main class="main">
-<form action="seach.php" method="get">
+<form action="search.php" method="get">
 <header>
 <img src="../kuma/moji.png" class="moji" alt="タイトルロゴ">
 <input type="text"  name="keyword" placeholder="検索">
