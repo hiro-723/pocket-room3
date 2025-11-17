@@ -59,6 +59,7 @@ $favorites = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </nav>
 
     <main class="content">
+      <form action="search.php" method="get">
       <img src="../kuma/moji.png" class="moji">
       <input type="text" placeholder="検索" class="search-bar">
 
