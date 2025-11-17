@@ -21,7 +21,6 @@
       <img src="../kuma/moji.png" class="moji">
       <section class="complete-box">
         <h2>ログアウトしますか？</h2>
-        <p>ご購入ありがとうございました。</p>
         <button onclick="location.href='rogin.php'" class="home-btn">はい</button>
         <button onclick="location.href='home.php'" class="home-btn">いいえ</button>
       </section>
