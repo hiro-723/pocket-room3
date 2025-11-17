@@ -54,11 +54,9 @@ $username = $_SESSION['username'];
       <div class="mypage-menu">
 
           <!-- ロゴ画像（あなたのCSS .moji に対応） -->
-          <img src="../logo/moji.png" alt="POCKET ROOM" class="moji">
+          <img src="../kuma/moji.png" alt="POCKET ROOM" class="moji">
 
           <h2>マイページ</h2>
-
-          <p>こんにちは、<?php echo htmlspecialchars($username); ?> さん</p>
           <br>
 
           <ul class="menu">
