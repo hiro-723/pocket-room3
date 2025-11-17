@@ -14,7 +14,7 @@ $username = $_SESSION['username'];
 <head>
 <meta charset="UTF-8">
 <title>マイページ</title>
-<link rel="stylesheet" href="mypage.css">
+<link rel="stylesheet" href="../css-DS/mypage.css">
 <!-- FontAwesome（必要なら） -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
