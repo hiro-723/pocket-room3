@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["confirm"])) {
       <section class="purchase-box">
         <h2>購入</h2>
 
-        <form>
+        <form action="complete.php" method="post">
           <div class="payment-methods">
             <label class="pm">
               <input type="radio" name="pay" checked> クレジットカード
