@@ -41,7 +41,7 @@ $is_favorite = $stmt->fetchColumn();
 <head>
   <meta charset="UTF-8">
   <title><?= htmlspecialchars($product['product_name']) ?> | 商品詳細</title>
-  <link rel="stylesheet" href="../css-DS/product-detail.css">
+  <link rel="stylesheet" href="../css-DS/product.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
