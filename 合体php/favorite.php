@@ -76,10 +76,10 @@ $favorites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="name"><?= htmlspecialchars($item['product_name']) ?></div>
                 <div class="price"><?= htmlspecialchars($item['price']) ?>円</div>
 
-                <button class="delete-btn"
-                        onclick="location.href='favorite-delete.php?id=<?= $item['favorite_id'] ?>'">
-                    削除
-                </button>
+                <form action="favorite-delete.php" method="post">
+          <input type="hidden" name="favorite_id" value="<?= $item['favorite_id'] ?>">
+          <button type="submit" class="delete-btn">削除</button>
+                </form>
             </div>
           <?php endforeach; ?>
 
