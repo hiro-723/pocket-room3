@@ -64,10 +64,10 @@ $favorites = $stmt->fetchAll(PDO::FETCH_COLUMN);
       </form>
 
       <!-- 🧸 検索結果エリア -->
-      <div class="product-list">
+      <div class="contant">
         <?php if ($products): ?>
           <?php foreach ($products as $product): ?>
-            <div class="product-card">
+            <div class="grid">
             <a href="product.php?id=<?= $product['product_id'] ?>" class="product-link">
               <?php if (!empty($product['img'])): ?>
                 <img src="../img/<?= htmlspecialchars($product['img']) ?>" alt="商品画像">
@@ -78,7 +78,7 @@ $favorites = $stmt->fetchAll(PDO::FETCH_COLUMN);
               <p class="product-name"><?= htmlspecialchars($product['product_name']) ?></p>
               <p class="product-price"><?= number_format($product['price']) ?>円</p>
 
-              <div class="product-info">
+              <div class="item">
                 <span>カテゴリ: <?= htmlspecialchars($product['category']) ?></span><br>
                 <span>色: <?= htmlspecialchars($product['color']) ?></span><br>
                 <span>ジャンル: <?= htmlspecialchars($product['genre']) ?></span>
