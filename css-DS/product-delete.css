@@ -66,6 +66,8 @@ input {
 .yes {
   background: #E7A664;
   border: 1px solid #E7A664;
+  width: 80%;       /* ← 好きな幅に変更（例：80%） */
+  max-width: 400px; /* ← 任意で上限を広げる */
 }
 
 /* いいえボタン */
