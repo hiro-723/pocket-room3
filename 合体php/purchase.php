@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["confirm"])) {
   $delete = $pdo->prepare("DELETE FROM cart WHERE customer_id = ?");
   $delete->execute([$customer_id]);
 
-  header("Location: cart-delete.php");
+  header("Location: complete.php");
   exit;
 } 
 ?>
