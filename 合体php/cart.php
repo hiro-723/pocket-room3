@@ -81,7 +81,7 @@ if ($cartItems) {
           <div class="cart-item">
             <div class="item-box">
               <?php if (!empty($item['img'])): ?>
-                <img src="../img/<?= htmlspecialchars($item['img']) ?>" alt="商品画像" style="width:80px; height:auto;">
+                <img src="../jpg/<?= htmlspecialchars($item['img']) ?>.jpg" alt="商品画像" style="width:80px; height:auto;">
               <?php endif; ?>
               <p><?= htmlspecialchars($item['product_name']) ?><br><?= number_format($item['price']) ?>円</p>
             </div>
