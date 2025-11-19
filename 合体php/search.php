@@ -67,8 +67,8 @@ $favorites = $stmt->fetchAll(PDO::FETCH_COLUMN);
       <div class="product-list">
         <?php if ($products): ?>
           <?php foreach ($products as $product): ?>
-            <a href="product.php?id=<?= $product['product_id'] ?>" class="product-link">
             <div class="product-card">
+            <a href="product.php?id=<?= $product['product_id'] ?>" class="product-link">
               <?php if (!empty($product['img'])): ?>
                 <img src="../img/<?= htmlspecialchars($product['img']) ?>" alt="商品画像">
               <?php else: ?>
