@@ -4,6 +4,8 @@ require_once 'db-connect.php';
 // ▼ 登録処理（フォーム送信されたときだけ実行）
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name       = $_POST['name'];
+    $kana       = $_POST['kana'];
+    $birth       = $_POST['birth'];
     $prefecture = $_POST['prefecture'];
     $city       = $_POST['city'];
     $address    = $_POST['address'];

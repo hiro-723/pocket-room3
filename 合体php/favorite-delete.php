@@ -12,8 +12,8 @@ if (!isset($_POST['favorite_id'])) {
 
 $favorite_id = $_POST['favorite_id'];
 
-$stmt = $pdo->prepare("DELETE FROM favorite WHERE favorite_id = ?");
-$stmt->execute([$favorite_id]);
+$stmt = $pdo->prepare("DELETE FROM favorite WHERE favorite_id = ? AND customer_id = ?");
+$stmt->execute([$favorite_id, $customer_id]);
 
 header("Location: favorite.php");
 exit;
