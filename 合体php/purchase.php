@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["confirm"])) {
   $delete = $pdo->prepare("DELETE FROM cart WHERE customer_id = ?");
   $delete->execute([$customer_id]);
 
-  header("Location: complete.php");
+  header("Location: cart-delete.php");
   exit;
 } 
 ?>
@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["confirm"])) {
       <section class="purchase-box">
         <h2>購入</h2>
 
-        <form action="complete.php" method="post">
+        <form action="" method="post">
           <div class="payment-methods">
             <label class="pm">
               <input type="radio" name="pay" checked> クレジットカード
@@ -85,8 +85,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["confirm"])) {
           <p class="confirm">購入なさいますか？</p>
 
           <div class="buttons">
-            <button type="submit" class="confirm-yes">はい</button>
-            <button type="submit" class="confirm-no">いいえ</button>
+            <button type="submit" name="confirm" value="yes" class="confirm-yes">はい</button>
+            <button type="submit" name="confirm" value="no" class="confirm-no">いいえ</button>
           </div>
         </form>
       </section>
