@@ -1,76 +1,83 @@
 <?php
 session_start();
-require_once '../db-connect.php';
+require_once 'db-connect.php';
 
+// ログイン確認
 if (!isset($_SESSION['username'])) {
-  header("Location: rogin.php");
-  exit;
+    header("Location: rogin.php");
+    exit;
 }
 
-// 🔹 ユーザーの customer_id を取得
-$stmt = $pdo->prepare("SELECT customer_id FROM users WHERE username = ?");
+// ログイン中ユーザーID取得
+$stmt = $pdo->prepare("SELECT customer_id FROM customer WHERE email = ?");
 $stmt->execute([$_SESSION['username']]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+    exit("ユーザー情報が見つかりません。");
+}
+
 $customer_id = $user['customer_id'];
 
-// 🔹 購入履歴を取得
+// ▼ 購入履歴を取得
 $sql = "
-  SELECT 
-    p.purchase_id,
-    pr.product_name,
-    pr.price,
-    pr.category,
-    pr.color,
-    pr.genre
-  FROM purchase p
-  JOIN product pr ON p.product_id = pr.product_id
-  WHERE p.customer_id = ?
-  ORDER BY p.purchase_id DESC
+    SELECT 
+        p.product_id,
+        pr.product_name,
+        pr.price,
+        pr.img
+    FROM purchase p
+    JOIN product pr ON p.product_id = pr.product_id
+    WHERE p.customer_id = ?
+    ORDER BY p.purchase_id DESC
 ";
-
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$customer_id]);
-$purchases = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$history = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>購入履歴 | POCKET ROOM</title>
-  <link rel="stylesheet" href="../合体css/purchase_history.css">
+    <meta charset="UTF-8">
+    <title>購入履歴 | POCKET ROOM</title>
+    <link rel="stylesheet" href="../css-DS/history.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
-  <div class="container">
-    <header>
-      <h1>POCKET ROOM</h1>
-      <h2>購入履歴</h2>
-    </header>
+<div class="container">
 
-    <main>
-      <?php if (!empty($purchases)): ?>
-        <?php foreach ($purchases as $item): ?>
-          <div class="purchase-item">
-            <img src="<?= htmlspecialchars($item['image_path']) ?>" alt="">
-            <div class="info">
-              <p class="name"><?= htmlspecialchars($item['product_name']) ?></p>
-              <p class="price"><?= number_format($item['price']) ?>円</p>
-              <p class="id">購入ID：<?= $item['purchase_id'] ?></p>
-            </div>
-          </div>
-        <?php endforeach; ?>
-      <?php else: ?>
-        <p>購入履歴がありません。</p>
-      <?php endif; ?>
+    <!-- サイドバー -->
+    <nav class="side-nav">
+        <button onclick="location.href='home.php'" class="nav-item"><i class="fas fa-home"></i><br>ホーム</button>
+        <button onclick="location.href='favorite.php'" class="nav-item"><i class="fas fa-heart"></i><br>お気に入り</button>
+        <button onclick="location.href='cart.php'" class="nav-item"><i class="fas fa-shopping-cart"></i><br>カート</button>
+        <button onclick="location.href='mypage.php'" class="nav-item"><i class="fas fa-user"></i><br>マイページ</button>
+        <img src="../kuma/kuma.png" class="bear-icon">
+    </nav>
+
+    <!-- メイン -->
+    <main class="content">
+        <h1 class="title">POCKET ROOM</h1>
+        <h2 class="subtitle">購入された商品</h2>
+
+        <div class="grid">
+
+            <?php if(empty($history)): ?>
+                <p>購入履歴はありません。</p>
+            <?php else: ?>
+                <?php foreach ($history as $item): ?>
+                    <div class="item">
+                        <img src="../img/<?= htmlspecialchars($item['product_id']) ?>.jpg" class="product-img">
+                        <div class="name"><?= htmlspecialchars($item['product_name']) ?></div>
+                        <div class="price"><?= htmlspecialchars($item['price']) ?>円</div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+
+        </div>
     </main>
-  </div>
 
-  <nav class="bottom-nav">
-    <div class="nav-item" onclick="location.href='home.php'">🏠<br>ホーム</div>
-    <div class="nav-item" onclick="location.href='favorite.php'">❤️<br>お気に入り</div>
-    <div class="nav-item" onclick="location.href='cart.php'">🧸<br>カート</div>
-    <div class="nav-item" onclick="location.href='mypage.php'">👤<br>マイページ</div>
-  </nav>
+</div>
 </body>
 </html>
