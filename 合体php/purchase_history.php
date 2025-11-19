@@ -68,7 +68,7 @@ $history = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php else: ?>
                 <?php foreach ($history as $item): ?>
                     <div class="item">
-                        <img src="../jpg/<?= htmlspecialchars($item['product_id']) ?>.jpg" class="product-img">
+                        <img src="../jpg/<?=$item['product_id'] ?>.jpg" class="product-img">
                         <div class="name"><?= htmlspecialchars($item['product_name']) ?></div>
                         <div class="price"><?= htmlspecialchars($item['price']) ?>円</div>
                     </div>
