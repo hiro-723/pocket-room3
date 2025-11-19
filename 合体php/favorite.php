@@ -61,7 +61,7 @@ $favorites = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <main class="content">
       <form action="search.php" method="get">
       <img src="../kuma/moji.png" class="moji">
-      <input type="text" placeholder="検索" class="search-bar">
+      <input type="text" name="keyword" placeholder="検索" class="search-bar">
 
       <!-- ▼▼▼ グリッド：ここを DB から動的表示 ▼▼▼ -->
       <div class="grid">
