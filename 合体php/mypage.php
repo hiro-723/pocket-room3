@@ -82,7 +82,7 @@ $username = $_SESSION['username'];
               </li>
 
               <li>
-                  <button class="menu-btn" onclick="location.href='rogout.php'">
+                  <button class="menu-btn" onclick="location.href='contact.html'">
                       <span class="icon"><i class="fas fa-right-from-bracket"></i></span>
                       ログアウト
                   </button>
