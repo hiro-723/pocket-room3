@@ -19,10 +19,10 @@
 
     <main class="content">
       <img src="../kuma/moji.png" class="moji">
-      <section class="complete-box">
+      <section class="logout-box">
         <h2>ログアウトしますか？</h2>
-        <button onclick="location.href='rogin.php'" class="home-btn">はい</button>
-        <button onclick="location.href='home.php'" class="home-btn">いいえ</button>
+        <button onclick="location.href='rogin.php'" class="buttons">はい</button>
+        <button onclick="location.href='home.php'" class="buttons">いいえ</button>
       </section>
     </main>
   </div>
