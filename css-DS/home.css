@@ -243,7 +243,10 @@ header input {
   display: flex;
   align-items: center;
   animation: bannerScroll 18s linear infinite;
+  width: max-content;      /* ← ★追加 */
+  will-change: transform;  /* ← ★追加 */
 }
+
 
 .banner-track a {
   text-decoration: none;
@@ -260,7 +263,7 @@ width: clamp(140px, 25vw, 180px);
 /* アニメーション本体 */
 @keyframes bannerScroll {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(calc(-50%)); }
 }
 
 /* 📱 スマホ（最適化） */
