@@ -61,16 +61,16 @@ $history = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <h1 class="title">POCKET ROOM</h1>
         <h2 class="subtitle">購入された商品</h2>
 
-        <div class="items">
+        <div class="item-card">
 
             <?php if(empty($history)): ?>
                 <p>購入履歴はありません。</p>
             <?php else: ?>
                 <?php foreach ($history as $item): ?>
-                    <div class="item-card">
-                        <img src="../jpg/<?=$item['product_id'] ?>.jpg" class="thumb">
-                        <div class="thumb"><?= htmlspecialchars($item['product_name']) ?></div>
-                        <div class="thumb"><?= htmlspecialchars($item['price']) ?>円</div>
+                    <div class="thumb">
+                        <img src="../jpg/<?=$item['product_id'] ?>.jpg" class="a">
+                        <div class="a"><?= htmlspecialchars($item['product_name']) ?></div>
+                        <div class="a"><?= htmlspecialchars($item['price']) ?>円</div>
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
