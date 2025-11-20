@@ -73,3 +73,12 @@ input {
   background: #FFF;
   border: 1px solid #AAA;
 }
+
+.btn-area a {
+  width: 60%;
+  max-width: 350px;
+  min-width: 200px;
+}
+.btn-area a button {
+  width: 100%;
+}

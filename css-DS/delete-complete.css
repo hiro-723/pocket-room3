@@ -3,28 +3,38 @@ body {
   background: #FAEECF;
   font-family: "Hiragino Kaku Gothic ProN", sans-serif;
 
-  /* ★ ここで中央揃え！ ★ */
+  /* 中央揃え */
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+
+  /* スマホでもスクロール可能にする */
+  min-height: 100vh;
+
+  box-sizing: border-box;
 }
 
+/* ===== メインコンテナ ===== */
 .container {
-  width: 600px;
-  margin: 0 auto;
+  width: 90%;
+  max-width: 600px;
   text-align: center;
-  padding: 100px;
+  padding: 60px 20px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
+/* タイトル */
 h1 {
   font-size: 32px;
   margin-bottom: 40px;
 }
 
+/* ボタン */
 .back {
-  width: 200px;
-  padding: 10px;
+  width: 150px;
+  max-width: 200px;
+  padding: 12px;
   background: #E7A664;
   border: 1px solid #E7A664;
   cursor: pointer;
@@ -36,13 +46,9 @@ h1 {
 @media screen and (max-width: 599px) {
 
   .container {
-    width: 90%;        
+    width: 90%;
     max-width: 350px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
-    padding-bottom: 70px;
+    padding: 24px 16px 70px;
   }
 
   h1 {
@@ -52,13 +58,16 @@ h1 {
   .back {
     width: 100%;
     padding: 12px;
+    max-width: none;
   }
 
+  /* 下固定ナビ */
   .side-nav {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
+    display: flex;
     flex-direction: row;
     justify-content: space-around;
     background-color: #f4c48c;
@@ -70,10 +79,13 @@ h1 {
   .side-nav .nav-item {
     flex: 1;
     font-size: clamp(10px, 3vw, 13px);
+    text-align: center;
   }
 
   .grid {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 }
 
@@ -81,14 +93,19 @@ h1 {
 /* 💻 PC（600px以上） */
 /* ===================================================== */
 @media screen and (min-width: 600px) {
+
   .container {
-    flex-direction: row;
+    display: flex;
+    flex-direction: column; /* PCでは縦表示に戻すならこれ */
+    align-items: center;
   }
 
   .side-nav {
     position: relative;
     width: 120px;
     border-top: none;
+    display: flex;
+    flex-direction: column;
   }
 
   .bear-icon {
@@ -96,6 +113,7 @@ h1 {
   }
 }
 
+/* ===== 画像類 ===== */
 .moji {
   display: block;
   width: clamp(120px, 30vw, 250px);
