@@ -62,26 +62,26 @@ $is_favorite = $stmt->fetchColumn();
 
       <h1 class="logo">POCKET ROOM</h1>
 
-      <div class="detail-area">
+      <div class="product">
 
         <!-- 商品画像 -->
-        <div class="left-box">
+        <div class="image">
           <img src="../img/<?= htmlspecialchars($product['product_id']) ?>.jpg" class="product-img">
         </div>
 
         <!-- 商品説明 -->
-        <div class="right-box">
-          <h2 class="product-name"><?= htmlspecialchars($product['product_name']) ?></h2>
+        <div class="desc">
+          <h2 class="actions"><?= htmlspecialchars($product['product_name']) ?></h2>
           <p class="product-price"><?= number_format($product['price']) ?>円</p>
           <p class="product-desc"><?= nl2br(htmlspecialchars($product['description'])) ?></p>
 
           <!-- お気に入り / カート追加ボタン -->
-          <div class="buttons">
+          <div class="ine-cart">
 
             <!-- お気に入り -->
             <form action="favorite-insert.php" method="post">
               <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
-              <button type="submit" class="favorite-btn">
+              <button type="submit" class="heart">
                 <i class="fas fa-heart <?= $is_favorite ? 'active' : '' ?>"></i>
               </button>
             </form>
@@ -89,7 +89,7 @@ $is_favorite = $stmt->fetchColumn();
             <!-- カート追加 -->
             <form action="cart-insert.php" method="post">
               <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
-              <button type="submit" class="cart-btn">
+              <button type="submit" class="fa-solid fa-cart-plus">
                 <i class="fas fa-shopping-cart"></i> カートに追加
               </button>
             </form>
