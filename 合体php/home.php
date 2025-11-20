@@ -93,7 +93,7 @@ $username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
       <section class="categories">
 <div class="category">
 <div class="item">
-  <a href="search.php?category=リビング">
+  <a href="search.php?keyword=リビング">
   <img src="../home/リビング.png" alt="リビング"></div>
 <p class="item-label">リビング</p>
 </div>
