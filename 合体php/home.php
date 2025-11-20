@@ -92,32 +92,44 @@ $username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
  
       <section class="categories">
 <div class="category">
-<div class="item"><img src="../home/リビング.png" alt="リビング"></div>
+<div class="item">
+  <a href="search.php?category=リビング">
+  <img src="../home/リビング.png" alt="リビング"></div>
 <p class="item-label">リビング</p>
 </div>
  
         <div class="category">
-<div class="item"><img src="../home/キッチン.png" alt="キッチン"></div>
+<div class="item">
+<a href="search.php?category=キッチン">  
+<img src="../home/キッチン.png" alt="キッチン"></div>
 <p class="item-label">キッチン</p>
 </div>
  
         <div class="category">
-<div class="item"><img src="../home/ダイニング.png" alt="ダイニング"></div>
+<div class="item">
+<a href="search.php?category=ダイニング">
+<img src="../home/ダイニング.png" alt="ダイニング"></div>
 <p class="item-label">ダイニング</p>
 </div>
  
         <div class="category">
-<div class="item"><img src="../home/寝室.png" alt="寝室"></div>
+<div class="item">
+<a href="search.php?category=寝室">
+<img src="../home/寝室.png" alt="寝室"></div>
 <p class="item-label">寝室</p>
 </div>
  
         <div class="category">
-<div class="item"><img src="../home/書斎.png" alt="書斎"></div>
+<div class="item">
+<a href="search.php?category=書斎">
+<img src="../home/書斎.png" alt="書斎"></div>
 <p class="item-label">書斎</p>
 </div>
  
         <div class="category">
-<div class="item"><img src="../home/バスルーム.png" alt="バスルーム"></div>
+<div class="item">
+<a href="search.php?category=バスルーム">
+<img src="../home/バスルーム.png" alt="バスルーム"></div>
 <p class="item-label">バスルーム</p>
 </div>
 </section>
