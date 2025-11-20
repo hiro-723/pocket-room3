@@ -7,12 +7,24 @@ if (!isset($_SESSION['username'])) {
   header("Location: rogin.php");
   exit;
 }
-
+//カテゴリー取得
+$category = isset($_GET['category']) ? trim($_GET['category']) : '';
 // 検索キーワード取得
 $keyword = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
 
 // 検索処理
-if ($keyword !== '') {
+// 🔍 カテゴリ検索が優先
+if ($category !== '') {
+  $stmt = $pdo->prepare("
+    SELECT * FROM product
+    WHERE category = ?
+  ");
+  $stmt->execute([$category]);
+  $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+} else if ($keyword !== '') {
+
+  // 🔍 キーワード検索
   $stmt = $pdo->prepare("
     SELECT * FROM product 
     WHERE product_name LIKE :kw
@@ -23,6 +35,7 @@ if ($keyword !== '') {
   $stmt->bindValue(':kw', "%{$keyword}%", PDO::PARAM_STR);
   $stmt->execute();
   $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 } else {
   $products = [];
 }
