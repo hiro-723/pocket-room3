@@ -37,8 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <h2>お客様情報</h2>
     <form>
       <input type="text" placeholder="名前">
-      <input type="text" placeholder="住所">
-      <input type="text" placeholder="郵便番号">
+      <input type="text" placeholder="都道府県">
+      <input type="text" placeholder="市町村">
+      <input type="text" placeholder="番地">
+      <input type="text" placeholder="建物名">
       <input type="text" placeholder="電話番号・携帯番号">
       <input type="email" placeholder="メールアドレス">
       <input type="password" placeholder="パスワード">
