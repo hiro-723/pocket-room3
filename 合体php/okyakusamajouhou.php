@@ -12,13 +12,33 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email      = $_POST['email'];
     $password   = $_POST['password'];
 
-    $sql = "INSERT INTO customer (name, prefecture, city, address, building, phone, email, password)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$name, $prefecture, $city, $address, $building, $phone, $email, $password]);
+     // ▼ ログインしているユーザーの ID を取得
+    $stmt = $pdo->prepare("SELECT customer_id FROM customer WHERE email = ?");
+    $stmt->execute([$_SESSION['username']]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $customer_id = $user['customer_id'];
 
-    echo "<p class='success'>登録が完了しました。</p>";
-    echo "<p class='link'><a href='login.html'>ログインページへ</a></p>";
+    // ▼ UPDATE 文
+    $sql = "
+        UPDATE customer SET
+            customer_name = ?,
+            prefecture = ?,
+            city = ?,
+            address = ?,
+            building = ?,
+            phone_number = ?,
+            email = ?,
+            password = ?
+        WHERE customer_id = ?
+    ";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        $name, $prefecture, $city, $address, $building,
+        $phone, $email, $password, $customer_id
+    ]);
+    echo "<p class='success'>変更が完了しました。</p>";
+    echo "<p class='link'><a href='rogin.php'>ログインページへ</a></p>";
     exit;
 }
 ?>
