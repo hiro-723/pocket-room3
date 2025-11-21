@@ -83,7 +83,7 @@ $favorites = $stmt->fetchAll(PDO::FETCH_COLUMN);
             <div class="item">
             <a href="product.php?id=<?= $product['product_id'] ?>" class="product-link">
               <?php if (!empty($product['img'])): ?>
-              <img src="../jpg/<?=$item['product_id'] ?>.jpg" class="a">
+              <img src="../jpg/<?=$product['product_id'] ?>.jpg" class="a">
               <?php else: ?>
                 <div class="no-image">画像なし</div>
               <?php endif; ?>
