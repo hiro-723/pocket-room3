@@ -4,8 +4,6 @@ require_once 'db-connect.php';
 // ▼ 登録処理（フォーム送信されたときだけ実行）
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name       = $_POST['name'];
-    $kana       = $_POST['kana'];
-    $birth       = $_POST['birth'];
     $prefecture = $_POST['prefecture'];
     $city       = $_POST['city'];
     $address    = $_POST['address'];
@@ -14,10 +12,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email      = $_POST['email'];
     $password   = $_POST['password'];
 
-    $sql = "INSERT INTO customer (name, kana, birth, prefecture, city, address, building, phone, email, password)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO customer (name, prefecture, city, address, building, phone, email, password)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$name, $kana, $birth, $prefecture, $city, $address, $building, $phone, $email, $password]);
+    $stmt->execute([$name, $prefecture, $city, $address, $building, $phone, $email, $password]);
 
     echo "<p class='success'>登録が完了しました。</p>";
     echo "<p class='link'><a href='login.html'>ログインページへ</a></p>";
@@ -39,10 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <h2>お客様情報</h2>
     <form>
       <input type="text" placeholder="名前">
-      <input type="text" placeholder="フリガナ">
-      <input type="text" placeholder="生年月日">
-      <input type="text" placeholder="住所">
-      <input type="text" placeholder="郵便番号">
+      <input type="text" placeholder="都道府県">
+      <input type="text" placeholder="市町村">
+      <input type="text" placeholder="番地">
+      <input type="text" placeholder="建物名">
       <input type="text" placeholder="電話番号・携帯番号">
       <input type="email" placeholder="メールアドレス">
       <input type="password" placeholder="パスワード">
