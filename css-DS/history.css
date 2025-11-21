@@ -81,22 +81,7 @@ h2 {
   margin-bottom: clamp(30px, 6vw, 70px);
 }
 
-/* 商品カード配置 */
-.items {
-  display: flex;
-  justify-content: center;
-  gap: clamp(20px, 4vw, 60px);
-  flex-wrap: wrap; /* ← 狭いときに折り返す */
-}
 
-/* 商品カード */
-.item-card {
-  text-align: center;
-  font-size: clamp(12px, 1.5vw, 18px);
-  flex: 1 1 clamp(120px, 25vw, 200px); /* 幅も可変 */
-  min-width: 140px;
-  max-width: 220px;
-}
 
 
 /* 🧸 クマの画像 */
@@ -183,19 +168,44 @@ h2 {
   margin-top: auto;
 }
 
-.thumb img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-    display: block;
-    margin: 0 auto;
+/* 商品リスト全体（グリッドで整列） */
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: flex-start;
+    margin-top: 30px;
 }
 
-.thumb {
-    width: 160px;
-    text-align: center;
-    margin-bottom: 20px;
+/* 各商品カード */
+.item {
+    width: 120px;
 }
+
+/* サムネイル枠 */
+.thumb {
+    width: 100px;
+    height: 100px;
+}
+
+/* 画像本体 */
+.thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;    /* ← 枠内にきれいに収まる */
+}
+
+/* 商品名 */
+.name {
+    margin-top: 5px;
+}
+
+/* 価格 */
+.price {
+    color: #555;
+    margin-top: 2px;
+}
+
+
 
 
