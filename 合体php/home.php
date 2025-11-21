@@ -73,18 +73,18 @@ $username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
 <div class="banner-wrapper">
   <div class="banner-container">
     <div class="banner-track">
-      <a href="search.html"><img src="../jpg/16.jpg" alt=""></a>
-      <a href="search.html"><img src="../jpg/26.jpg" alt=""></a>
-      <a href="search.html"><img src="../jpg/7.jpg" alt=""></a>
-      <a href="search.html"><img src="../jpg/60.jpg" alt=""></a>
-      <a href="search.html"><img src="../jpg/1.jpg" alt=""></a>
+      <a href="search.php?keyword=椅子"><img src="../jpg/16.jpg" alt=""></a>
+      <a href="search.php?keyword=テーブル"><img src="../jpg/26.jpg" alt=""></a>
+      <a href="search.php?keyword=テレビ台"><img src="../jpg/7.jpg" alt=""></a>
+      <a href="search.php?keyword=小物"><img src="../jpg/60.jpg" alt=""></a>
+      <a href="search.php?keyword=ソファー"><img src="../jpg/1.jpg" alt=""></a>
 
       <!-- ループ用の複製 -->
-      <a href="search.html"><img src="../jpg/16.jpg" alt=""></a>
-      <a href="search.html"><img src="../jpg/26.jpg" alt=""></a>
-      <a href="search.html"><img src="../jpg/7.jpg" alt=""></a>
-      <a href="search.html"><img src="../jpg/60.jpg" alt=""></a>
-      <a href="search.html"><img src="../jpg/1.jpg" alt=""></a>
+      <a href="search.php?keyword=椅子"><img src="../jpg/16.jpg" alt=""></a>
+      <a href="search.php?keyword=テーブル"><img src="../jpg/26.jpg" alt=""></a>
+      <a href="search.php?keyword=テレビ台"><img src="../jpg/7.jpg" alt=""></a>
+      <a href="search.php?keyword=小物"><img src="../jpg/60.jpg" alt=""></a>
+      <a href="search.php?keyword=ソファー"><img src="../jpg/1.jpg" alt=""></a>
     </div>
   </div>
 </div>

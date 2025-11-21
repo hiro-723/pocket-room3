@@ -66,7 +66,7 @@ $is_favorite = $stmt->fetchColumn();
 
         <!-- 商品画像 -->
         <div class="image">
-          <img src="../img/<?= htmlspecialchars($product['product_id']) ?>.jpg" class="product-img">
+        <img src="../jpg/<?=$item['product_id'] ?>.jpg" class="a">
         </div>
 
         <!-- 商品説明 -->
