@@ -91,13 +91,17 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: transparent !important;
+  padding: 0 !important;   /* ← これめちゃ大事！余白を消す */
 }
 
-.item img {
-  width: clamp(35px, 6vw, 50px);
-  height: clamp(35px, 6vw, 50px);
-  object-fit: contain;
-  margin-bottom: 10px;
+
+.item img.a {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 0 !important;
+  background: none !important;
 }
 
 .item-label {
@@ -105,6 +109,8 @@ main {
   color: #5c3a00;
   text-align: center;
 }
+
+
 
 /* ===================================================== */
 /* ✅ レスポンシブナビゲーション */
