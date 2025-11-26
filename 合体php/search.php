@@ -47,6 +47,15 @@ $favorites = $stmt->fetchAll(PDO::FETCH_COLUMN);
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <style>
+    .item img.a {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 0 !important;
+      background: none !important;
+    }
+  </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>検索結果 | POCKET ROOM</title>
