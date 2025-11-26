@@ -48,7 +48,7 @@ $favorites = $stmt->fetchAll(PDO::FETCH_COLUMN);
 <html lang="ja">
 <head>
   <style>
-    .item img {
+    .item img.a {
       width: 150px;
       height: 150px;
       object-fit: cover;
