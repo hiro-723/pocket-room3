@@ -1,7 +1,7 @@
 <?php
 session_start(); 
 require_once 'db-connect.php';
-ini_set('display_errors'.1);
+ini_set('display_errors',1);
 error_reporting(E_ALL);
 
 // ▼ 登録処理（フォーム送信されたときだけ実行）
