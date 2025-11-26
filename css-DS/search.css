@@ -226,3 +226,17 @@ main {
   box-shadow: none !important;
   appearance: none; /* ボタンのデフォルトスタイルを消す */
 }
+
+/* 🔹 ボタン・フォーム・リンクの背景を完全に透明に */
+.item form,
+.item button,
+.item .product-link {
+  background-color: transparent !important; /* 背景透明 */
+  border: none !important;                  /* 枠線なし */
+  box-shadow: none !important;             /* 影なし */
+  appearance: none !important;             /* ブラウザデフォルトのスタイル消去 */
+  -webkit-appearance: none !important;     /* Safari用 */
+  -moz-appearance: none !important;        /* Firefox用 */
+  padding: 0 !important;                   /* 内側余白を消す */
+  margin: 0 !important;                    /* 外側余白を消す */
+}
