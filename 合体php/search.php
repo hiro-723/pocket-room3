@@ -53,6 +53,7 @@ $favorites = $stmt->fetchAll(PDO::FETCH_COLUMN);
       height: 150px;
       object-fit: cover;
       border-radius: 0 !important;
+      background: none !important;
     }
   </style>
   <meta charset="UTF-8">
