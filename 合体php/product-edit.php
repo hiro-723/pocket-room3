@@ -7,6 +7,7 @@ require_once 'db-connect.php';
 <head>
     <meta charset="UTF-8">
     <title>商品編集</title>
+  <link rel="stylesheet" href="../css-DS/product-edit.css">
 </head>
 <body>
 
@@ -49,16 +50,30 @@ if (!$product) {
     <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
 
     <label>商品名：</label>
-    <input type="text" name="name" value="<?php echo htmlspecialchars($product['name']); ?>" required>
-    <br><br>
+<input type="text" name="product_name" value="<?php echo htmlspecialchars($product['product_name']); ?>" required>
+<br><br>
 
-    <label>価格：</label>
-    <input type="number" name="price" value="<?php echo $product['price']; ?>" required>
-    <br><br>
+<label>値段：</label>
+<input type="number" name="price" value="<?php echo $product['price']; ?>" required>
+<br><br>
 
-    <label>在庫：</label>
-    <input type="number" name="stock" value="<?php echo $product['stock']; ?>" required>
-    <br><br>
+<label>カテゴリー：</label>
+<input type="text" name="category" value="<?php echo htmlspecialchars($product['category']); ?>" required>
+<br><br>
+
+<label>色：</label>
+<input type="text" name="color" value="<?php echo htmlspecialchars($product['color']); ?>" required>
+<br><br>
+
+<label>ジャンル：</label>
+<input type="text" name="genre" value="<?php echo htmlspecialchars($product['genre']); ?>" required>
+<br><br>
+
+<label>商品画像：</label>
+<input type="file" name="img">
+<br>
+現在の画像：<?php echo $product['img'] ? $product['img'] : '登録なし'; ?>
+<br><br>
 
     <button type="submit">更新する</button>
 </form>
