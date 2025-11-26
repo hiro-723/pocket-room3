@@ -213,3 +213,16 @@ main {
   margin-top: auto;
 }
 
+/* ====================================== */
+/* 画像の背景を完全に透明にする最終対策 */
+/* ====================================== */
+.item,
+.item *,
+.item form,
+.item button,
+.item .product-link {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  appearance: none; /* ボタンのデフォルトスタイルを消す */
+}
