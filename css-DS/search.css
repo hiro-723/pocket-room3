@@ -98,7 +98,7 @@ main {
   width: clamp(35px, 6vw, 50px);
   height: clamp(35px, 6vw, 50px);
   object-fit: contain;
-  border-radius: 50%;
+  border-radius: 0%;
   margin-bottom: 10px;
 }
 
