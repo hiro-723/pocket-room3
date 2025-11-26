@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="register">
       <img src="../kuma/moji.png" class="moji">
     <h2>お客様情報</h2>
-    <form action="" method="post">
+    <form action="mypage.php" method="post">
       <input type="text" name="name" placeholder="名前">
       <input type="text" name="prefecture" placeholder="都道府県">
       <input type="text" name="city" placeholder="市町村">
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <input type="email" name="email" placeholder="メールアドレス">
       <input type="password" name="password" placeholder="パスワード">
       <button type="submit">変更する</button>
-      <button type="button">戻る</button>
+      <button type="submit">戻る</button>
     </form>
   </div>
 </body>
