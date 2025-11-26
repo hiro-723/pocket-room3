@@ -40,7 +40,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $name, $prefecture, $city, $address, $building,
         $phone, $email, $password, $customer_id
     ]);
-    exit;
+     if ($success) {
+            // ▼ メール変更した場合、セッション更新
+            $_SESSION['username'] = $email;
+
+            // ▼ 更新成功 → マイページへ
+            header("Location: mypage.php");
+            exit;
+        } else {
+            $error = "更新に失敗しました。もう一度お試しください。";
+        }
 }
 ?>
 
@@ -66,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <input type="email" name="email" placeholder="メールアドレス">
       <input type="password" name="password" placeholder="パスワード">
       <button type="submit">変更する</button>
-      <button type="submit">戻る</button>
+     <a href="mypage.php"><button type="button">戻る</button></a>
     </form>
   </div>
 </body>
