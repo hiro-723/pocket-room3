@@ -68,7 +68,7 @@ $favorites = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
     <!-- ✅ メインコンテンツ -->
     <main>
-      <h1 class="logo">POCKET ROOM</h1>
+    <img src="../kuma/moji.png" class="moji" alt="タイトルロゴ">
 
       <!-- 🔍 検索フォーム -->
       <form action="search.php" method="get" class="search-box">
