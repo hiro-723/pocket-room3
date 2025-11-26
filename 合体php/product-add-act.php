@@ -1,5 +1,5 @@
 <?php
-require_once '../db-connect.php';
+require_once 'db-connect.php';
 
 $name = $_POST['product_name'];
 $price = $_POST['price'];
