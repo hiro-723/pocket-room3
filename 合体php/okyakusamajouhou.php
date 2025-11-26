@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="register">
       <img src="../kuma/moji.png" class="moji">
     <h2>お客様情報</h2>
-    <form action="mypage.php" method="post">
+    <form action="" method="post">
       <input type="text" placeholder="名前">
       <input type="text" placeholder="都道府県">
       <input type="text" placeholder="市町村">
