@@ -120,11 +120,14 @@ main {
 
   .container {
     flex-direction: column;
-    padding-bottom: 70px; /* 下ナビの余白 */
+    padding-bottom: 70px;
   }
 
-  /* ↓ ナビを下に固定して横並びに */
   .side-nav {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 70px;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -132,26 +135,43 @@ main {
     flex-direction: row;
     justify-content: space-around;
     background-color: #f4c48c;
-    padding: 10px 0;
-    border-top: 2px solid #e4b071;
-    z-index: 1000;
+    padding: 0;
   }
 
-  .side-nav .nav-item {
+  .nav-item {
     flex: 1;
-    font-size: clamp(10px, 3vw, 13px);
   }
 
   .bear-icon {
-    display: none; /* 熊はスマホ時は非表示に */
+    display: none;
   }
 
-  .grid {
-    grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
+  .categories {
+    gap: 15px;
+  }
+
+  /* ⭐ ここから追加：カテゴリをスマホで2列にする */
+  .categories {
+    display: grid;                       /* ★ 追加 */
+    grid-template-columns: repeat(2, 1fr); /* ★ 追加 */
+    gap: 20px;                            /* ★ 追加 */
+    justify-items: center;                /* ★ 追加 */
+  }
+  /* ⭐ 追加ここまで */
+
+  /* ⭐ 中央に寄せるための幅調整（追加） */
+.categories {
+  max-width: 350px;   /* ← 横幅を小さくして中央に */
+  margin: 0 auto;     /* ← 中央寄せ */
+}
+
+  /* タイトル画像のサイズをスマホ用に大きく */
+  header .moji {
+    width: clamp(160px, 35vw, 220px);
   }
 }
 
-/* 💻 タブレット～PC（600px以上） */
+/* 💻 タブレット〜PC（600px以上） */
 @media screen and (min-width: 600px) {
   .container {
     flex-direction: row;
@@ -160,33 +180,25 @@ main {
   .side-nav {
     position: relative;
     width: 120px;
-    border-top: none;
   }
 
   .bear-icon {
     display: block;
   }
 }
+
 /* ✅ タイトル画像（ロゴ部分） */
 .moji {
   display: block;
-  width: clamp(120px, 30vw, 250px); /* 画面幅に応じて可変（最小120px〜最大250px） */
+  width: clamp(120px, 30vw, 250px);
   height: auto;
-  margin: 0 auto 15px; /* 中央寄せ + 下に余白 */
+  margin: 0 auto 15px;
   object-fit: contain;
-}
-
-.search-bar {
-  width: clamp(180px, 50%, 400px);
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  font-size: clamp(12px, 1.5vw, 16px);
 }
 
 /* 🧸 クマの画像 */
 .bear-icon {
-  width: clamp(25px, 4vw, 45px); /* 画面幅に応じて変化 */
+  width: clamp(25px, 4vw, 45px);
   height: auto;
   object-fit: contain;
   margin-top: auto;
