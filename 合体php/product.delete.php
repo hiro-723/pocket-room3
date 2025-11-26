@@ -1,5 +1,5 @@
 <?php
-require_once '../db-connect.php';
+require_once 'db-connect.php';
 
 $id = $_GET['id'];
 $stmt = $pdo->prepare("SELECT * FROM product WHERE product_id = ?");
