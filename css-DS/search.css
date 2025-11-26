@@ -240,3 +240,70 @@ main {
   padding: 0 !important;                   /* 内側余白を消す */
   margin: 0 !important;                    /* 外側余白を消す */
 }
+
+/* 親要素の透明化 */
+.item {
+  background-color: transparent !important;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 画像ラッパー */
+.image-wrapper {
+  background-color: transparent !important;
+  width: 150px;
+  height: 150px;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+}
+
+/* 画像なし */
+.no-image {
+  width: 150px;
+  height: 150px;
+  background-color: transparent !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5c3a00;
+  font-size: 14px;
+}
+
+/* 商品情報ブロック */
+.info {
+  text-align: center;
+  background-color: transparent !important;
+  padding: 0;
+  margin: 0;
+}
+
+/* ボタン */
+.fav-btn, .cart-btn {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  padding: 0;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+/* リンク */
+.product-link {
+  background-color: transparent !important;
+  padding: 0;
+  margin: 0;
+}
