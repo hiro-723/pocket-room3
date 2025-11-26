@@ -3,6 +3,13 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 require_once 'db-connect.php';
 
+if (!isset($_GET['id'])) {
+    echo "商品IDが指定されていません。";
+    exit;
+}
+
+$product_id = $_GET['id'];
+
 $id = $_GET['id'];
 $stmt = $pdo->prepare("SELECT * FROM product WHERE product_id = ?");
 $stmt->execute([$id]);

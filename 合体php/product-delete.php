@@ -13,6 +13,7 @@ if (!isset($_SESSION['username'])) {
 <head>
     <meta charset="UTF-8">
     <title>商品削除</title>
+  <link rel="stylesheet" href="../css-DS/product-delete.css">
 </head>
 <body>
     <h1>商品削除</h1>
