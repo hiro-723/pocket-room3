@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 require_once 'db-connect.php';
 
 // ▼ 登録処理（フォーム送信されたときだけ実行）
@@ -54,18 +55,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <img src="../kuma/moji.png" class="moji">
     <h2>お客様情報</h2>
     <form action="" method="post">
-      <input type="text" placeholder="名前">
-      <input type="text" placeholder="都道府県">
-      <input type="text" placeholder="市町村">
-      <input type="text" placeholder="番地">
-      <input type="text" placeholder="建物名">
-      <input type="text" placeholder="電話番号・携帯番号">
-      <input type="email" placeholder="メールアドレス">
-      <input type="password" placeholder="パスワード">
+      <input type="text" name="name" placeholder="名前">
+      <input type="text" name="prefecture" placeholder="都道府県">
+      <input type="text" name="city" placeholder="市町村">
+      <input type="text" name="address" placeholder="番地">
+      <input type="text" name="building" placeholder="建物名">
+      <input type="text" name="phone" placeholder="電話番号・携帯番号">
+      <input type="email" name="email" placeholder="メールアドレス">
+      <input type="password" name="password" placeholder="パスワード">
       <button type="submit">変更する</button>
-      <a href="mypage.php">
-      <button type="submit">戻る</button>
-      </a>
+      <button type="button">戻る</button>
     </form>
   </div>
 </body>
