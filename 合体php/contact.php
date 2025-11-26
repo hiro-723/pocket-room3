@@ -31,7 +31,7 @@
   <script>
     function showAlertA(){
       if(confirm("マイページの「お客様情報」から新しい住所を入力して保存してください。\nお客様情報へ移動しますか？")){
-        location.href='costomer.php';
+        location.href='okyakusamajouhou.php';
       }
     }
     function showAlertB(){
