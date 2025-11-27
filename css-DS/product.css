@@ -181,3 +181,10 @@ button {
   object-fit: contain;
   margin-top: auto;
 }
+
+.product .image img {
+  width: 100%;      /* 親要素の幅にフィット */
+  max-width: 150px; /* 好きな最大幅 */
+  height: auto;     /* 縦横比維持 */
+  object-fit: contain; /* ボックス内で余白が出ても潰れない */
+}
