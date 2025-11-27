@@ -188,3 +188,20 @@ button {
   height: auto;     /* 縦横比維持 */
   object-fit: contain; /* ボックス内で余白が出ても潰れない */
 }
+/* 商品画像を親ボックス内で適切に表示 */
+.product .image {
+  width: 150px;   /* 親ボックスの幅 */
+  height: 120px;  /* 親ボックスの高さ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* はみ出した画像を隠す */
+}
+
+.product .image img {
+  width: 100%;           /* 親幅に合わせる */
+  max-width: 150px;      /* 最大幅150pxで制限 */
+  height: auto;          /* 縦横比維持 */
+  object-fit: contain;   /* 余白が出ても潰れない */
+  display: block;
+}
