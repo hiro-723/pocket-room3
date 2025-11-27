@@ -4,66 +4,64 @@ require_once 'db-connect.php';
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 
-// ---------------------
-// 商品IDが指定されていれば取得
-// ---------------------
-$product = null;
-
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-
-    $stmt = $pdo->prepare("SELECT * FROM product WHERE product_id = ?");
-    $stmt->execute([$id]);
-    $product = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$product) {
-        echo "商品が見つかりません。";
-        exit;
-    }
+if (!isset($_SESSION['username'])) {
+    die("ログインしていません。");
 }
 
-// ---------------------
-// 更新処理
-// ---------------------
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    $id       = $_POST['product_id'];
-    $name     = $_POST['product_name'];
-    $price    = $_POST['price'];
-    $category = $_POST['category'];
-    $color    = $_POST['color'];
-    $genre    = $_POST['genre'];
+    $name       = $_POST['name'];
+    $prefecture = $_POST['prefecture'];
+    $city       = $_POST['city'];
+    $address    = $_POST['address'];
+    $building   = $_POST['building'];
+    $phone      = $_POST['phone'];
+    $email      = $_POST['email'];
+    $password   = $_POST['password'];
 
-    // 画像処理
-    $img_name = $product['img']; // 元の画像
+    // ▼ ログインユーザーの customer_id を取得
+    $stmt = $pdo->prepare("SELECT customer_id FROM customer WHERE email = ?");
+    $stmt->execute([$_SESSION['username']]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (!empty($_FILES['img']['name'])) {
-        $img_name = 'img_' . time() . '.jpg';
-        move_uploaded_file($_FILES['img']['tmp_name'], "../upload/$img_name");
+    if (!$user) {
+        die("ユーザー情報が取得できませんでした。");
     }
 
-    // UPDATE
+    $customer_id = $user['customer_id'];
+
+    // ▼ UPDATE 文
     $sql = "
-        UPDATE product SET
-            product_name = ?,
-            price = ?,
-            category = ?,
-            color = ?,
-            genre = ?,
-            img = ?
-        WHERE product_id = ?
+        UPDATE customer SET
+            customer_name = ?,
+            prefecture = ?,
+            city = ?,
+            address = ?,
+            building = ?,
+            phone_number = ?,
+            email = ?,
+            password = ?
+        WHERE customer_id = ?
     ";
 
     $stmt = $pdo->prepare($sql);
-    $success = $stmt->execute([$name, $price, $category, $color, $genre, $img_name, $id]);
+
+    $success = $stmt->execute([
+        $name, $prefecture, $city, $address, $building,
+        $phone, $email, $password, $customer_id
+    ]);
 
     if ($success) {
+        // メール変更した場合セッションも更新
+        $_SESSION['username'] = $email;
+
         header("Location: mypage.php");
         exit;
     } else {
         $error = "更新に失敗しました。もう一度お試しください。";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
