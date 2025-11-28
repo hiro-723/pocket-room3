@@ -87,6 +87,13 @@ $username = $_SESSION['username'];
                       ログアウト
                   </button>
               </li>
+            
+                <li>
+                    <button class="menu-btn" onclick="location.href='password_check.php?page=admin-menu.php'">
+                        <span class="icon"><i class="fas fa-lock"></i></span>
+                        管理者メニュー
+                    </button>
+                </li>
 
           </ul>
       </div>
