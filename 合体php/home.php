@@ -66,7 +66,7 @@ $username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
 <form action="search.php" method="get">
 <header>
 <img src="../kuma/moji.png" class="moji" alt="タイトルロゴ">
-<input type="text"  name="keyword" placeholder="検索">
+<input type="text"  name="keyword" placeholder="商品名・色・ジャンルで検索">
 </header>
  
 <section class="carousel">
