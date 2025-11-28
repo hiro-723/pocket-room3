@@ -89,7 +89,7 @@ $username = $_SESSION['username'];
               </li>
             
                 <li>
-                    <button class="menu-btn" onclick="location.href='password_check.php?page=admin-menu.php'">
+                    <button onclick="adminCheck()">管理者設定</button>
                         <span class="icon"><i class="fas fa-lock"></i></span>
                         管理者メニュー
                     </button>
@@ -100,6 +100,21 @@ $username = $_SESSION['username'];
   </main>
 
 </div>
+<script>
+function adminCheck() {
+    let pass = prompt("管理者パスワードを入力してください");
 
+    if (pass === null || pass === "") {
+        alert("パスワードが入力されていません。");
+        return;
+    }
+
+    if (pass === "1234") {
+        window.location.href = "admin-menu.php";
+    } else {
+        alert("パスワードが違います。");
+    }
+}
+</script>
 </body>
 </html>
