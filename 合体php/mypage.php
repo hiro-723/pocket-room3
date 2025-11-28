@@ -89,7 +89,7 @@ $username = $_SESSION['username'];
               </li>
             
                 <li>
-                    <button onclick="adminCheck()">
+                    <button class="menu-btn" onclick="adminCheck()">
                         <span class="icon"><i class="fas fa-lock"></i></span>
                         管理者メニュー
                     </button>
