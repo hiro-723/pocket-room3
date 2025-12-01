@@ -108,8 +108,8 @@ h1 {
 }
 
 .item img {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   object-fit: contain;
   border-radius: 0%;
   margin-bottom: 10px;
