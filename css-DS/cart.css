@@ -198,3 +198,10 @@ main {
   margin-top: auto;
 }
 
+/* 🛒 カート内の商品の画像サイズを調整 */
+.cart-item img {
+  width: 80px;        /* 好きなサイズに調整可（推奨 60〜120px） */
+  height: auto;
+  object-fit: cover;
+  border-radius: 6px;
+}
