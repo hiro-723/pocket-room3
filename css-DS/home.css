@@ -167,12 +167,7 @@ header input {
     display: none;
   }
 
-  @media screen and (max-width: 599px) {
-  .categories .item {
-    width: 100%;
-    max-width: 160px;  /* ここが重要 */
-  }
-}
+  
 
 
   /* ⭐ スマホでカテゴリを2列にする（決定版ここだけ覚えればOK） */
@@ -274,4 +269,11 @@ width: clamp(140px, 25vw, 180px);
   max-width: 900px;   /* ← 好きな幅に調整できる */
   margin: 0 auto;     /* ← 中央寄せ */
   padding: 0 10px;
+}
+
+@media screen and (max-width: 599px) {
+  .categories .item {
+    width: 100%;
+    max-width: 160px;  /* ここが重要 */
+  }
 }
