@@ -90,48 +90,50 @@ $username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
 </div>
 </section>
  
-      <section class="categories">
-<div class="category">
-<div class="item">
-  <a href="search.php?keyword=リビング">
-  <img src="../home/リビング.png" alt="リビング"></div>
-<p class="item-label">リビング</p>
-</div>
- 
-        <div class="category">
-<div class="item">
-<a href="search.php?keyword=キッチン">  
-<img src="../home/キッチン.png" alt="キッチン"></div>
-<p class="item-label">キッチン</p>
-</div>
- 
-        <div class="category">
-<div class="item">
-<a href="search.php?keyword=ダイニング">
-<img src="../home/ダイニング.png" alt="ダイニング"></div>
-<p class="item-label">ダイニング</p>
-</div>
- 
-        <div class="category">
-<div class="item">
-<a href="search.php?keyword=寝室">
-<img src="../home/寝室.png" alt="寝室"></div>
-<p class="item-label">寝室</p>
-</div>
- 
-        <div class="category">
-<div class="item">
-<a href="search.php?keyword=書斎">
-<img src="../home/書斎.png" alt="書斎"></div>
-<p class="item-label">書斎</p>
-</div>
- 
-        <div class="category">
-<div class="item">
-<a href="search.php?keyword=バスルーム">
-<img src="../home/バスルーム.png" alt="バスルーム"></div>
-<p class="item-label">バスルーム</p>
-</div>
+<section class="categories">
+
+  <div class="item">
+    <a href="search.php?keyword=リビング">
+      <img src="../home/リビング.png" alt="リビング">
+    </a>
+    <p class="item-label">リビング</p>
+  </div>
+
+  <div class="item">
+    <a href="search.php?keyword=キッチン">
+      <img src="../home/キッチン.png" alt="キッチン">
+    </a>
+    <p class="item-label">キッチン</p>
+  </div>
+
+  <div class="item">
+    <a href="search.php?keyword=ダイニング">
+      <img src="../home/ダイニング.png" alt="ダイニング">
+    </a>
+    <p class="item-label">ダイニング</p>
+  </div>
+
+  <div class="item">
+    <a href="search.php?keyword=寝室">
+      <img src="../home/寝室.png" alt="寝室">
+    </a>
+    <p class="item-label">寝室</p>
+  </div>
+
+  <div class="item">
+    <a href="search.php?keyword=書斎">
+      <img src="../home/書斎.png" alt="書斎">
+    </a>
+    <p class="item-label">書斎</p>
+  </div>
+
+  <div class="item">
+    <a href="search.php?keyword=バスルーム">
+      <img src="../home/バスルーム.png" alt="バスルーム">
+    </a>
+    <p class="item-label">バスルーム</p>
+  </div>
+
 </section>
 </form>
 </main>
