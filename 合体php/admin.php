@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <title>管理者ログイン | POCKET ROOM</title>
-    <link rel="stylesheet" href="../合体css/style.css">
+    <link rel="stylesheet" href="../css-DS/login.css">
 </head>
 
 <body>
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php endif; ?>
 
         <form action="admin-menu.php" method="post">
-            <label>メールアドレス</label>
+            <label>ユーザーネーム</label>
             <input type="text" name="username" required>
 
             <label>パスワード</label>
