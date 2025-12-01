@@ -4,45 +4,58 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Zen Maru Gothic', sans-serif;
-  background: #FAEECF;
+  font-family: "Georgia", serif;
+  background: linear-gradient(to right, #f4c48c 120px, #FAEECF 120px);
 }
 
 .container {
   display: flex;
   width: 100%;
   min-height: 100vh;
+  transition: all 0.3s ease;
 }
 
 /* ===================================================== */
-/* ✅ サイドナビ（ホームと完全統一） */
+/* ✅ サイドナビ（ホームと統一） */
 /* ===================================================== */
 .side-nav {
-  width: 200px;
-  background-color: #f4c48c;
+  width: 120px;
+  background-color: #f4c48c;  /* 統一カラー */
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: center;
 }
 
-.bear-icon {
-  width: 150px;
-  margin-bottom: 30px;
+.side-nav .nav-item {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 0;
+  line-height: 1.2;
+  color: #5c3a00;  /* 統一文字色 */
+  transition: opacity 0.3s;
 }
 
-.nav-item {
-  margin: 10px 0;
-  text-decoration: none;
-  color: #5a3d2b;
-  font-size: 1.4rem;
+.side-nav .nav-item:hover {
+  opacity: 0.65;
 }
 
-/* タイトル画像（必要なら使用） */
-header .moji {
-  width: 260px;
+.side-nav .nav-item i {
   display: block;
-  margin: 30px auto;
+  font-size: 22px;  /* 統一アイコンサイズ */
+  margin-bottom: 5px;
+}
+
+.side-nav .bear-icon {
+  width: clamp(25px, 4vw, 45px);
+  height: auto;
+  object-fit: contain;
+  margin-top: auto;
 }
 
 /* ===================================================== */
@@ -50,6 +63,7 @@ header .moji {
 /* ===================================================== */
 .content {
   flex: 1;
+  margin-left: 120px;
   padding: 20px;
   background-color: #FAEECF;
   text-align: center;
@@ -71,6 +85,13 @@ header .moji {
   border-radius: 5px;
   padding: 5px 10px;
   font-size: clamp(12px, 1.6vw, 16px);
+}
+
+header .moji {
+  width: clamp(140px, 28vw, 250px);
+  height: auto;
+  display: block;
+  margin: 0 auto 15px;
 }
 
 /* ===================================================== */
@@ -137,49 +158,41 @@ header .moji {
 /* ✅ レスポンシブ（スマホ） */
 /* ===================================================== */
 @media screen and (max-width: 599px) {
-
   body {
     background: #FAEECF;
   }
 
-  /* サイドナビ → 下部固定（ホームと統一） */
   .container {
     flex-direction: column;
     padding-bottom: 70px;
   }
 
   .side-nav {
-    flex-direction: row;
-    justify-content: space-around;
     width: 100%;
     height: 70px;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
     position: fixed;
     bottom: 0;
     left: 0;
     background-color: #f4c48c;
-    padding: 0;
   }
 
-  .nav-item {
+  .side-nav .nav-item {
     flex: 1;
-    text-align: center;
-    margin: 0;
-    font-size: 1.2rem;
-    line-height: 70px; 
   }
 
-  .bear-icon {
+  .side-nav .bear-icon {
     display: none;
   }
 
-  /* メイン */
   .content {
     margin-left: 0;
     padding: 20px;
     width: 100%;
   }
 
-  /* グリッド */
   .grid {
     justify-content: center;
     gap: 20px;
