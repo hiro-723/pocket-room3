@@ -4,8 +4,17 @@ require_once 'db-connect.php';
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 
+// ▼ ログインしていない場合ログインへ
+if (!isset($_SESSION['username'])) {
+    header("Location: rogin.php");
+    exit;
+}
+
+$error = "";
+
 // ▼ 登録処理（フォーム送信されたときだけ実行）
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
     $name       = $_POST['name'];
     $prefecture = $_POST['prefecture'];
     $city       = $_POST['city'];
@@ -15,10 +24,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email      = $_POST['email'];
     $password   = $_POST['password'];
 
-     // ▼ ログインしているユーザーの ID を取得
+    // ▼ ログインしているユーザーの ID を取得
     $stmt = $pdo->prepare("SELECT customer_id FROM customer WHERE email = ?");
     $stmt->execute([$_SESSION['username']]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$user) {
+        die("ユーザー情報が取得できません。");
+    }
+
     $customer_id = $user['customer_id'];
 
     // ▼ UPDATE 文
@@ -36,20 +50,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     ";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([
+    $success = $stmt->execute([
         $name, $prefecture, $city, $address, $building,
         $phone, $email, $password, $customer_id
     ]);
-     if ($success) {
-            // ▼ メール変更した場合、セッション更新
-            $_SESSION['username'] = $email;
 
-            // ▼ 更新成功 → マイページへ
-            header("Location: mypage.php");
-            exit;
-        } else {
-            $error = "更新に失敗しました。もう一度お試しください。";
-        }
+    if ($success) {
+
+        // メールアドレスを変更した場合はセッションも更新
+        $_SESSION['username'] = $email;
+
+        header("Location: mypage.php?update=1");
+        exit;
+
+    } else {
+        $error = "更新に失敗しました。";
+    }
 }
 ?>
 
@@ -58,25 +74,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新規会員登録 | POCKET ROOM</title>
+    <title>お客様情報入力 | POCKET ROOM</title>
     <link rel="stylesheet" href="../css-DS/costomer.css">
 </head>
 <body>
     <div class="register">
-      <img src="../kuma/moji.png" class="moji">
-    <h2>お客様情報</h2>
-    <form action="mypage.php" method="post">
-      <input type="text" name="name" placeholder="名前">
-      <input type="text" name="prefecture" placeholder="都道府県">
-      <input type="text" name="city" placeholder="市町村">
-      <input type="text" name="address" placeholder="番地">
-      <input type="text" name="building" placeholder="建物名">
-      <input type="text" name="phone" placeholder="電話番号・携帯番号">
-      <input type="email" name="email" placeholder="メールアドレス">
-      <input type="password" name="password" placeholder="パスワード">
-      <button type="submit">変更する</button>
-     <a href="mypage.php"><button type="button">戻る</button></a>
-    </form>
-  </div>
+        <img src="../kuma/moji.png" class="moji">
+        <h2>お客様情報</h2>
+
+        <?php if (!empty($error)): ?>
+            <p style="color:red;"><?= htmlspecialchars($error) ?></p>
+        <?php endif; ?>
+
+        <form action="okyakusamajouhou.php" method="post">
+            <input type="text" name="name" placeholder="名前" required>
+            <input type="text" name="prefecture" placeholder="都道府県" required>
+            <input type="text" name="city" placeholder="市町村" required>
+            <input type="text" name="address" placeholder="番地" required>
+            <input type="text" name="building" placeholder="建物名">
+            <input type="text" name="phone" placeholder="電話番号・携帯番号" required>
+            <input type="email" name="email" placeholder="メールアドレス" required>
+            <input type="password" name="password" placeholder="パスワード" required>
+
+            <button type="submit">変更する</button>
+            <a href="mypage.php"><button type="button">戻る</button></a>
+        </form>
+    </div>
 </body>
 </html>
