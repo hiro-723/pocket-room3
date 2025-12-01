@@ -96,8 +96,8 @@ main {
 .item-box img,
 .cart-item img,
 img.a {
-  width: 80px !important;
-  height: 80px !important;
+  width: 180px !important;
+  height: 180px !important;
   object-fit: cover !important;
   border-radius: 6px;
   display: block;
