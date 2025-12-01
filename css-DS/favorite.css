@@ -97,7 +97,7 @@ h1 {
 }
 
 .item {
-  background-color: #e8e8e8;
+  background-color: transparent;
   padding: 40px 0;
   border-radius: 10px;
   font-size: clamp(12px, 1.5vw, 16px);
