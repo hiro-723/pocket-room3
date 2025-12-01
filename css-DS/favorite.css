@@ -10,14 +10,15 @@ body {
 
 .container {
   width: 100%;
+  display: flex;
 }
 
 /* ===========================
-   サイドメニュー
+   サイドナビ（共通化）
 =========================== */
 .side-nav {
-  width: 100px;
-  background-color: #e8a05c;
+  width: 120px;
+  background-color: #f4c48c;  /* 統一カラー */
   height: 100vh;
   position: fixed;
   left: 0;
@@ -25,28 +26,36 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 40px;
+  padding-top: 20px;
+  gap: 20px;
+  box-sizing: border-box;
 }
 
-.side-nav button {
+.side-nav .nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 40px;
   background: none;
   border: none;
-  color: black;
+  color: #5c3a00;  /* 統一文字色 */
   font-size: 14px;
   cursor: pointer;
+  padding: 10px 0;
+  line-height: 1.2;
+  transition: opacity 0.3s;
 }
 
-.side-nav button i {
-  font-size: 24px;
+.side-nav .nav-item:hover {
+  opacity: 0.65;
+}
+
+.side-nav .nav-item i {
+  font-size: 22px;  /* 統一アイコンサイズ */
   margin-bottom: 5px;
 }
 
-.side-nav img.bear-icon {
-  width: 50px;
+.side-nav .bear-icon {
+  width: 45px;
   margin-top: auto;
 }
 
@@ -54,9 +63,9 @@ body {
    メインコンテンツ
 =========================== */
 .content {
-  margin-left: 120px;
+  margin-left: 140px;  /* サイドナビ幅+余白 */
   padding: 40px;
-  width: calc(100% - 120px);
+  width: calc(100% - 140px);
   box-sizing: border-box;
 }
 
@@ -76,8 +85,15 @@ body {
   font-size: 18px;
 }
 
+.moji {
+  display: block;
+  width: clamp(140px, 25vw, 220px);
+  height: auto;
+  margin: 0 auto 20px;
+}
+
 /* ===========================
-   商品グリッド
+   お気に入り商品グリッド
 =========================== */
 .grid {
   display: flex;
@@ -86,7 +102,6 @@ body {
   justify-content: flex-start;
 }
 
-/* 商品カード */
 .item {
   width: 260px;
   background-color: #fff;
@@ -99,10 +114,9 @@ body {
 .item img {
   width: 100%;
   height: auto;
-  border-radius: 8px; /* 角丸だけ */
+  border-radius: 8px;
 }
 
-/* 商品情報 */
 .item .info {
   margin-top: 12px;
   display: flex;
@@ -123,7 +137,6 @@ body {
   margin: 0;
 }
 
-/* 削除ボタン */
 .item .delete-btn {
   margin-top: 8px;
   padding: 6px 14px;
@@ -137,4 +150,46 @@ body {
 
 .item .delete-btn:hover {
   background-color: #c9302c;
+}
+
+/* ===========================
+   レスポンシブ対応（スマホ）
+=========================== */
+@media screen and (max-width: 599px) {
+
+  body {
+    flex-direction: column;
+  }
+
+  .side-nav {
+    width: 100%;
+    height: 70px;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #f4c48c;
+  }
+
+  .side-nav .nav-item {
+    flex: 1;
+  }
+
+  .side-nav .bear-icon {
+    display: none;
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .grid {
+    justify-content: center;
+    gap: 20px;
+  }
 }
