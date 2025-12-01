@@ -1,6 +1,14 @@
 <?php
+session_start();
 
-
+// 管理者ログインチェック
+// → password_check.php が成功したら $_SESSION['admin_id'] に格納している想定
+if (!isset($_SESSION['admin_id'])) {
+    // ログインしてない場合はマイページへ
+    header("Location: admin.php");
+    exit;
+}
+$admin_id = $_SESSION['admin_id'];
 ?>
 <!DOCTYPE html>
 <html lang="ja">
