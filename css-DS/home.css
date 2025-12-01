@@ -122,7 +122,7 @@ header input {
 
 .categories .item img {
   width: clamp(50px, 8vw, 70px);
-  height: clamp(50, 8vw, 70px);
+  height: clamp(50px, 8vw, 70px);
   object-fit: contain;
   border-radius: 50%;
 }
@@ -155,9 +155,6 @@ header input {
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-around;
     background-color: #f4c48c;
     padding: 0;
   }
@@ -170,26 +167,17 @@ header input {
     display: none;
   }
 
+  /* ⭐ スマホでカテゴリを2列にする（決定版ここだけ覚えればOK） */
   .categories {
-    gap: 15px;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-items: center;
+    max-width: 350px;
+    margin: 0 auto;
   }
 
-  /* ⭐ ここから追加：カテゴリをスマホで2列にする */
-  .categories {
-    display: grid;                       /* ★ 追加 */
-    grid-template-columns: repeat(2, 1fr); /* ★ 追加 */
-    gap: 20px;                            /* ★ 追加 */
-    justify-items: center;                /* ★ 追加 */
-  }
-  /* ⭐ 追加ここまで */
-
-  /* ⭐ 中央に寄せるための幅調整（追加） */
-.categories {
-  max-width: 350px;   /* ← 横幅を小さくして中央に */
-  margin: 0 auto;     /* ← 中央寄せ */
-}
-
-  /* タイトル画像のサイズをスマホ用に大きく */
+  /* タイトル画像のサイズ（スマホ用） */
   header .moji {
     width: clamp(160px, 35vw, 220px);
   }
