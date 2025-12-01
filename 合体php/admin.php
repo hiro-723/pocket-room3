@@ -12,13 +12,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $pass = $_POST["pass"];
 
     // DBから管理者情報取得（メール一致）
-    $sql = "SELECT * FROM admin WHERE username = ?";
+    $sql = "SELECT * FROM admins WHERE username = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$username]);
     $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // ▼ パスワード平文チェック
-    if ($admin && $password === $admin["pass"]) {
+    if ($admin && $pass === $admin["pass"]) {
 
         // ログイン成功 → セッション保存
         $_SESSION["admin_id"] = $admin["id"];
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <p class="error"><?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
 
-        <form action="admin-menu.php" method="post">
+        <form action="" method="post">
             <label>ユーザーネーム</label>
             <input type="text" name="username" required>
 

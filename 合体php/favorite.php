@@ -58,36 +58,37 @@ $favorites = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <img src="../kuma/kuma.png" class="bear-icon">
     </nav>
 
+    <!-- メインコンテンツ -->
     <main class="content">
-      <form action="search.php" method="get">
-      <img src="../kuma/moji.png" class="moji">
-      <input type="text" name="keyword" placeholder="検索" class="search-bar">
 
-      <!-- ▼▼▼ グリッド：ここを DB から動的表示 ▼▼▼ -->
+      <!-- 検索フォーム -->
+      <form action="search.php" method="get" class="search-container">
+        <img src="../kuma/moji.png" class="moji">
+        <input type="text" name="keyword" placeholder="検索" class="search-bar">
+      </form>
+
+      <!-- お気に入り商品グリッド -->
       <div class="grid">
-
         <?php if (empty($favorites)): ?>
           <p>お気に入り商品はありません。</p>
         <?php else: ?>
-        
           <?php foreach ($favorites as $item): ?>
             <div class="item">
-                <img src="../jpg/<?= $item['product_id'] ?>.jpg">
+              <img src="../jpg/<?= $item['product_id'] ?>.jpg" alt="<?= htmlspecialchars($item['product_name']) ?>">
+              <div class="info">
                 <div class="name"><?= htmlspecialchars($item['product_name']) ?></div>
                 <div class="price"><?= htmlspecialchars($item['price']) ?>円</div>
-          </form>
 
+                <!-- 削除ボタン -->
                 <form action="favorite-delete.php" method="post">
-          <input type="hidden" name="favorite_id" value="<?= $item['favorite_id'] ?>">
-          <button type="submit" class="delete-btn">削除</button>
+                  <input type="hidden" name="favorite_id" value="<?= $item['favorite_id'] ?>">
+                  <button type="submit" class="delete-btn">削除</button>
                 </form>
+              </div>
             </div>
           <?php endforeach; ?>
-
         <?php endif; ?>
-
       </div>
-      <!-- ▲▲▲ グリッド終わり ▲▲▲ -->
 
     </main>
   </div>
