@@ -12,7 +12,9 @@ body {
   );
 }
 
+/* ===================================================== */
 /* ✅ レイアウト全体 */
+/* ===================================================== */
 .container {
   display: flex;
   width: 100%;
@@ -20,7 +22,9 @@ body {
   transition: all 0.3s ease;
 }
 
+/* ===================================================== */
 /* ✅ 左ナビ（PC・タブレット時） */
+/* ===================================================== */
 .side-nav {
   width: 120px;
   background-color: transparent;
@@ -33,7 +37,7 @@ body {
   text-align: center;
 }
 
-/* ✅ ボタン感を消す */
+/* ボタンのリセット */
 .side-nav .nav-item {
   background: none;
   border: none;
@@ -48,22 +52,26 @@ body {
   opacity: 0.65;
 }
 
+/* ナビアイコン */
 .icon-list i { 
   display:block; 
   font-size:22px; 
   color:#5c3a00; 
   margin: 20px 0; 
-
 }
 
+/* ===================================================== */
 /* ✅ メインエリア */
+/* ===================================================== */
 main {
   flex: 1;
   padding: 20px;
   background-color: #FAEECF;
 }
 
+/* ===================================================== */
 /* ✅ カート部分 */
+/* ===================================================== */
 .cart-item {
   display: flex;
   align-items: center;
@@ -75,19 +83,35 @@ main {
   border-radius: 8px;
 }
 
+/* 商品ボックス */
 .item-box {
   background: #eee;
   padding: 15px;
-  flex: 1;
   border-radius: 5px;
+
+  /* ← ★ここが原因だったので flex:1 は削除している */
+  /* flex: 1; は入れない */
 }
 
+/* 🛒 カート画像（絶対に巨大化しない固定サイズ） */
+.item-box img,
+.cart-item img,
+.cart-item .a {
+  width: 80px !important;
+  height: 80px !important;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+/* 数量操作 */
 .qty {
   display: flex;
   gap: 5px;
   align-items: center;
 }
 
+/* ボタン */
 .delete-btn,
 .buy-btn {
   background: #000;
@@ -103,7 +127,7 @@ main {
   opacity: 0.7;
 }
 
-/* ✅ 合計表示 */
+/* 合計表示 */
 .total {
   display: flex;
   justify-content: space-between;
@@ -112,21 +136,18 @@ main {
   color: #5c3a00;
 }
 
-/* ✅ タイトル画像（ロゴ部分） */
+/* タイトル画像 */
 .moji {
   display: block;
-  width: clamp(120px, 30vw, 250px); /* 画面幅に応じて可変（最小120px〜最大250px） */
+  width: clamp(120px, 30vw, 250px);
   height: auto;
-  margin: 0 auto 15px; /* 中央寄せ + 下に余白 */
+  margin: 0 auto 15px;
   object-fit: contain;
 }
 
-
 /* ===================================================== */
-/* ✅ レスポンシブナビゲーション */
+/* 📱 スマホ（〜599px） */
 /* ===================================================== */
-
-/* 📱 スマホ（～599px） */
 @media screen and (max-width: 599px) {
   body {
     background: #FAEECF;
@@ -134,10 +155,9 @@ main {
 
   .container {
     flex-direction: column;
-    padding-bottom: 70px; /* 下ナビの余白 */
+    padding-bottom: 70px;
   }
 
-  /* ↓ ナビを下に固定して横並びに */
   .side-nav {
     position: fixed;
     bottom: 0;
@@ -157,15 +177,17 @@ main {
   }
 
   .bear-icon {
-    display: none; /* 熊はスマホ時は非表示に */
+    display: none;
   }
 
   .grid {
-    grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* 💻 タブレット～PC（600px以上） */
+/* ===================================================== */
+/* 💻 タブレット〜PC（600px〜） */
+/* ===================================================== */
 @media screen and (min-width: 600px) {
   .container {
     flex-direction: row;
@@ -181,27 +203,11 @@ main {
     display: block;
   }
 }
-/* ✅ タイトル画像（ロゴ部分） */
-.moji {
-  display: block;
-  width: clamp(120px, 30vw, 250px); /* 画面幅に応じて可変（最小120px〜最大250px） */
-  height: auto;
-  margin: 0 auto 15px; /* 中央寄せ + 下に余白 */
-  object-fit: contain;
-}
 
-/* 🧸 クマの画像 */
+/* クマの画像 */
 .bear-icon {
-  width: clamp(25px, 4vw, 45px); /* 画面幅に応じて変化 */
+  width: clamp(25px, 4vw, 45px);
   height: auto;
   object-fit: contain;
   margin-top: auto;
-}
-
-/* 🛒 カート内の商品の画像サイズを調整 */
-.cart-item img {
-  width: 80px;        /* 好きなサイズに調整可（推奨 60〜120px） */
-  height: auto;
-  object-fit: cover;
-  border-radius: 6px;
 }
