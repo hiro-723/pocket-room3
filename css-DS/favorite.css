@@ -1,84 +1,102 @@
-/* ===========================
-   全体レイアウト
-=========================== */
+/* ===================================================== */
+/* ✅ 全体レイアウト */
+/* ===================================================== */
 body {
   margin: 0;
-  font-family: "Zen Maru Gothic", sans-serif;
-  background-color: #f7e7c8;
-  display: flex;
+  padding: 0;
+  font-family: "Georgia", serif;
+  background: linear-gradient(to right, #f4c48c 120px, #FAEECF 120px);
 }
 
 .container {
+  display: flex;
   width: 100%;
+  min-height: 100vh;
+  transition: all 0.3s ease;
 }
 
-/* ===========================
-   サイドメニュー
-=========================== */
+/* ===================================================== */
+/* ✅ サイドナビ（ホームと統一） */
+/* ===================================================== */
 .side-nav {
-  width: 100px;
-  background-color: #e8a05c;
-  height: 100vh;
-  position: fixed;
-  left: 0;
-  top: 0;
+  width: 120px;
+  background-color: #f4c48c;  /* 統一カラー */
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 40px;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: center;
 }
 
-.side-nav button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 40px;
+.side-nav .nav-item {
   background: none;
   border: none;
-  color: black;
   font-size: 14px;
   cursor: pointer;
+  padding: 10px 0;
+  line-height: 1.2;
+  color: #5c3a00;  /* 統一文字色 */
+  transition: opacity 0.3s;
 }
 
-.side-nav button i {
-  font-size: 24px;
+.side-nav .nav-item:hover {
+  opacity: 0.65;
+}
+
+.side-nav .nav-item i {
+  display: block;
+  font-size: 22px;  /* 統一アイコンサイズ */
   margin-bottom: 5px;
 }
 
-.side-nav img.bear-icon {
-  width: 50px;
+.side-nav .bear-icon {
+  width: clamp(25px, 4vw, 45px);
+  height: auto;
+  object-fit: contain;
   margin-top: auto;
 }
 
-/* ===========================
-   メインコンテンツ
-=========================== */
+/* ===================================================== */
+/* ✅ メインコンテンツ */
+/* ===================================================== */
 .content {
+  flex: 1;
   margin-left: 120px;
-  padding: 40px;
-  width: calc(100% - 120px);
+  padding: 20px;
+  background-color: #FAEECF;
+  text-align: center;
   box-sizing: border-box;
 }
 
-/* ===========================
-   検索フォーム
-=========================== */
+/* ===================================================== */
+/* ✅ 検索フォーム */
+/* ===================================================== */
 .search-container {
   text-align: center;
   margin-bottom: 40px;
 }
 
 .search-bar {
-  width: 50%;
-  padding: 12px 18px;
-  border-radius: 25px;
-  border: 1px solid #ccc;
-  font-size: 18px;
+  width: clamp(180px, 25vw, 300px);
+  height: clamp(26px, 3.2vw, 34px);
+  border: 1px solid #888;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: clamp(12px, 1.6vw, 16px);
 }
 
-/* ===========================
-   商品グリッド
-=========================== */
+header .moji {
+  width: clamp(140px, 28vw, 250px);
+  height: auto;
+  display: block;
+  margin: 0 auto 15px;
+}
+
+/* ===================================================== */
+/* ✅ お気に入り商品グリッド */
+/* ===================================================== */
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -86,7 +104,6 @@ body {
   justify-content: flex-start;
 }
 
-/* 商品カード */
 .item {
   width: 260px;
   background-color: #fff;
@@ -99,10 +116,9 @@ body {
 .item img {
   width: 100%;
   height: auto;
-  border-radius: 8px; /* 角丸だけ */
+  border-radius: 8px;
 }
 
-/* 商品情報 */
 .item .info {
   margin-top: 12px;
   display: flex;
@@ -123,7 +139,6 @@ body {
   margin: 0;
 }
 
-/* 削除ボタン */
 .item .delete-btn {
   margin-top: 8px;
   padding: 6px 14px;
@@ -137,4 +152,49 @@ body {
 
 .item .delete-btn:hover {
   background-color: #c9302c;
+}
+
+/* ===================================================== */
+/* ✅ レスポンシブ（スマホ） */
+/* ===================================================== */
+@media screen and (max-width: 599px) {
+  body {
+    background: #FAEECF;
+  }
+
+  .container {
+    flex-direction: column;
+    padding-bottom: 70px;
+  }
+
+  .side-nav {
+    width: 100%;
+    height: 70px;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #f4c48c;
+  }
+
+  .side-nav .nav-item {
+    flex: 1;
+  }
+
+  .side-nav .bear-icon {
+    display: none;
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 20px;
+    width: 100%;
+  }
+
+  .grid {
+    justify-content: center;
+    gap: 20px;
+  }
 }
