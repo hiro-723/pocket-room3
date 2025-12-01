@@ -1,223 +1,140 @@
-/* ===================================================== */
-/* ✅ 全体 */
-/* ===================================================== */
+/* ===========================
+   全体レイアウト
+=========================== */
 body {
   margin: 0;
-  padding: 0;
-  font-family: "Georgia", serif;
-  background: linear-gradient(
-    to right,
-    #f4c48c 120px,
-    #FAEECF 120px
-  );
-}
-
-/* ===================================================== */
-/* レイアウト全体 */
-/* ===================================================== */
-.container {
+  font-family: "Zen Maru Gothic", sans-serif;
+  background-color: #f7e7c8;
   display: flex;
-  width: 100%;
-  min-height: 100vh;
-  transition: all 0.3s ease;
 }
 
-/* ===================================================== */
-/* 左ナビ（PC・タブレット用） */
-/* ===================================================== */
+.container {
+  width: 100%;
+}
+
+/* ===========================
+   サイドメニュー
+=========================== */
 .side-nav {
-  width: 120px;
-  background-color: transparent;
-  padding: 20px 0;
+  width: 100px;
+  background-color: #e8a05c;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  text-align: center;
+  padding-top: 40px;
 }
 
-.side-nav .nav-item {
+.side-nav button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
   background: none;
   border: none;
+  color: black;
   font-size: 14px;
   cursor: pointer;
-  padding: 10px 0;
-  appearance: none;
-  line-height: 1.2;
 }
 
-.side-nav .nav-item:hover {
-  opacity: 0.65;
+.side-nav button i {
+  font-size: 24px;
+  margin-bottom: 5px;
 }
 
-.icon-list i { 
-  display:block; 
-  font-size:22px; 
-  color:#5c3a00; 
-  margin: 20px 0; 
-}
-
-/* ===================================================== */
-/* メインエリア */
-/* ===================================================== */
-main {
-  flex: 1;
-  padding: 20px;
-  background-color: #FAEECF;
-  text-align: center;
-}
-
-h1 {
-  color: #5c3a00;
-  font-size: clamp(20px, 2.5vw, 26px);
-  margin-bottom: 20px;
-}
-
-.moji {
-  display: block;
-  width: clamp(120px, 30vw, 250px);
-  height: auto;
-  margin: 0 auto 15px;
-  object-fit: contain;
-}
-
-.search-bar {
-  width: clamp(180px, 50%, 400px);
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  font-size: clamp(12px, 1.5vw, 16px);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 40px;
-  margin-top: 40px;
-}
-
-/* ===================================================== */
-/* 商品カード (.item) */
-/* ===================================================== */
-.item {
-  padding: 20px 0;
-  border-radius: 10px;
-  font-size: clamp(12px, 1.5vw, 16px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* 商品画像（丸くしない） */
-.item img {
-  width: clamp(180px, 20vw, 260px);
-  height: auto;
-  object-fit: contain;
-  border-radius: 0; /* ← 角丸なしで四角のまま */
-  margin-bottom: 10px;
-}
-
-/* ===================================================== */
-/* ✨ ←今回追加・変更した部分 │ 文字だけ背景色付け */
-/* ===================================================== */
-.name {
-  background-color: #ffffff;
-  color: #5c3a00;
-  padding: 6px 10px;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-  margin-top: 10px;
-}
-
-.price {
-  background-color: #fff3d6;
-  color: #000;
-  padding: 6px 10px;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-  margin-top: 6px;
-}
-
-/* 削除ボタン */
-.delete-btn {
-  margin-top: 10px;
-  padding: 5px 10px;
-  background: #d9d9d9;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.delete-btn:hover {
-  background: #bbbbbb;
-}
-
-/* ===================================================== */
-/* 🧸 クマアイコン */
-/* ===================================================== */
-.bear-icon {
-  width: clamp(25px, 4vw, 45px);
-  height: auto;
-  object-fit: contain;
+.side-nav img.bear-icon {
+  width: 50px;
   margin-top: auto;
 }
 
-/* ===================================================== */
-/* スマホ（〜599px） */
-/* ===================================================== */
-@media screen and (max-width: 599px) {
-  body {
-    background: #FAEECF;
-  }
-
-  .container {
-    flex-direction: column;
-    padding-bottom: 70px;
-  }
-
-  .side-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: #f4c48c;
-    padding: 10px 0;
-    border-top: 2px solid #e4b071;
-    z-index: 1000;
-  }
-
-  .side-nav .nav-item {
-    flex: 1;
-    font-size: clamp(10px, 3vw, 13px);
-  }
-
-  .bear-icon {
-    display: none;
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+/* ===========================
+   メインコンテンツ
+=========================== */
+.content {
+  margin-left: 120px;
+  padding: 40px;
+  width: calc(100% - 120px);
+  box-sizing: border-box;
 }
 
-/* ===================================================== */
-/* タブレット〜PC（600px〜） */
-/* ===================================================== */
-@media screen and (min-width: 600px) {
-  .container {
-    flex-direction: row;
-  }
+/* ===========================
+   検索フォーム
+=========================== */
+.search-container {
+  text-align: center;
+  margin-bottom: 40px;
+}
 
-  .side-nav {
-    position: relative;
-    width: 120px;
-  }
+.search-bar {
+  width: 50%;
+  padding: 12px 18px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+}
 
-  .bear-icon {
-    display: block;
-  }
+/* ===========================
+   商品グリッド
+=========================== */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: flex-start;
+}
+
+/* 商品カード */
+.item {
+  width: 260px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 12px;
+}
+
+.item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px; /* 角丸だけ */
+}
+
+/* 商品情報 */
+.item .info {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.item .name {
+  font-size: 1.15em;
+  font-weight: bold;
+  color: #333;
+}
+
+.item .price {
+  font-size: 1em;
+  color: #555;
+  margin: 0;
+}
+
+/* 削除ボタン */
+.item .delete-btn {
+  margin-top: 8px;
+  padding: 6px 14px;
+  border: none;
+  background-color: #d9534f;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.item .delete-btn:hover {
+  background-color: #c9302c;
 }
