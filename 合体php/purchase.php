@@ -20,8 +20,24 @@ if (!$user) {
 
 $customer_id = $user['customer_id'];
 
+$require_check = (
+    !empty($user['customer_name']) &&
+    !empty($user['prefecture']) &&
+    !empty($user['city']) &&
+    !empty($user['address']) &&
+    !empty($user['phone_number']) &&
+    !empty($user['email']) &&
+    !empty($user['password'])
+);
+
+// ▼ 必須情報が１つでも空なら入力画面へ
+if (!$require_check) {
+    header("Location: okyakusamajouhou.php?need=1");
+    exit;
+}
+
 // ✅「はい」が押されたら購入履歴に登録してからカートを削除
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["confirm"])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST["confirm"] === "yes") {
 
   // カート内の商品を取得
   $stmt = $pdo->prepare("SELECT product_id FROM cart WHERE customer_id = ?");
@@ -41,6 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["confirm"])) {
   header("Location: complete.php");
   exit;
 } 
+if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST["confirm"] === "no") {
+    header("Location: cart.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
