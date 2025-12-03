@@ -1,126 +1,74 @@
-/* ===================================================== */
-/* ✅ 全体背景・フォント */
 body {
-  margin: 0;
-  background: #FAEECF;
-  font-family: "Helvetica", "Yu Gothic", sans-serif;
+    background-color: #FFF6DC;
+    font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
-/* ===================================================== */
-/* ✅ コンテナ全体 */
 .container {
-  width: 90%;
-  max-width: 500px;
-  margin: 60px auto;
-  text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* ロゴタイトル */
-h1.logo {
-  margin-bottom: 30px;
-  font-size: 32px;
-  color: #6a4a2f;
+img {
+    width: 150px;
+    margin-bottom: 10px;
 }
 
-/* タイトル画像 */
-.moji {
-  display: block;
-  width: clamp(180px, 32vw, 280px);
-  height: auto;
-  margin: 0 auto 15px;
-  object-fit: contain;
+h1 {
+    font-size: 1.6em;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: #653C1C;
 }
 
-/* ===================================================== */
-/* ✅ 入力フォーム */
-.login-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
+label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    font-weight: bold;
 }
 
-/* ラベル */
-.login-form label {
-  width: 60%;
-  max-width: 400px;
-  text-align: left;
-  font-size: 14px;
-  color: #444;
+input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    font-size: 1em;
 }
 
-/* 入力欄 */
-.login-form input {
-  width: 60%;
-  max-width: 400px;
-  min-width: 220px;
-  height: 34px;
-  padding: 5px;
-  border: 1px solid #888;
-  border-radius: 5px;
-  font-size: 14px;
+button {
+    background-color: #F3B975;
+    border: 1px solid #C18A50;
+    border-radius: 4px;
+    padding: 10px 0;
+    width: 100%;
+    margin-top: 20px;
+    font-size: 1em;
 }
 
-/* ログインボタン */
-.login-btn {
-  width: 60%;
-  max-width: 400px;
-  min-width: 220px;
-  margin-top: 10px;
-  background: #e3a567;
-  border: none;
-  border-radius: 5px;
-  padding: 12px;
-  font-size: 16px;
-  cursor: pointer;
-  color: white;
-  font-weight: bold;
-  transition: background 0.2s;
+button:hover {
+    background-color: #e9a956;
+    cursor: pointer;
 }
 
-.login-btn:hover {
-  background: #d18b4f;
-}
-
-/* 新規登録リンク */
 .register-link {
-  display: inline-block;
-  margin-top: 8px;
-  font-size: 13px;
-  color: #444;
-  text-decoration: none;
+    margin-top: 10px;
 }
 
-.register-link:hover {
-  text-decoration: underline;
+.register-link a {
+    color: blue;
+    text-decoration: none;
 }
 
-/* ===================================================== */
-/* ✅ PC向け拡大調整 */
-@media screen and (min-width: 768px) {
-  .container {
-    margin-top: 100px;
-  }
+.register-link a:hover {
+    text-decoration: underline;
+}
 
-  h1.logo {
-    font-size: 40px;
-  }
-
-  .login-form label {
-    font-size: 16px;
-  }
-
-  .login-form input {
-    height: 45px;
-    font-size: 16px;
-  }
-
-  .login-btn {
-    font-size: 18px;
-    padding: 14px;
-  }
-
-  .register-link {
-    font-size: 14px;
-  }
+.error {
+    color: red;
+    font-size: 0.9em;
+    margin-bottom: 10px;
 }
