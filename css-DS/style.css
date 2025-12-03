@@ -73,7 +73,7 @@ button:hover {
     margin-bottom: 10px;
 }
 img {
-    width: 200px; /* 幅を200pxに変更 */
+    width: 400px; /* 幅を200pxに変更 */
     height: auto; /* 高さは自動調整して比率を維持 */
     margin-bottom: 10px;
 }
