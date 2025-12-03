@@ -1,9 +1,15 @@
-/* ✅ 全体背景：左ベージュ → 右クリーム */
+/* ===================================================== */
+/* ✅ 全体 */
+/* ===================================================== */
 body {
   margin: 0;
   padding: 0;
   font-family: "Georgia", serif;
-  background: linear-gradient(to right, #f4c48c 120px, #FAEECF 120px);
+  background: linear-gradient(
+    to right,
+    #f4c48c 120px,
+    #FAEECF 120px
+  );
 }
 
 /* ✅ レイアウト全体 */
@@ -11,61 +17,51 @@ body {
   display: flex;
   width: 100%;
   min-height: 100vh;
-}
-
-/* ✅ 左ナビ */
-.side-nav {
-  width: 120px;
-  background-color: #f4c48c;
-  padding: 20px 0 80px; /* 下に余白を追加（クマ分） */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  position: relative;
   transition: all 0.3s ease;
 }
 
-/* ✅ ナビボタン */
-.nav-item {
-  background: none;
-  border: none;
-  font-size: clamp(10px, 1.2vw, 14px);
-  cursor: pointer;
-  padding: 10px 0;
-  line-height: 1.2;
-  text-align: center;
-  width: 100%;
+/* ✅ 左ナビ（PC・タブレット時） */
+.side-nav {
+  width: 120px;
+  background-color: transparent;
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: center;
 }
 
-.nav-item i {
-  font-size: clamp(18px, 2vw, 24px);
+/* ✅ ボタン感を消す */
+.side-nav .nav-item {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 0;
+  appearance: none;
+  line-height: 1.2;
 }
 
-.nav-item:hover {
+.side-nav .nav-item:hover {
   opacity: 0.65;
 }
 
-/* 🧸 サイドのクマ */
-.bear-icon {
-  width: clamp(25px, 4vw, 45px);
-  height: auto;
-  object-fit: contain;
-  position: absolute;
-  bottom: 15px; /* ナビの一番下 */
-  left: 50%;
-  transform: translateX(-50%);
+.icon-list i { 
+  display:block; 
+  font-size:22px; 
+  color:#5c3a00; 
+  margin: 20px 0; 
 }
 
+/* ===================================================== */
 /* ✅ メインエリア */
+/* ===================================================== */
 main {
   flex: 1;
   padding: 20px;
-  background-color: #fdf6e3;
+  background-color: #FAEECF;
   text-align: center;
 }
 
@@ -120,6 +116,9 @@ header input {
   text-align: center;
 }
 
+.category a {
+  text-decoration: none;
+}
 
 .categories .item img {
   width: clamp(50px, 8vw, 70px);
@@ -156,6 +155,9 @@ header input {
     position: fixed;
     bottom: 0;
     left: 0;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
     background-color: #f4c48c;
     padding: 0;
   }
@@ -165,17 +167,27 @@ header input {
   }
 
   .bear-icon {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    left: auto;
-    transform: none;
-    width: 40px;
+    display: none;
   }
 
   .categories {
     gap: 15px;
   }
+
+  /* ⭐ ここから追加：カテゴリをスマホで2列にする */
+  .categories {
+    display: grid;                       /* ★ 追加 */
+    grid-template-columns: repeat(2, 1fr); /* ★ 追加 */
+    gap: 20px;                            /* ★ 追加 */
+    justify-items: center;                /* ★ 追加 */
+  }
+  /* ⭐ 追加ここまで */
+
+  /* ⭐ 中央に寄せるための幅調整（追加） */
+.categories {
+  max-width: 350px;   /* ← 横幅を小さくして中央に */
+  margin: 0 auto;     /* ← 中央寄せ */
+}
 
   /* タイトル画像のサイズをスマホ用に大きく */
   header .moji {
@@ -197,4 +209,73 @@ header input {
   .bear-icon {
     display: block;
   }
+}
+
+/* ✅ タイトル画像（ロゴ部分） */
+.moji {
+  display: block;
+  width: clamp(120px, 30vw, 250px);
+  height: auto;
+  margin: 0 auto 15px;
+  object-fit: contain;
+}
+
+/* 🧸 クマの画像 */
+.bear-icon {
+  width: clamp(25px, 4vw, 45px);
+  height: auto;
+  object-fit: contain;
+  margin-top: auto;
+}
+
+/* ===================================================== */
+/* ✅ おすすめ商品バナー（横に流れるカルーセル） */
+/* ===================================================== */
+
+.banner-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 0;
+  margin: 20px 0;
+}
+
+.banner-track {
+  display: flex;
+  align-items: center;
+  animation: bannerScroll 18s linear infinite;
+  width: max-content;      /* ← ★追加 */
+  will-change: transform;  /* ← ★追加 */
+}
+
+
+.banner-track a {
+  text-decoration: none;
+}
+
+.banner-track img {
+width: clamp(140px, 25vw, 180px);
+  height: auto;
+  margin-right: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px #0000001a;
+}
+
+/* アニメーション本体 */
+@keyframes bannerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50%)); }
+}
+
+/* 📱 スマホ（最適化） */
+@media screen and (max-width: 599px) {
+  .banner-track img {
+    width: clamp(160px, 70vw, 220px);
+    margin-right: 16px;
+  }
+}
+
+.banner-wrapper {
+  max-width: 900px;   /* ← 好きな幅に調整できる */
+  margin: 0 auto;     /* ← 中央寄せ */
+  padding: 0 10px;
 }
