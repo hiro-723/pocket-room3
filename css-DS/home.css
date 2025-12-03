@@ -12,9 +12,7 @@ body {
   );
 }
 
-/* ===================================================== */
 /* ✅ レイアウト全体 */
-/* ===================================================== */
 .container {
   display: flex;
   width: 100%;
@@ -22,9 +20,7 @@ body {
   transition: all 0.3s ease;
 }
 
-/* ===================================================== */
-/* ✅ 左ナビ */
-/* ===================================================== */
+/* ✅ 左ナビ（PC・タブレット時） */
 .side-nav {
   width: 120px;
   background-color: transparent;
@@ -37,6 +33,7 @@ body {
   text-align: center;
 }
 
+/* ✅ ボタン感を消す */
 .side-nav .nav-item {
   background: none;
   border: none;
@@ -56,6 +53,7 @@ body {
   font-size:22px; 
   color:#5c3a00; 
   margin: 20px 0; 
+
 }
 
 /* ===================================================== */
@@ -65,85 +63,212 @@ main {
   flex: 1;
   padding: 20px;
   background-color: #FAEECF;
+  text-align: center;
 }
 
-/* カテゴリ一覧 */
-.categories {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-}
 
-.categories .item {
-  width: 180px;
-  height: 180px;
-  background: #fff3d6;
+
+/* ✅ 検索 */
+.search-bar {
+  width: clamp(180px, 50%, 400px);
+  padding: 10px;
+  border: 1px solid #ccc;
   border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.3rem;
-  color: #5a3d2b;
+  font-size: clamp(12px, 1.5vw, 16px);
 }
 
-/* ------------------------- */
-/* 📱 スマホ（〜599px）      */
-/* ------------------------- */
-@media screen and (max-width: 599px) {
+/* ✅ マイページ全体を中央寄せ */
+.mypage-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* セクション全体を中央へ */
+  justify-content: center;
+  text-align: center;  /* 見出しも中央寄せ */
+  margin-top: 0;
+}
 
+/* ✅ メニューリスト中央寄せ（幅固定） */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;       /* ← 全体を中央寄せ */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 300px;     /* メニュー全体の幅を固定 */
+}
+
+/* ✅ ボタンの中は左寄せ */
+.menu-btn {
+  background: none;
+  border: none;
+  color: #5c3a00;
+  font-size: clamp(14px, 1.5vw, 16px);
+  text-align: left;        /* ← ここで左揃え維持！ */
+  padding: 8px 0;
+  cursor: pointer;
+  display: flex;           /* ← アイコンと文字を横並びに */
+  align-items: center;     /* 垂直中央揃え */
+  gap: 8px;                /* アイコンと文字の間に余白 */
+}
+
+/* ✅ hover効果ちょっとだけ追加（任意） */
+.menu-btn:hover {
+  opacity: 0.8;
+}
+
+/* ✅ アイコンの見た目を微調整 */
+.menu-btn .icon i {
+  width: 20px;      /* 文字とのズレ防止 */
+  text-align: center;
+}
+
+/* ✅ グリッド */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.item {
+  background-color: #e8e8e8;
+  padding: 40px 0;
+  border-radius: 10px;
+  font-size: clamp(12px, 1.5vw, 16px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.item img {
+  width: clamp(35px, 6vw, 50px);
+  height: clamp(35px, 6vw, 50px);
+  object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.item-label {
+  font-size: clamp(12px, 1.5vw, 16px);
+  color: #5c3a00;
+  text-align: center;
+}
+
+/* ✅ マイページメニュー ------------------ */
+.mypage-menu h2 {
+  font-size: clamp(22px, 2.3vw, 26px); /* ← 少し大きくして存在感を出す */
+  margin: 0 auto 25px;
+  width: fit-content; /* ← 文字幅に合わせる */
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 300px;
+}
+
+/* ✅ ← ここを“文字だけ”の見た目に変更 */
+.menu-btn {
+  background: none;        /* 背景なし */
+  border: none;            /* 枠線なし */
+  border-radius: 0;        /* 角丸なし */
+  color: #5c3a00;
+  font-size: clamp(14px, 1.5vw, 16px);
+  text-align: left;
+  padding: 4px 0;          /* 余白少なめ */
+  cursor: default;         /* カーソルを手にしない */
+}
+
+/* hover も無効 */
+.menu-btn:hover {
+  opacity: 1;
+}
+
+/* ===================================================== */
+/* ✅ レスポンシブナビゲーション */
+/* ===================================================== */
+
+/* 📱 スマホ（～599px） */
+@media screen and (max-width: 599px) {
   body {
     background: #FAEECF;
   }
 
-  /* サイドナビ → 下部固定 */
   .container {
     flex-direction: column;
-    padding-bottom: 70px;
+    padding-bottom: 70px; /* 下ナビの余白 */
   }
 
+  /* ↓ ナビを下に固定して横並びに */
   .side-nav {
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    height: 70px;
     position: fixed;
     bottom: 0;
     left: 0;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
     background-color: #f4c48c;
-    padding: 0;
+    padding: 10px 0;
+    border-top: 2px solid #e4b071;
+    z-index: 1000;
   }
 
-  .nav-item {
+  .side-nav .nav-item {
     flex: 1;
-    text-align: center;
-    margin: 0;
-    font-size: 1.2rem;
-    line-height: 70px;
+    font-size: clamp(10px, 3vw, 13px);
   }
 
   .bear-icon {
-    display: none;
+    display: none; /* 熊はスマホ時は非表示に */
   }
 
-  header .moji {
-    width: clamp(160px, 35vw, 220px);
-  }
-
-  /* ⭐ スマホでカテゴリを2列にする（確定版） */
-  .categories {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    justify-items: center;
-    max-width: 350px;
-    margin: 0 auto;
-  }
-
-  .categories .item {
-    width: 100%;        /* ← グリッドにフィット */
-    max-width: 160px;   /* ← 明確に2列に収まるサイズ */
-    height: 160px;
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
   }
 }
- 
+
+/* 💻 タブレット～PC（600px以上） */
+@media screen and (min-width: 600px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .side-nav {
+    position: relative;
+    width: 120px;
+    border-top: none;
+  }
+
+  .bear-icon {
+    display: block;
+  }
+}
+/* ✅ タイトル画像（ロゴ部分） */
+.moji {
+  display: block;
+  width: clamp(120px, 30vw, 250px); /* 画面幅に応じて可変（最小120px〜最大250px） */
+  height: auto;
+  margin: 0 auto 15px; /* 中央寄せ + 下に余白 */
+  object-fit: contain;
+}
+
+/* 🧸 クマの画像 */
+.bear-icon {
+  width: clamp(25px, 4vw, 45px); /* 画面幅に応じて変化 */
+  height: auto;
+  object-fit: contain;
+  margin-top: auto;
+}
+
