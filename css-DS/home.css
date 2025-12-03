@@ -1,49 +1,70 @@
+/* ===================================================== */
+/* ✅ 全体 */
+/* ===================================================== */
 body {
   margin: 0;
-  font-family: 'Zen Maru Gothic', sans-serif;
-  background: #FAEECF;
+  padding: 0;
+  font-family: "Georgia", serif;
+  background: linear-gradient(
+    to right,
+    #f4c48c 120px,
+    #FAEECF 120px
+  );
 }
 
-/* コンテナ */
+/* ===================================================== */
+/* ✅ レイアウト全体 */
+/* ===================================================== */
 .container {
   display: flex;
   width: 100%;
   min-height: 100vh;
-  padding-bottom: 0;
+  transition: all 0.3s ease;
 }
 
-/* サイドナビ（PC） */
+/* ===================================================== */
+/* ✅ 左ナビ */
+/* ===================================================== */
 .side-nav {
-  width: 200px;
-  background-color: #f4c48c;
+  width: 120px;
+  background-color: transparent;
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: center;
 }
 
-.bear-icon {
-  width: 150px;
-  margin-bottom: 30px;
+.side-nav .nav-item {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 0;
+  appearance: none;
+  line-height: 1.2;
 }
 
-.nav-item {
-  margin: 10px 0;
-  text-decoration: none;
-  color: #5a3d2b;
-  font-size: 1.4rem;
+.side-nav .nav-item:hover {
+  opacity: 0.65;
 }
 
-header .moji {
-  width: 260px;
-  display: block;
-  margin: 30px auto;
+.icon-list i { 
+  display:block; 
+  font-size:22px; 
+  color:#5c3a00; 
+  margin: 20px 0; 
 }
 
-/* メインエリア */
-.main {
+/* ===================================================== */
+/* ✅ メインエリア */
+/* ===================================================== */
+main {
   flex: 1;
   padding: 20px;
+  background-color: #FAEECF;
 }
 
 /* カテゴリ一覧 */
