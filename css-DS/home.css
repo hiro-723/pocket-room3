@@ -1,147 +1,81 @@
-/* ===================================================== */
-/* ✅ 全体 */
-/* ===================================================== */
 body {
   margin: 0;
-  padding: 0;
-  font-family: "Georgia", serif;
-  background: linear-gradient(
-    to right,
-    #f4c48c 120px,
-    #FAEECF 120px
-  );
+  font-family: 'Zen Maru Gothic', sans-serif;
+  background: #FAEECF;
 }
 
-/* ✅ レイアウト全体 */
+/* コンテナ */
 .container {
   display: flex;
   width: 100%;
   min-height: 100vh;
-  transition: all 0.3s ease;
+  padding-bottom: 0;
 }
 
-/* ✅ 左ナビ（PC・タブレット時） */
+/* サイドナビ（PC） */
 .side-nav {
-  width: 120px;
-  background-color: transparent;
+  width: 200px;
+  background-color: #f4c48c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  text-align: center;
 }
 
-/* ✅ ボタン感を消す */
-.side-nav .nav-item {
-  background: none;
-  border: none;
-  font-size: 14px;
-  cursor: pointer;
-  padding: 10px 0;
-  appearance: none;
-  line-height: 1.2;
+.bear-icon {
+  width: 150px;
+  margin-bottom: 30px;
 }
 
-.side-nav .nav-item:hover {
-  opacity: 0.65;
-}
-
-.icon-list i { 
-  display:block; 
-  font-size:22px; 
-  color:#5c3a00; 
-  margin: 20px 0; 
-}
-
-/* ===================================================== */
-/* ✅ メインエリア */
-/* ===================================================== */
-main {
-  flex: 1;
-  padding: 20px;
-  background-color: #FAEECF;
-  text-align: center;
-}
-
-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+.nav-item {
+  margin: 10px 0;
+  text-decoration: none;
+  color: #5a3d2b;
+  font-size: 1.4rem;
 }
 
 header .moji {
-  width: clamp(140px, 28vw, 250px);
-  height: auto;
+  width: 260px;
   display: block;
+  margin: 30px auto;
 }
 
-header input {
-  width: clamp(180px, 25vw, 300px);
-  height: clamp(26px, 3.2vw, 34px);
-  border: 1px solid #888;
-  border-radius: 5px;
-  padding: 5px 10px;
-  font-size: clamp(12px, 1.6vw, 16px);
+/* メインエリア */
+.main {
+  flex: 1;
+  padding: 20px;
 }
 
-/* カルーセル */
-.carousel .card {
-  width: clamp(200px, 40vw, 300px);
-  height: clamp(60px, 8vw, 80px);
-  background: #ffffffcc;
-  border-radius: 6px;
-  margin: 20px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: clamp(14px, 1.8vw, 18px);
-}
-
-/* カテゴリ */
+/* カテゴリ一覧 */
 .categories {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   justify-content: center;
+  gap: 30px;
 }
 
-.category {
+.categories .item {
+  width: 180px;
+  height: 180px;
+  background: #fff3d6;
+  border-radius: 20px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 5px;
-  text-align: center;
+  font-size: 1.3rem;
+  color: #5a3d2b;
 }
 
-.category a {
-  text-decoration: none;
-}
-
-.categories .item img {
-  width: clamp(50px, 8vw, 70px);
-  height: clamp(50, 8vw, 70px);
-  object-fit: contain;
-  border-radius: 50%;
-}
-
-.item-label {
-  font-size: clamp(12px, 1.5vw, 16px);
-  color: #5c3a00;
-}
-
-/* ===================================================== */
-/* ✅ レスポンシブナビゲーション */
-/* ===================================================== */
-
-/* 📱 スマホ（～599px） */
+/* ------------------------- */
+/* 📱 スマホ（〜599px）      */
+/* ------------------------- */
 @media screen and (max-width: 599px) {
+
   body {
     background: #FAEECF;
   }
 
+  /* サイドナビ → 下部固定 */
   .container {
     flex-direction: column;
     padding-bottom: 70px;
@@ -155,127 +89,39 @@ header input {
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-around;
     background-color: #f4c48c;
     padding: 0;
   }
 
   .nav-item {
     flex: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 70px;
   }
 
   .bear-icon {
     display: none;
   }
 
-  .categories {
-    gap: 15px;
-  }
-
-  /* ⭐ ここから追加：カテゴリをスマホで2列にする */
-  .categories {
-    display: grid;                       /* ★ 追加 */
-    grid-template-columns: repeat(2, 1fr); /* ★ 追加 */
-    gap: 20px;                            /* ★ 追加 */
-    justify-items: center;                /* ★ 追加 */
-  }
-  /* ⭐ 追加ここまで */
-
-  /* ⭐ 中央に寄せるための幅調整（追加） */
-.categories {
-  max-width: 350px;   /* ← 横幅を小さくして中央に */
-  margin: 0 auto;     /* ← 中央寄せ */
-}
-
-  /* タイトル画像のサイズをスマホ用に大きく */
   header .moji {
     width: clamp(160px, 35vw, 220px);
   }
-}
 
-/* 💻 タブレット〜PC（600px以上） */
-@media screen and (min-width: 600px) {
-  .container {
-    flex-direction: row;
+  /* ⭐ スマホでカテゴリを2列にする（確定版） */
+  .categories {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-items: center;
+    max-width: 350px;
+    margin: 0 auto;
   }
 
-  .side-nav {
-    position: relative;
-    width: 120px;
+  .categories .item {
+    width: 100%;        /* ← グリッドにフィット */
+    max-width: 160px;   /* ← 明確に2列に収まるサイズ */
+    height: 160px;
   }
-
-  .bear-icon {
-    display: block;
-  }
-}
-
-/* ✅ タイトル画像（ロゴ部分） */
-.moji {
-  display: block;
-  width: clamp(120px, 30vw, 250px);
-  height: auto;
-  margin: 0 auto 15px;
-  object-fit: contain;
-}
-
-/* 🧸 クマの画像 */
-.bear-icon {
-  width: clamp(25px, 4vw, 45px);
-  height: auto;
-  object-fit: contain;
-  margin-top: auto;
-}
-
-/* ===================================================== */
-/* ✅ おすすめ商品バナー（横に流れるカルーセル） */
-/* ===================================================== */
-
-.banner-container {
-  width: 100%;
-  overflow: hidden;
-  padding: 10px 0;
-  margin: 20px 0;
-}
-
-.banner-track {
-  display: flex;
-  align-items: center;
-  animation: bannerScroll 18s linear infinite;
-  width: max-content;      /* ← ★追加 */
-  will-change: transform;  /* ← ★追加 */
-}
-
-
-.banner-track a {
-  text-decoration: none;
-}
-
-.banner-track img {
-width: clamp(140px, 25vw, 180px);
-  height: auto;
-  margin-right: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px #0000001a;
-}
-
-/* アニメーション本体 */
-@keyframes bannerScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-50%)); }
-}
-
-/* 📱 スマホ（最適化） */
-@media screen and (max-width: 599px) {
-  .banner-track img {
-    width: clamp(160px, 70vw, 220px);
-    margin-right: 16px;
-  }
-}
-
-.banner-wrapper {
-  max-width: 900px;   /* ← 好きな幅に調整できる */
-  margin: 0 auto;     /* ← 中央寄せ */
-  padding: 0 10px;
 }
