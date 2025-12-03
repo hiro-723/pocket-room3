@@ -72,3 +72,8 @@ button:hover {
     font-size: 0.9em;
     margin-bottom: 10px;
 }
+
+img {
+    width: 150px;
+    margin-bottom: 10px;
+}
