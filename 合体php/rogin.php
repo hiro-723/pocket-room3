@@ -1,3 +1,27 @@
+<?php
+session_start();
+require_once 'db-connect.php';
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM customer WHERE email = ? AND password = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$email, $password]);
+    $customer = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($customer) {
+        $_SESSION['customer'] = $customer; 
+        header("Location: home.php");
+        exit;
+    } else {
+        header("Location: rogin.php?error=1");
+        exit;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -14,7 +38,7 @@
             <p class="error">メールアドレスまたはパスワードが違います。</p>
         <?php endif; ?>
 
-        <form action="home.php" method="post">
+        <form action="rogin.php" method="post">
             <label>メールアドレス</label>
             <input type="email" name="email" required>
 
