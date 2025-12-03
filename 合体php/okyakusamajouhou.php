@@ -30,8 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$user) {
-        die("ユーザー情報が取得できません。");
-    }
+    
 
     $customer_id = $user['customer_id'];
 
