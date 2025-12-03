@@ -1,5 +1,5 @@
 /* ===================================================== */
-/* ✅ 全体レイアウト */
+/* ✅ 全体 */
 /* ===================================================== */
 body {
   margin: 0;
@@ -12,6 +12,9 @@ body {
   );
 }
 
+/* ===================================================== */
+/* ✅ レイアウト全体 */
+/* ===================================================== */
 .container {
   display: flex;
   width: 100%;
@@ -20,7 +23,7 @@ body {
 }
 
 /* ===================================================== */
-/* ✅ サイドナビ（ホームと統一） */
+/* ✅ 左ナビ */
 /* ===================================================== */
 .side-nav {
   width: 120px;
@@ -56,142 +59,91 @@ body {
 }
 
 /* ===================================================== */
-/* ✅ メインコンテンツ */
+/* ✅ メインエリア */
 /* ===================================================== */
-.content {
+main {
   flex: 1;
-  margin-left: 120px;
   padding: 20px;
   background-color: #FAEECF;
-  text-align: center;
-  box-sizing: border-box;
 }
 
-/* ===================================================== */
-/* ✅ 検索フォーム */
-/* ===================================================== */
-.search-container {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.search-bar {
-  width: clamp(180px, 25vw, 300px);
-  height: clamp(26px, 3.2vw, 34px);
-  border: 1px solid #888;
-  border-radius: 5px;
-  padding: 5px 10px;
-  font-size: clamp(12px, 1.6vw, 16px);
-}
-
-header .moji {
-  width: clamp(140px, 28vw, 250px);
-  height: auto;
-  display: block;
-  margin: 0 auto 15px;
-}
-
-/* ===================================================== */
-/* ✅ お気に入り商品グリッド */
-/* ===================================================== */
-.grid {
+/* カテゴリ一覧 */
+.categories {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
-  justify-content: flex-start;
+  justify-content: center;
+  gap: 30px;
 }
 
-.item {
-  width: 260px;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  text-align: center;
-  padding: 12px;
-}
-
-.item img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.item .info {
-  margin-top: 12px;
+.categories .item {
+  width: 180px;
+  height: 180px;
+  background: #fff3d6;
+  border-radius: 20px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 6px;
+  font-size: 1.3rem;
+  color: #5a3d2b;
 }
 
-.item .name {
-  font-size: 1.15em;
-  font-weight: bold;
-  color: #333;
-}
-
-.item .price {
-  font-size: 1em;
-  color: #555;
-  margin: 0;
-}
-
-.item .delete-btn {
-  margin-top: 8px;
-  padding: 6px 14px;
-  border: none;
-  background-color: #d9534f;
-  color: #fff;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.item .delete-btn:hover {
-  background-color: #c9302c;
-}
-
-/* ===================================================== */
-/* ✅ レスポンシブ（スマホ） */
-/* ===================================================== */
+/* ------------------------- */
+/* 📱 スマホ（〜599px）      */
+/* ------------------------- */
 @media screen and (max-width: 599px) {
+
   body {
     background: #FAEECF;
   }
 
+  /* サイドナビ → 下部固定 */
   .container {
     flex-direction: column;
     padding-bottom: 70px;
   }
 
   .side-nav {
-    width: 100%;
-    height: 70px;
     flex-direction: row;
     justify-content: space-around;
-    padding: 0;
+    width: 100%;
+    height: 70px;
     position: fixed;
     bottom: 0;
     left: 0;
     background-color: #f4c48c;
+    padding: 0;
   }
 
-  .side-nav .nav-item {
+  .nav-item {
     flex: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 70px;
   }
 
-  .side-nav .bear-icon {
+  .bear-icon {
     display: none;
   }
 
-  .content {
-    margin-left: 0;
-    padding: 20px;
-    width: 100%;
+  header .moji {
+    width: clamp(160px, 35vw, 220px);
   }
 
-  .grid {
-    justify-content: center;
+  /* ⭐ スマホでカテゴリを2列にする（確定版） */
+  .categories {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+    justify-items: center;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+
+  .categories .item {
+    width: 100%;        /* ← グリッドにフィット */
+    max-width: 160px;   /* ← 明確に2列に収まるサイズ */
+    height: 160px;
   }
 }
+ 
