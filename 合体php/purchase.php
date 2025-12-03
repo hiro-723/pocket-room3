@@ -9,7 +9,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 // ログイン中のユーザー情報取得
-$stmt = $pdo->prepare("SELECT customer_id FROM customer WHERE email = ?");
+$stmt = $pdo->prepare("SELECT * FROM customer WHERE email = ?");
 $stmt->execute([$_SESSION['username']]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
