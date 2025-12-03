@@ -279,7 +279,7 @@ width: clamp(140px, 25vw, 180px);
   margin: 0 auto;     /* ← 中央寄せ */
   padding: 0 10px;
 }
-.grid .item img {
-  width: clamp(100px, 18vw, 140px); /* 小さく調整 */
+.grid .item img.favorite-img {
+  width: clamp(100px, 18vw, 140px);
   height: auto;
 }
