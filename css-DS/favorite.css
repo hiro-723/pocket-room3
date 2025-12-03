@@ -5,7 +5,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Georgia", serif;
-  background: linear-gradient(to right, #f4c48c 120px, #FAEECF 120px);
+  background: linear-gradient(
+    to right,
+    #f4c48c 120px,
+    #FAEECF 120px
+  );
 }
 
 .container {
@@ -20,7 +24,7 @@ body {
 /* ===================================================== */
 .side-nav {
   width: 120px;
-  background-color: #f4c48c;  /* 統一カラー */
+  background-color: transparent;
   padding: 20px 0;
   display: flex;
   flex-direction: column;
@@ -36,26 +40,19 @@ body {
   font-size: 14px;
   cursor: pointer;
   padding: 10px 0;
+  appearance: none;
   line-height: 1.2;
-  color: #5c3a00;  /* 統一文字色 */
-  transition: opacity 0.3s;
 }
 
 .side-nav .nav-item:hover {
   opacity: 0.65;
 }
 
-.side-nav .nav-item i {
-  display: block;
-  font-size: 22px;  /* 統一アイコンサイズ */
-  margin-bottom: 5px;
-}
-
-.side-nav .bear-icon {
-  width: clamp(25px, 4vw, 45px);
-  height: auto;
-  object-fit: contain;
-  margin-top: auto;
+.icon-list i { 
+  display:block; 
+  font-size:22px; 
+  color:#5c3a00; 
+  margin: 20px 0; 
 }
 
 /* ===================================================== */
