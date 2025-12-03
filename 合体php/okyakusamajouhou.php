@@ -25,11 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password   = $_POST['password'];
 
     // ▼ ログインしているユーザーの ID を取得
-    $stmt = $pdo->prepare("SELECT * FROM customer WHERE customer_id = ?");
-    $stmt->execute([$_SESSION['customer_id']]);
+    $stmt = $pdo->prepare("SELECT * FROM customer WHERE email = ?");
+    $stmt->execute([$_SESSION['username']]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (!$user) {
+    if ($user) {
     
 
     $customer_id = $user['customer_id'];
