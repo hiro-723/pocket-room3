@@ -61,14 +61,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
 
-<div class="register">
+<div class="container">
     <h2>商品編集</h2>
 
     <!-- ▼ 商品ID入力フォーム -->
     <form method="get">
         <label>商品IDを入力してください</label>
         <input type="number" name="search_id" required>
-        <button type="submit">検索</button>
+        <div class="btn-area">
+          <button type="submit" class="yes">検索</button>
+        </div>
     </form>
 
     <hr>
@@ -101,9 +103,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <input type="file" name="img">
         <p>現在の画像：<?= $product['img'] ?></p>
 
+      <div class="btn-area">
         <button type="submit">更新する</button>
-        <a href="mypage.php"><button type="button">戻る</button></a>
-    </form>
+        <a href="mypage.php"><button type="button" class="no">戻る</button></a>
+    </div>
+      </form>
     <?php endif; ?>
 
 </div>
