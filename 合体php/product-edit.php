@@ -1,45 +1,83 @@
 <?php
 session_start();
 require_once 'db-connect.php';
-ini_set('display_errors', 1);
+ini_set('display_errors',1);
 error_reporting(E_ALL);
 
-// ----- ログインチェック -----
-if (!isset($_SESSION['username'])) {
-    die("ログインしていません。");
+// ▼ 最初は空の商品データ
+$product = null;
+
+// ▼ 検索ボタンが押されたら商品を取得
+if (isset($_GET['search_id'])) {
+    $search_id = $_GET['search_id'];
+
+    $stmt = $pdo->prepare("SELECT * FROM product WHERE product_id = ?");
+    $stmt->execute([$search_id]);
+    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$product) {
+        $msg = "商品が見つかりません。";
+    }
 }
 
-// ----- 商品IDがあるか確認 -----
-if (!isset($_GET['id'])) {
-    die("商品IDが指定されていません。");
-}
+// ▼ 更新処理（保存ボタン）
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    
+    $id       = $_POST['product_id'];
+    $name     = $_POST['product_name'];
+    $price    = $_POST['price'];
+    $category = $_POST['category'];
+    $color    = $_POST['color'];
+    $genre    = $_POST['genre'];
 
-$product_id = $_GET['id'];
+    // 画像アップロード処理
+    if (!empty($_FILES['img']['name'])) {
+        $ext = pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);
+        $img_name = 'img_' . time() . '.' . $ext;
+        $upload_path = "../upload/" . $img_name;
+        move_uploaded_file($_FILES['img']['tmp_name'], $upload_path);
+        
+        $sql = "UPDATE product SET product_name=?, price=?, category=?, color=?, genre=?, img=? WHERE product_id=?";
+        $params = [$name, $price, $category, $color, $genre, $img_name, $id];
+    } else {
+        $sql = "UPDATE product SET product_name=?, price=?, category=?, color=?, genre=? WHERE product_id=?";
+        $params = [$name, $price, $category, $color, $genre, $id];
+    }
 
-// ----- DB から商品情報を取得 -----
-$stmt = $pdo->prepare("SELECT * FROM product WHERE product_id = ?");
-$stmt->execute([$product_id]);
-$product = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
 
-if (!$product) {
-    die("商品が見つかりません。");
+    header("Location: mypage.php?msg=updated");
+    exit;
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品編集</title>
-    <link rel="stylesheet" href="../css-DS/costomer.css">
+<meta charset="UTF-8">
+<title>商品編集</title>
+<link rel="stylesheet" href="../css-DS/costomer.css">
 </head>
 <body>
 
 <div class="register">
     <h2>商品編集</h2>
 
-    <form action="product-update.php" method="post" enctype="multipart/form-data">
+    <!-- ▼ 商品ID入力フォーム -->
+    <form method="get">
+        <label>商品IDを入力してください</label>
+        <input type="number" name="search_id" required>
+        <button type="submit">検索</button>
+    </form>
+
+    <hr>
+
+    <?php if (isset($msg)) echo "<p>$msg</p>"; ?>
+
+    <?php if ($product): ?>
+    <!-- ▼ 商品が見つかった場合に表示される編集フォーム -->
+    <form action="" method="post" enctype="multipart/form-data">
 
         <label>商品ID（変更不可）</label>
         <input type="number" name="product_id" value="<?= $product['product_id'] ?>" readonly>
@@ -65,8 +103,9 @@ if (!$product) {
 
         <button type="submit">更新する</button>
         <a href="mypage.php"><button type="button">戻る</button></a>
-
     </form>
+    <?php endif; ?>
+
 </div>
 
 </body>
