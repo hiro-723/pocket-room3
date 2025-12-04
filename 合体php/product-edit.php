@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
 <meta charset="UTF-8">
 <title>商品編集</title>
-<link rel="stylesheet" href="../css-DS/product-edit.css">
+<link rel="stylesheet" href="./edit.css">
 </head>
 <body>
 
@@ -80,29 +80,35 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <?php if ($product): ?>
     <!-- ▼ 商品が見つかった場合に表示される編集フォーム -->
     <form action="" method="post" enctype="multipart/form-data">
-
+      <div class="form-row">
         <label>商品ID（変更不可）</label>
         <input type="number" name="product_id" value="<?= $product['product_id'] ?>" readonly>
-
+      </div>
+      <div class="form-row">
         <label>商品名</label>
         <input type="text" name="product_name" value="<?= $product['product_name'] ?>" required>
-
+      </div>
+      <div class="form-row">
         <label>値段</label>
         <input type="number" name="price" value="<?= $product['price'] ?>" required>
-
+      </div>
+      <div class="form-row">
         <label>カテゴリー</label>
         <input type="text" name="category" value="<?= $product['category'] ?>" required>
-
+      </div>
+      <div class="form-row">
         <label>色</label>
         <input type="text" name="color" value="<?= $product['color'] ?>" required>
-
+      </div>
+      <div class="form-row">
         <label>ジャンル</label>
         <input type="text" name="genre" value="<?= $product['genre'] ?>" required>
-
+      </div>
+      <div class="form-row">
         <label>商品画像</label>
         <input type="file" name="img">
         <p>現在の画像：<?= $product['img'] ?></p>
-
+      </div>
       <div class="btn-area">
         <button type="submit">更新する</button>
         <a href="mypage.php"><button type="button" class="no">戻る</button></a>

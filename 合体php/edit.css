@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  background: #FAEECF;
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+.container {
+  width: 90%;
+  max-width: 700px; /* ← 編集画面は大きめが見やすい */
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+/* ラベル+入力欄の行全体 */
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* ラベル */
+.form-row label {
+  width: 30%;
+  text-align: right;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+/* 入力欄 */
+.form-row input,
+.form-row select {
+  width: 65%;
+  padding: 8px;
+  border: 1px solid #AAA;
+  border-radius: 4px;
+}
+
+/* ボタン */
+.btn-area {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+button {
+  padding: 10px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+}
+
+.yes {
+  background: #E7A664;
+}
+
+.no {
+  background: #ccc;
+}
+
+img.preview {
+  width: 150px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
