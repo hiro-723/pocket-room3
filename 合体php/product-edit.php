@@ -1,67 +1,29 @@
-<?php 
+<?php
 session_start();
 require_once 'db-connect.php';
-ini_set('display_errors',1);
+ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+// ----- ログインチェック -----
 if (!isset($_SESSION['username'])) {
     die("ログインしていません。");
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
-    $name       = $_POST['name'];
-    $prefecture = $_POST['prefecture'];
-    $city       = $_POST['city'];
-    $address    = $_POST['address'];
-    $building   = $_POST['building'];
-    $phone      = $_POST['phone'];
-    $email      = $_POST['email'];
-    $password   = $_POST['password'];
-
-    // ▼ ログインユーザーの customer_id を取得
-    $stmt = $pdo->prepare("SELECT customer_id FROM customer WHERE email = ?");
-    $stmt->execute([$_SESSION['username']]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$user) {
-        die("ユーザー情報が取得できませんでした。");
-    }
-
-    $customer_id = $user['customer_id'];
-
-    // ▼ UPDATE 文
-    $sql = "
-        UPDATE customer SET
-            customer_name = ?,
-            prefecture = ?,
-            city = ?,
-            address = ?,
-            building = ?,
-            phone_number = ?,
-            email = ?,
-            password = ?
-        WHERE customer_id = ?
-    ";
-
-    $stmt = $pdo->prepare($sql);
-
-    $success = $stmt->execute([
-        $name, $prefecture, $city, $address, $building,
-        $phone, $email, $password, $customer_id
-    ]);
-
-    if ($success) {
-        // メール変更した場合セッションも更新
-        $_SESSION['username'] = $email;
-
-        header("Location: mypage.php");
-        exit;
-    } else {
-        $error = "更新に失敗しました。もう一度お試しください。";
-    }
+// ----- 商品IDがあるか確認 -----
+if (!isset($_GET['id'])) {
+    die("商品IDが指定されていません。");
 }
 
+$product_id = $_GET['id'];
+
+// ----- DB から商品情報を取得 -----
+$stmt = $pdo->prepare("SELECT * FROM product WHERE product_id = ?");
+$stmt->execute([$product_id]);
+$product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$product) {
+    die("商品が見つかりません。");
+}
 ?>
 
 <!DOCTYPE html>
@@ -69,42 +31,43 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品編集 | POCKET ROOM</title>
+    <title>商品編集</title>
     <link rel="stylesheet" href="../css-DS/costomer.css">
 </head>
 <body>
+
 <div class="register">
-    <img src="../kuma/moji.png" class="moji">
     <h2>商品編集</h2>
 
-    <form action="" method="post" enctype="multipart/form-data">
-        
+    <form action="product-update.php" method="post" enctype="multipart/form-data">
+
         <label>商品ID（変更不可）</label>
-        <input type="number" name="product_id" value="<?php echo $product['product_id']; ?>" readonly>
+        <input type="number" name="product_id" value="<?= $product['product_id'] ?>" readonly>
 
         <label>商品名</label>
-        <input type="text" name="product_name" value="<?php echo $product['product_name']; ?>" required>
+        <input type="text" name="product_name" value="<?= $product['product_name'] ?>" required>
 
         <label>値段</label>
-        <input type="number" name="price" value="<?php echo $product['price']; ?>" required>
+        <input type="number" name="price" value="<?= $product['price'] ?>" required>
 
         <label>カテゴリー</label>
-        <input type="text" name="category" value="<?php echo $product['category']; ?>" required>
+        <input type="text" name="category" value="<?= $product['category'] ?>" required>
 
         <label>色</label>
-        <input type="text" name="color" value="<?php echo $product['color']; ?>" required>
+        <input type="text" name="color" value="<?= $product['color'] ?>" required>
 
         <label>ジャンル</label>
-        <input type="text" name="genre" value="<?php echo $product['genre']; ?>" required>
+        <input type="text" name="genre" value="<?= $product['genre'] ?>" required>
 
         <label>商品画像</label>
         <input type="file" name="img">
-        <p>現在の画像：<?php echo $product['img']; ?></p>
+        <p>現在の画像：<?= $product['img'] ?></p>
 
         <button type="submit">更新する</button>
-
         <a href="mypage.php"><button type="button">戻る</button></a>
+
     </form>
 </div>
+
 </body>
 </html>
