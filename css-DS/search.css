@@ -307,3 +307,14 @@ main {
   padding: 0;
   margin: 0;
 }
+
+.product-name {
+    display: block;
+    width: 200px;     /* 🔥 商品名の幅を揃える（調整OK） */
+    text-align: center;
+    font-weight: bold;
+    white-space: nowrap;   /* 🔥 改行しない → 一列に揃う */
+    overflow: hidden;      /* 長い名前は… */
+    text-overflow: ellipsis; /* …「…」で省略される */
+    margin: 5px auto;
+}
