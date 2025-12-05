@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <img src="../kuma/aikon.png" alt="POCKET ROOM">
+        <img src="../kuma/moji.png" alt="POCKET ROOM">
 
         <?php if (isset($_GET['error'])): ?>
             <p class="error">メールアドレスまたはパスワードが違います。</p>
