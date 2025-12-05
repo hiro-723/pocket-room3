@@ -26,7 +26,7 @@ $admin_id = $_SESSION['admin_id'];
     <button class="btn" onclick="location.href='product-add.php'">商品登録</button>
     <button class="btn" onclick="location.href='product-edit.php'">商品更新</button>
     <button class="btn" onclick="location.href='product-delete.php'">商品削除</button>
-    <button class="btn" onclick="location.href='mypage.php'">ログアウトする</button>
+    <button class="btn" onclick="location.href='admin.php'">ログアウトする</button>
   </div>
 
 </body>
