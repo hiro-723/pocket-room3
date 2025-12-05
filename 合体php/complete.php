@@ -22,7 +22,7 @@
       <section class="complete-box">
         <h2>購入が完了しました！</h2>
         <p>ご購入ありがとうございました。</p>
-        <button onclick="location.href='home.php'" class="homebtn">ホームに戻る</button>
+        <button onclick="location.href='home.php'" class="home-btn">ホームに戻る</button>
       </section>
     </main>
   </div>
