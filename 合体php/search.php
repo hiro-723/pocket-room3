@@ -90,15 +90,18 @@ $favorites = $stmt->fetchAll(PDO::FETCH_COLUMN);
         <?php if ($products): ?>
           <?php foreach ($products as $product): ?>
             <div class="item">
-            <a href="product.php?id=<?= $product['product_id'] ?>" class="product-link">
-              <?php if (!empty($product['img'])): ?>
-              <img src="../jpg/<?=$product['product_id'] ?>.jpg" class="a">
-              <?php else: ?>
-                <div class="no-image">画像なし</div>
-              <?php endif; ?>
+              <!-- 画像リンク -->
+              <a href="product.php?id=<?= $product['product_id'] ?>">
+                <img src="../jpg/<?=$product['product_id'] ?>.jpg" class="a">
+              </a>
 
-              <p class="product-name"><?= htmlspecialchars($product['product_name']) ?></p>
-              <p class="product-price"><?= number_format($product['price']) ?>円</p></a>
+              <!-- 🔥 商品名もリンクする -->
+              <a href="product.php?id=<?= $product['product_id'] ?>" class="name-link">
+                <p class="product-name"><?= htmlspecialchars($product['product_name']) ?></p>
+              </a>
+
+              <!-- 価格はリンクなし -->
+              <p class="product-price"><?= number_format($product['price']) ?>円</p>
 
               <div class="aaa">
                 <span>カテゴリ: <?= htmlspecialchars($product['category']) ?></span><br>
