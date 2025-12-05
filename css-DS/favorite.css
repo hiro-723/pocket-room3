@@ -12,7 +12,9 @@ body {
   );
 }
 
+/* ===================================================== */
 /* ✅ レイアウト全体 */
+/* ===================================================== */
 .container {
   display: flex;
   width: 100%;
@@ -20,7 +22,9 @@ body {
   transition: all 0.3s ease;
 }
 
-/* ✅ 左ナビ（PC・タブレット時） */
+/* ===================================================== */
+/* ✅ 左ナビ */
+/* ===================================================== */
 .side-nav {
   width: 120px;
   background-color: transparent;
@@ -33,7 +37,6 @@ body {
   text-align: center;
 }
 
-/* ✅ ボタン感を消す */
 .side-nav .nav-item {
   background: none;
   border: none;
@@ -62,81 +65,103 @@ main {
   flex: 1;
   padding: 20px;
   background-color: #FAEECF;
-  text-align: center;
 }
 
-header {
+/* ===================================================== */
+/* ✅ カート部分 */
+/* ===================================================== */
+.cart-item {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 10px;
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
 
-header .moji {
-  width: clamp(140px, 28vw, 250px);
-  height: auto;
+/* 商品ボックス */
+.item-box {
+  background: #eee;
+  padding: 15px;
+  border-radius: 5px;
+
+  /* flex: 1 を入れると画像が巨大化するため削除 */
+}
+
+/* ===================================================== */
+/* 🛒 カート画像（完全固定 / これが最重要） */
+/* ===================================================== */
+.item-box img,
+.cart-item img,
+img.a {
+  width: 180px !important;
+  height: 180px !important;
+  object-fit: cover !important;
+  border-radius: 6px;
   display: block;
 }
 
-header input {
-  width: clamp(180px, 25vw, 300px);
-  height: clamp(26px, 3.2vw, 34px);
-  border: 1px solid #888;
-  border-radius: 5px;
-  padding: 5px 10px;
-  font-size: clamp(12px, 1.6vw, 16px);
-}
-
-/* カルーセル */
-.carousel .card {
-  width: clamp(200px, 40vw, 300px);
-  height: clamp(60px, 8vw, 80px);
-  background: #ffffffcc;
-  border-radius: 6px;
-  margin: 20px auto;
+/* ===================================================== */
+/* 数量調整 */
+/* ===================================================== */
+.qty {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: clamp(14px, 1.8vw, 18px);
-}
-
-/* カテゴリ */
-.categories {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.category {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 5px;
-  text-align: center;
+  align-items: center;
 }
 
-.category a {
-  text-decoration: none;
+.plus,
+.minus {
+  cursor: pointer;
+  padding: 4px 8px;
+  background: #ddd;
+  border-radius: 4px;
+  user-select: none;
 }
 
-.categories .item img {
-  width: clamp(50px, 8vw, 70px);
-  height: clamp(50, 8vw, 70px);
-  object-fit: contain;
-  border-radius: 50%;
+/* ===================================================== */
+/* ボタン類 */
+/* ===================================================== */
+.delete-btn,
+.buy-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.item-label {
-  font-size: clamp(12px, 1.5vw, 16px);
+.delete-btn:hover,
+.buy-btn:hover {
+  opacity: 0.7;
+}
+
+/* ===================================================== */
+/* 合計表示 */
+/* ===================================================== */
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-weight: bold;
   color: #5c3a00;
 }
 
-/* ===================================================== */
-/* ✅ レスポンシブナビゲーション */
-/* ===================================================== */
+/* タイトル画像 */
+.moji {
+  display: block;
+  width: clamp(120px, 30vw, 250px);
+  height: auto;
+  margin: 0 auto 15px;
+  object-fit: contain;
+}
 
-/* 📱 スマホ（～599px） */
+/* ===================================================== */
+/* 📱 スマホ（〜599px） */
+/* ===================================================== */
 @media screen and (max-width: 599px) {
   body {
     background: #FAEECF;
@@ -148,10 +173,6 @@ header input {
   }
 
   .side-nav {
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    height: 70px;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -159,43 +180,28 @@ header input {
     flex-direction: row;
     justify-content: space-around;
     background-color: #f4c48c;
-    padding: 0;
+    padding: 10px 0;
+    border-top: 2px solid #e4b071;
+    z-index: 1000;
   }
 
-  .nav-item {
+  .side-nav .nav-item {
     flex: 1;
+    font-size: clamp(10px, 3vw, 13px);
   }
 
   .bear-icon {
     display: none;
   }
 
-  .categories {
-    gap: 15px;
-  }
-
-  /* ⭐ ここから追加：カテゴリをスマホで2列にする */
-  .categories {
-    display: grid;                       /* ★ 追加 */
-    grid-template-columns: repeat(2, 1fr); /* ★ 追加 */
-    gap: 20px;                            /* ★ 追加 */
-    justify-items: center;                /* ★ 追加 */
-  }
-  /* ⭐ 追加ここまで */
-
-  /* ⭐ 中央に寄せるための幅調整（追加） */
-.categories {
-  max-width: 350px;   /* ← 横幅を小さくして中央に */
-  margin: 0 auto;     /* ← 中央寄せ */
-}
-
-  /* タイトル画像のサイズをスマホ用に大きく */
-  header .moji {
-    width: clamp(160px, 35vw, 220px);
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* 💻 タブレット〜PC（600px以上） */
+/* ===================================================== */
+/* 💻 タブレット〜PC（600px〜） */
+/* ===================================================== */
 @media screen and (min-width: 600px) {
   .container {
     flex-direction: row;
@@ -204,6 +210,7 @@ header input {
   .side-nav {
     position: relative;
     width: 120px;
+    border-top: none;
   }
 
   .bear-icon {
@@ -211,75 +218,10 @@ header input {
   }
 }
 
-/* ✅ タイトル画像（ロゴ部分） */
-.moji {
-  display: block;
-  width: clamp(120px, 30vw, 250px);
-  height: auto;
-  margin: 0 auto 15px;
-  object-fit: contain;
-}
-
-/* 🧸 クマの画像 */
+/* クマの画像 */
 .bear-icon {
   width: clamp(25px, 4vw, 45px);
   height: auto;
   object-fit: contain;
   margin-top: auto;
-}
-
-/* ===================================================== */
-/* ✅ おすすめ商品バナー（横に流れるカルーセル） */
-/* ===================================================== */
-
-.banner-container {
-  width: 100%;
-  overflow: hidden;
-  padding: 10px 0;
-  margin: 20px 0;
-}
-
-.banner-track {
-  display: flex;
-  align-items: center;
-  animation: bannerScroll 18s linear infinite;
-  width: max-content;      /* ← ★追加 */
-  will-change: transform;  /* ← ★追加 */
-}
-
-
-.banner-track a {
-  text-decoration: none;
-}
-
-.banner-track img {
-width: clamp(140px, 25vw, 180px);
-  height: auto;
-  margin-right: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px #0000001a;
-}
-
-/* アニメーション本体 */
-@keyframes bannerScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-50%)); }
-}
-
-/* 📱 スマホ（最適化） */
-@media screen and (max-width: 599px) {
-  .banner-track img {
-    width: clamp(160px, 70vw, 220px);
-    margin-right: 16px;
-  }
-}
-
-.banner-wrapper {
-  max-width: 900px;   /* ← 好きな幅に調整できる */
-  margin: 0 auto;     /* ← 中央寄せ */
-  padding: 0 10px;
-}
-.grid .item img.favorite-img {
-  width: clamp(100px, 18vw, 140px);
-  height: auto;
 }
