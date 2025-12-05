@@ -111,10 +111,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       </div>
       <div class="btn-area">
         <button type="submit">更新する</button>
-        <a href="mypage.php"><button type="button" class="no">戻る</button></a>
     </div>
       </form>
     <?php endif; ?>
+    
+    <div class="btn-area">
+        <a href="admin-menu.php"><button type="button" class="no">戻る</button></a>
+    </div>
 
 </div>
 
