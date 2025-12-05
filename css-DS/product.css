@@ -1,4 +1,6 @@
-/* 全体背景 */
+/* ============================================= */
+/* 全体背景：左ベージュ → 右クリーム */
+/* ============================================= */
 body {
   margin: 0;
   padding: 0;
@@ -6,14 +8,18 @@ body {
   background: linear-gradient(to right, #f4c48c 120px, #FAEECF 120px);
 }
 
+/* ============================================= */
 /* レイアウト全体 */
+/* ============================================= */
 .container {
   display: flex;
   width: 100%;
   min-height: 100vh;
 }
 
-/* 左ナビ */
+/* ============================================= */
+/* 左ナビ（PC） */
+/* ============================================= */
 .side-nav {
   width: 120px;
   padding: 20px 0;
@@ -23,7 +29,7 @@ body {
   justify-content: space-between;
 }
 
-/* ボタン感削除 */
+/* ボタン感を消す */
 .side-nav .nav-item {
   background: none;
   border: none;
@@ -32,14 +38,30 @@ body {
   padding: 10px 0;
 }
 
+.side-nav .nav-item:hover {
+  opacity: 0.65;
+}
+
+/* クマのアイコン（ここは影響しない） */
+.bear-icon {
+  width: clamp(25px, 4vw, 45px);
+  height: auto;
+  object-fit: contain;
+  margin-top: auto;
+}
+
+/* ============================================= */
+/* メインコンテンツ */
+/* ============================================= */
 .content {
   flex: 1;
+  text-align: center;
   padding: 50px;
 }
 
-/* ================================ */
-/* 商品レイアウト改善 */
-/* ================================ */
+/* ============================================= */
+/* 商品表示レイアウト */
+/* ============================================= */
 .product {
   display: flex;
   justify-content: center;
@@ -48,29 +70,36 @@ body {
   margin-top: 30px;
 }
 
+/* 商品画像を囲う枠 */
 .image {
-  width: 300px;     /* ←大きくする */
+  width: 300px;        /* ←商品画像の表示枠 */
   height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
-.image img {
+/* ⭐ 商品画像だけに適用（クマは絶対大きくならない） */
+.product-img {
   width: 100%;
+  max-width: 300px;    /* ←商品画像の大きさ */
   height: auto;
   object-fit: contain;
 }
 
-/* 商品説明部分を大きく */
+/* ============================================= */
+/* 商品説明 */
+/* ============================================= */
 .desc {
-  width: 450px;   /* ←読みやすい幅に拡大 */
+  width: 450px;
   text-align: left;
 }
 
 .actions {
+  margin-top: 20px;
   font-size: 22px;
-  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .product-price {
@@ -84,7 +113,9 @@ body {
   line-height: 1.6;
 }
 
-/* カート・お気に入り */
+/* ============================================= */
+/* お気に入り（♡）・カートボタン */
+/* ============================================= */
 .ine-cart {
   margin-top: 20px;
   display: flex;
@@ -94,25 +125,25 @@ body {
 button {
   background-color: #f5c089;
   border: none;
-  padding: 10px 20px;   /* ←大きめ */
-  font-size: 16px;      /* ←文字拡大 */
+  padding: 10px 20px;
+  font-size: 16px;
   cursor: pointer;
   border-radius: 6px;
 }
 
-/* ♡ */
+/* ♡アイコン */
 .heart i {
   font-size: 26px;
+  color: #888;
 }
 
-/* active（赤） */
 .heart i.active {
   color: #e63946;
 }
 
-/* ============================= */
-/* 📱 スマホ用レイアウト改善 */
-/* ============================= */
+/* ============================================= */
+/* 📱 スマホ（〜599px） */
+/* ============================================= */
 @media screen and (max-width: 599px) {
   body {
     background: #FAEECF;
@@ -123,25 +154,37 @@ button {
     padding-bottom: 70px;
   }
 
+  /* 下ナビ表示 */
   .side-nav {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
     flex-direction: row;
     justify-content: space-around;
-    background: #f4c48c;
+    background-color: #f4c48c;
+    padding: 10px 0;
     border-top: 2px solid #e4b071;
+    z-index: 1000;
+  }
+
+  .bear-icon {
+    display: none;
   }
 
   .product {
-    flex-direction: column;  /* ←縦並びに */
+    flex-direction: column;       /* ←縦並び */
     align-items: center;
-    gap: 20px;
+    gap: 25px;
   }
 
   .image {
-    width: 90%;               /* 全幅に近く大きく表示 */
+    width: 90%;
     max-width: 350px;
+  }
+
+  .product-img {
+    max-width: 100%;
   }
 
   .desc {
@@ -164,5 +207,23 @@ button {
     width: 100%;
     font-size: 16px;
     padding: 12px 0;
+  }
+}
+
+/* ============================================= */
+/* 💻 PC（600px以上） */
+/* ============================================= */
+@media screen and (min-width: 600px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .side-nav {
+    position: relative;
+    width: 120px;
+  }
+
+  .bear-icon {
+    display: block;
   }
 }
