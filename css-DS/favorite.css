@@ -65,6 +65,28 @@ body {
   padding: 20px;
   background-color: #FAEECF;
 }
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+header .moji {
+  width: clamp(140px, 28vw, 250px);
+  height: auto;
+  display: block;
+}
+
+header input {
+  width: clamp(180px, 25vw, 300px);
+  height: clamp(26px, 3.2vw, 34px);
+  border: 1px solid #888;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: clamp(12px, 1.6vw, 16px);
+}
+
 
 /* ===================================================== */
 /* ⭐ 検索フォーム（中央に配置） */
