@@ -98,7 +98,7 @@ $favorites = $stmt->fetchAll(PDO::FETCH_COLUMN);
               <?php endif; ?>
 
               <p class="product-name"><?= htmlspecialchars($product['product_name']) ?></p>
-              <p class="product-price"><?= number_format($product['price']) ?>円</p>
+              <p class="product-price"><?= number_format($product['price']) ?>円</p></a>
 
               <div class="aaa">
                 <span>カテゴリ: <?= htmlspecialchars($product['category']) ?></span><br>
