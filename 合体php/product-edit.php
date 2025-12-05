@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <!-- ▼ 商品ID入力フォーム -->
     <form method="get">
         <label>商品IDを入力してください</label>
-        <input type="number" name="search_id" required>
+        <input type="number" name="search_id" required min="1">
         <div class="btn-area">
           <button type="submit" class="yes">検索</button>
         </div>
