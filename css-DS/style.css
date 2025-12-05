@@ -72,3 +72,8 @@ button:hover {
     font-size: 0.9em;
     margin-bottom: 10px;
 }
+img {
+    width: 400px; /* 幅を200pxに変更 */
+    height: auto; /* 高さは自動調整して比率を維持 */
+    margin-bottom: 10px;
+}

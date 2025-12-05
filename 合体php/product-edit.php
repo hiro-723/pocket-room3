@@ -1,110 +1,122 @@
-<?php 
+<?php
 session_start();
 require_once 'db-connect.php';
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 
-if (!isset($_SESSION['username'])) {
-    die("ログインしていません。");
+// ▼ 最初は空の商品データ
+$product = null;
+
+// ▼ 検索ボタンが押されたら商品を取得
+if (isset($_GET['search_id'])) {
+    $search_id = $_GET['search_id'];
+
+    $stmt = $pdo->prepare("SELECT * FROM product WHERE product_id = ?");
+    $stmt->execute([$search_id]);
+    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$product) {
+        $msg = "商品が見つかりません。";
+    }
 }
 
+// ▼ 更新処理（保存ボタン）
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    
+    $id       = $_POST['product_id'];
+    $name     = $_POST['product_name'];
+    $price    = $_POST['price'];
+    $category = $_POST['category'];
+    $color    = $_POST['color'];
+    $genre    = $_POST['genre'];
 
-    $name       = $_POST['name'];
-    $prefecture = $_POST['prefecture'];
-    $city       = $_POST['city'];
-    $address    = $_POST['address'];
-    $building   = $_POST['building'];
-    $phone      = $_POST['phone'];
-    $email      = $_POST['email'];
-    $password   = $_POST['password'];
-
-    // ▼ ログインユーザーの customer_id を取得
-    $stmt = $pdo->prepare("SELECT customer_id FROM customer WHERE email = ?");
-    $stmt->execute([$_SESSION['username']]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$user) {
-        die("ユーザー情報が取得できませんでした。");
+    // 画像アップロード処理
+    if (!empty($_FILES['img']['name'])) {
+        $ext = pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);
+        $img_name = 'img_' . time() . '.' . $ext;
+        $upload_path = "../upload/" . $img_name;
+        move_uploaded_file($_FILES['img']['tmp_name'], $upload_path);
+        
+        $sql = "UPDATE product SET product_name=?, price=?, category=?, color=?, genre=?, img=? WHERE product_id=?";
+        $params = [$name, $price, $category, $color, $genre, $img_name, $id];
+    } else {
+        $sql = "UPDATE product SET product_name=?, price=?, category=?, color=?, genre=? WHERE product_id=?";
+        $params = [$name, $price, $category, $color, $genre, $id];
     }
-
-    $customer_id = $user['customer_id'];
-
-    // ▼ UPDATE 文
-    $sql = "
-        UPDATE customer SET
-            customer_name = ?,
-            prefecture = ?,
-            city = ?,
-            address = ?,
-            building = ?,
-            phone_number = ?,
-            email = ?,
-            password = ?
-        WHERE customer_id = ?
-    ";
 
     $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
 
-    $success = $stmt->execute([
-        $name, $prefecture, $city, $address, $building,
-        $phone, $email, $password, $customer_id
-    ]);
-
-    if ($success) {
-        // メール変更した場合セッションも更新
-        $_SESSION['username'] = $email;
-
-        header("Location: mypage.php");
-        exit;
-    } else {
-        $error = "更新に失敗しました。もう一度お試しください。";
-    }
+    header("Location: mypage.php?msg=updated");
+    exit;
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品編集 | POCKET ROOM</title>
-    <link rel="stylesheet" href="../css-DS/costomer.css">
+<meta charset="UTF-8">
+<title>商品編集</title>
+<link rel="stylesheet" href="../css-DS/product-edit.css">
 </head>
 <body>
-<div class="register">
-    <img src="../kuma/moji.png" class="moji">
+
+<div class="container">
     <h2>商品編集</h2>
 
+    <!-- ▼ 商品ID入力フォーム -->
+    <form method="get">
+        <label>商品IDを入力してください</label>
+        <input type="number" name="search_id" required>
+        <div class="btn-area">
+          <button type="submit" class="yes">検索</button>
+        </div>
+    </form>
+
+    <hr>
+
+    <?php if (isset($msg)) echo "<p>$msg</p>"; ?>
+
+    <?php if ($product): ?>
+    <!-- ▼ 商品が見つかった場合に表示される編集フォーム -->
     <form action="" method="post" enctype="multipart/form-data">
-        
+      <div class="form-row">
         <label>商品ID（変更不可）</label>
-        <input type="number" name="product_id" value="<?php echo $product['product_id']; ?>" readonly>
-
+        <input type="number" name="product_id" value="<?= $product['product_id'] ?>" readonly>
+      </div>
+      <div class="form-row">
         <label>商品名</label>
-        <input type="text" name="product_name" value="<?php echo $product['product_name']; ?>" required>
-
+        <input type="text" name="product_name" value="<?= $product['product_name'] ?>" required>
+      </div>
+      <div class="form-row">
         <label>値段</label>
-        <input type="number" name="price" value="<?php echo $product['price']; ?>" required>
-
+        <input type="number" name="price" value="<?= $product['price'] ?>" required>
+      </div>
+      <div class="form-row">
         <label>カテゴリー</label>
-        <input type="text" name="category" value="<?php echo $product['category']; ?>" required>
-
+        <input type="text" name="category" value="<?= $product['category'] ?>" required>
+      </div>
+      <div class="form-row">
         <label>色</label>
-        <input type="text" name="color" value="<?php echo $product['color']; ?>" required>
-
+        <input type="text" name="color" value="<?= $product['color'] ?>" required>
+      </div>
+      <div class="form-row">
         <label>ジャンル</label>
-        <input type="text" name="genre" value="<?php echo $product['genre']; ?>" required>
-
+        <input type="text" name="genre" value="<?= $product['genre'] ?>" required>
+      </div>
+      <div class="form-row">
         <label>商品画像</label>
         <input type="file" name="img">
-        <p>現在の画像：<?php echo $product['img']; ?></p>
-
+        <p>現在の画像：<?= $product['img'] ?></p>
+      </div>
+      <div class="btn-area">
         <button type="submit">更新する</button>
+        <a href="mypage.php"><button type="button" class="no">戻る</button></a>
+    </div>
+      </form>
+    <?php endif; ?>
 
-        <a href="mypage.php"><button type="button">戻る</button></a>
-    </form>
 </div>
+
 </body>
 </html>

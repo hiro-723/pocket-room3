@@ -11,7 +11,10 @@ if (!isset($_SESSION['username'])) {
 }
 
 $error = "";
-
+$stmt = $pdo->prepare("SELECT * FROM customer WHERE email = ?");
+$stmt->execute([$_SESSION['username']]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+$customer_id = $user ? $user['customer_id'] : null;
 // ▼ 登録処理（フォーム送信されたときだけ実行）
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -24,16 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email      = $_POST['email'];
     $password   = $_POST['password'];
 
-    // ▼ ログインしているユーザーの ID を取得
-    $stmt = $pdo->prepare("SELECT customer_id FROM customer WHERE email = ?");
-    $stmt->execute([$_SESSION['username']]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$user) {
-        die("ユーザー情報が取得できません。");
-    }
-
-    $customer_id = $user['customer_id'];
+   
+    if ($user) {
+    
 
     // ▼ UPDATE 文
     $sql = "
@@ -54,6 +50,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $name, $prefecture, $city, $address, $building,
         $phone, $email, $password, $customer_id
     ]);
+    } else {
+    // レコードが無い → INSERT
+    $sql = "INSERT INTO customer
+            (customer_name, prefecture, city, address, building, phone_number, email, password)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = $pdo->prepare($sql);
+    $success = $stmt->execute([
+        $name, $prefecture, $city, $address, $building,
+        $phone, $email, $password
+    ]);
+}
 
     if ($success) {
 

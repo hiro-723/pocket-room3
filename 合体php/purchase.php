@@ -9,7 +9,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 // ログイン中のユーザー情報取得
-$stmt = $pdo->prepare("SELECT customer_id FROM customer WHERE email = ?");
+$stmt = $pdo->prepare("SELECT * FROM customer WHERE email = ?");
 $stmt->execute([$_SESSION['username']]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -37,26 +37,35 @@ if (!$require_check) {
 }
 
 // ✅「はい」が押されたら購入履歴に登録してからカートを削除
-if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST["confirm"] === "yes") {
+// ▼ yes/no のボタンが押されたときだけ処理する
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["confirm"])) {
+    
+    if ($_POST["confirm"] === "yes") {
 
-  // カート内の商品を取得
-  $stmt = $pdo->prepare("SELECT product_id FROM cart WHERE customer_id = ?");
-  $stmt->execute([$customer_id]);
-  $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // カート内の商品を取得
+        $stmt = $pdo->prepare("SELECT product_id FROM cart WHERE customer_id = ?");
+        $stmt->execute([$customer_id]);
+        $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  // 購入履歴へ登録
-  $insert = $pdo->prepare("INSERT INTO purchase (customer_id, product_id) VALUES (?, ?)");
-  foreach ($cartItems as $item) {
-    $insert->execute([$customer_id, $item['product_id']]);
-  }
+        // 購入履歴へ登録
+        $insert = $pdo->prepare("INSERT INTO purchase (customer_id, product_id) VALUES (?, ?)");
+        foreach ($cartItems as $item) {
+            $insert->execute([$customer_id, $item['product_id']]);
+        }
 
-  // カートを空にする
-  $delete = $pdo->prepare("DELETE FROM cart WHERE customer_id = ?");
-  $delete->execute([$customer_id]);
+        // カートを空にする
+        $delete = $pdo->prepare("DELETE FROM cart WHERE customer_id = ?");
+        $delete->execute([$customer_id]);
 
-  header("Location: complete.php");
-  exit;
-} 
+        header("Location: complete.php");
+        exit;
+
+    } else {
+        header("Location: cart.php");
+        exit;
+    }
+}
+
 if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST["confirm"] === "no") {
     header("Location: cart.php");
     exit;
