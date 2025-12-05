@@ -225,3 +225,11 @@ img.a {
   object-fit: contain;
   margin-top: auto;
 }
+.favorite-img {
+  width: 150px;        /* ← 好きなサイズに変更してOK */
+  height: 150px;       /* ← 好きなサイズに変更してOK */
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;      /* 画像を中央寄せ（必要なければ削除） */
+}
