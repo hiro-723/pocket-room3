@@ -238,6 +238,7 @@ header input {
     z-index: 999;
   }
 }
+<<<<<<< HEAD
   
 
 /* ====== ★お気に入り一覧を3列表示 ====== */
@@ -308,3 +309,5 @@ header input {
     box-shadow: none !important;
     border: none !important;
 }
+=======
+>>>>>>> parent of 154612a (Update favorite.css)
