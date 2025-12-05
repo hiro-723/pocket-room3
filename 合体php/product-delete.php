@@ -22,10 +22,9 @@ if (!isset($_SESSION['username'])) {
         <label for="id">削除したい商品のID：</label>
         <input type="number" name="id" required>
         <br><br>
-        <button type="submit">削除する</button>
-    </form>
 
-    <br>
-    <button onclick="history.back()">戻る</button>
+    </form>
+    <button type="submit" class="yes">削除する</button>
+    <button type="button" class="no" onclick="history.back()">戻る</button>
 </body>
 </html>
