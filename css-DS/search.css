@@ -77,11 +77,12 @@ main {
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
-  margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* ← ここを3→2に変更で2列になる */
+    gap: 40px;
+    justify-items: center;
 }
+
 
 .item {
   padding: 40px 0;
@@ -308,13 +309,4 @@ main {
   margin: 0;
 }
 
-.product-name {
-    display: block;
-    width: 200px;     /* 🔥 商品名の幅を揃える（調整OK） */
-    text-align: center;
-    font-weight: bold;
-    white-space: nowrap;   /* 🔥 改行しない → 一列に揃う */
-    overflow: hidden;      /* 長い名前は… */
-    text-overflow: ellipsis; /* …「…」で省略される */
-    margin: 5px auto;
-}
+
