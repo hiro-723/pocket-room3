@@ -1,8 +1,5 @@
-// セッション開始（重複防止）
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
+<?php
+session_start();
 require_once 'db-connect.php';
 
 // ▼ ログインフォームからPOSTされた場合（ログイン処理）
@@ -15,9 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->execute([$email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // パスワード認証（ハッシュ無し前提）
+    // パスワードチェック（今回はハッシュ化していない前提）
     if ($user && $password === $user['password']) {
-        $_SESSION['customer'] = $user;
+        $_SESSION['username'] = $user['email']; // ← ここを「username」に統一
     } else {
         header("Location: rogin.php?error=1");
         exit;
@@ -25,17 +22,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 // ▼ セッションがなければログインページへ
-if (!isset($_SESSION['customer'])) {
+if (!isset($_SESSION['username'])) {
     header("Location: rogin.php");
     exit;
 }
 
-// ▼ ユーザー情報
-$customer = $_SESSION['customer'];  // ← 配列のまま保持
-$username = htmlspecialchars($customer['username'], ENT_QUOTES, 'UTF-8');
-$email    = htmlspecialchars($customer['email'], ENT_QUOTES, 'UTF-8'); // 使うなら
+// ▼ HTML出力部分
+$username = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
 ?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -47,8 +41,9 @@ $email    = htmlspecialchars($customer['email'], ENT_QUOTES, 'UTF-8'); // 使う
 </head>
 <body>
 
-<div class="container">
-
+    <div class="container">
+ 
+    <!-- ✅ 左ナビ -->
 <nav class="side-nav">
 <button onclick="location.href='home.php'" class="nav-item">
 <i class="fas fa-home"></i><br>ホーム
@@ -62,21 +57,18 @@ $email    = htmlspecialchars($customer['email'], ENT_QUOTES, 'UTF-8'); // 使う
 <button onclick="location.href='mypage.php'" class="nav-item">
 <i class="fas fa-user"></i><br>マイページ
 </button>
-
-<p style="text-align:center; margin-top:10px; font-weight:bold;">
-👤 <?= $username ?> さんログイン中
-</p>
-
-<img src="../kuma/kuma.png" class="bear-icon" alt="くまアイコン">
+ 
+      <img src="../kuma/kuma.png" class="bear-icon" alt="くまアイコン">
 </nav>
-
+ 
+    <!-- ✅ メインエリア -->
 <main class="main">
 <form action="search.php" method="get">
 <header>
 <img src="../kuma/moji.png" class="moji" alt="タイトルロゴ">
-<input type="text" name="keyword" placeholder="商品名・色・ジャンルで検索">
+<input type="text"  name="keyword" placeholder="商品名・色・ジャンルで検索">
 </header>
-
+ 
 <section class="carousel">
 <div class="banner-wrapper">
   <div class="banner-container">
@@ -97,7 +89,7 @@ $email    = htmlspecialchars($customer['email'], ENT_QUOTES, 'UTF-8'); // 使う
   </div>
 </div>
 </section>
-
+ 
 <section class="categories">
 
   <div class="item">
@@ -145,8 +137,8 @@ $email    = htmlspecialchars($customer['email'], ENT_QUOTES, 'UTF-8'); // 使う
 </section>
 </form>
 </main>
-
-</div><!-- /.container -->
+ 
+  </div><!-- /.container -->
 
 </body>
 </html>
