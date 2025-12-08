@@ -106,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <div class="button-group">
                 <button type="submit">変更する</button>
-                <a href="mypage.php"><button type="button">戻る</button></a>
+                <a href="mypage.php" class="back-btn">戻る</a>
             </div>
         </form>
     </div>
