@@ -1,8 +1,8 @@
 <?php
 session_start();
 require_once '../db-connect.php';
-var_dump($_POST);
-exit;
+error_reporting(E_ALL);
+require_once 'db-connect.php';
 
 // ID の受取
 if (!isset($_POST['id']) || empty($_POST['id'])) {
