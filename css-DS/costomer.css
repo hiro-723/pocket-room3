@@ -27,8 +27,20 @@ input {
   background-color: #fff;
 }
 
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
 form button{
-  margin-top: 10px;
+  display:flex; 
+  flex-direction: row;
+  justify-content: center;
+  gap: 12px; 
+  margin-top:18px;
+  align-items:center;
   background-color: #f5c089;
   border: none;
   padding: 10px;
