@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php if ($error): ?>
             <p class="error"><?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
-
+            <h1>管理者設定</h1>
         <form action="" method="post">
             <label>ユーザーネーム</label>
             <input type="text" name="username" required>

@@ -64,7 +64,7 @@ $favorites = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <!-- 検索フォーム -->
       <form action="search.php" method="get" class="search-container">
         <img src="../kuma/moji.png" class="moji">
-        <input type="text" name="keyword" placeholder="検索" class="search-bar">
+        <input type="text" name="keyword" placeholder="商品名・色・ジャンルで検索" class="search-bar">
       </form>
 
       <!-- お気に入り商品グリッド -->
@@ -76,8 +76,7 @@ $favorites = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="item">
               <!-- お気に入り商品 -->
                <a href="product.php?id=<?= $item['product_id'] ?>">
-                <img src="../jpg/<?= $item['product_id'] ?>.jpg" alt="" class="favorite-img">
-          </a>
+                <img src="../jpg/<?= $item['product_id'] ?>.jpg" alt="" class="favorite-img">          </a>
               <div class="info">
                 <div class="name"><?= htmlspecialchars($item['product_name']) ?></div>
                 <div class="price"><?= htmlspecialchars($item['price']) ?>円</div>

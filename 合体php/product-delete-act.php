@@ -1,6 +1,8 @@
 <?php
 session_start();
-require_once '../db-connect.php';
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+require_once 'db-connect.php';
 
 // ID の受取
 if (!isset($_POST['id']) || empty($_POST['id'])) {
@@ -11,7 +13,7 @@ if (!isset($_POST['id']) || empty($_POST['id'])) {
 $id = $_POST['id'];
 
 // 商品が存在するかチェック
-$check = $pdo->prepare("SELECT * FROM product WHERE id = ?");
+$check = $pdo->prepare("SELECT * FROM product WHERE product_id = ?");
 $check->execute([$id]);
 $product = $check->fetch();
 
@@ -22,7 +24,7 @@ if (!$product) {
 }
 
 // 削除実行
-$stmt = $pdo->prepare("DELETE FROM product WHERE id = ?");
+$stmt = $pdo->prepare("DELETE FROM product WHERE product_id = ?");
 $result = $stmt->execute([$id]);
 
 if ($result) {

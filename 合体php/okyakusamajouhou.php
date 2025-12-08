@@ -104,8 +104,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="email" name="email" placeholder="メールアドレス" required>
             <input type="password" name="password" placeholder="パスワード" required>
 
-            <button type="submit">変更する</button>
-            <a href="mypage.php"><button type="button">戻る</button></a>
+            <div class="button-group">
+                <button type="submit">変更する</button>
+                <a href="mypage.php"><button type="button">戻る</button></a>
+            </div>
         </form>
     </div>
 </body>

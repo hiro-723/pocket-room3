@@ -59,7 +59,7 @@ $success = $stmt->execute($params);
 // 結果処理
 // ----------------------
 if ($success) {
-    header("Location: mypage.php?msg=updated");
+    header("Location: admin-menu.php?msg=updated");
     exit;
 } else {
     echo "更新に失敗しました。";

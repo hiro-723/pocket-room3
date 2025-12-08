@@ -78,10 +78,11 @@ main {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* ← ここを3→2に変更で2列になる */
-    gap: 40px;
+    grid-template-columns: repeat(3, 1fr); /* ← 3列固定 */
+    gap: 35px; /* 余白調整可能 */
     justify-items: center;
 }
+
 
 
 .item {
@@ -309,4 +310,68 @@ main {
   margin: 0;
 }
 
+.product-name,
+.product-price {
+    text-decoration: none;
+    color: #000;               /* リンク青をやめる */
+    font-weight: bold;         /* 太字で視認性UP */
+}
 
+.product-name:hover {
+    opacity: 1;               /* hoverしても変化しない */
+}
+
+.product-name {
+    color: #000 !important;
+    text-decoration: none !important;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.product-name:hover,
+.product-name:visited,
+.product-name:active {
+    text-decoration: none !important;
+    color: #000;
+    opacity: 0.85;
+}
+
+/* 商品名リンクの下線を完全無効化（最強版） */
+.product-link,
+.product-link:link,
+.product-link:visited,
+.product-link:hover,
+.product-link:active {
+    text-decoration: none !important;
+    color: #000 !important;
+    border: none !important;
+}
+
+.name-link .product-name {
+    font-weight: normal;
+    opacity: 0.95;
+}
+
+.name-link:hover .product-name {
+    opacity: 0.9; /* hoverしてもほぼ変化なし */
+}
+
+.product-actions {
+  display: flex;
+  gap: 10px; /* ボタン同士の間隔 */
+  justify-content: center; /* 必要なら中央揃え */
+}
+
+/* formタグを横並びに縮める */
+.product-actions form {
+  margin: 0;
+}
+
+.name-link {
+    text-decoration: none;
+    color: #000; /* リンク色を普通の文字色に */
+}
+
+.name-link:hover {
+    opacity: 0.7; /* 触れたらほんのり反応、下線は出ない */
+}
