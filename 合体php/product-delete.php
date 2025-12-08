@@ -4,7 +4,7 @@ require_once 'db-connect.php';
 
 // ログイン確認（任意）
 if (!isset($_SESSION['username'])) {
-    header("Location: rogin.php");
+    header("Location: admin.php");
     exit;
 }
 ?>

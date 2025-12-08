@@ -22,7 +22,7 @@ $stmt = $pdo->prepare("
 $success = $stmt->execute([$name, $price, $category, $color, $genre, $img_name]);
 
 if ($success) {
-    header("Location: mypage.php");
+    header("Location: admin-menu.php");
     exit;
 } else {
     echo "登録に失敗しました。";

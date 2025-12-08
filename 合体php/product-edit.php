@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
 
-    header("Location: mypage.php?msg=updated");
+    header("Location: admin-menu.php?msg=updated");
     exit;
 }
 ?>
