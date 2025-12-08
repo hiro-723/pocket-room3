@@ -182,8 +182,10 @@ header input {
 }
 
 /* ===================================================== */
-/* 📱 スマホ */
+/* ✅ レスポンシブナビゲーション */
 /* ===================================================== */
+
+/* 📱 スマホ（～599px） */
 @media screen and (max-width: 599px) {
   body {
     background: #FAEECF;
@@ -191,9 +193,10 @@ header input {
 
   .container {
     flex-direction: column;
-    padding-bottom: 70px;
+    padding-bottom: 70px; /* 下ナビの余白 */
   }
 
+  /* ↓ ナビを下に固定して横並びに */
   .side-nav {
     position: fixed;
     bottom: 0;
@@ -207,19 +210,21 @@ header input {
     z-index: 1000;
   }
 
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+  .side-nav .nav-item {
+    flex: 1;
+    font-size: clamp(10px, 3vw, 13px);
   }
 
-  .favorite-img {
-    width: 130px;
-    height: 130px;
+  .bear-icon {
+    display: none; /* 熊はスマホ時は非表示に */
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
   }
 }
 
-/* ===================================================== */
-/* 💻 タブレット〜PC */
-/* ===================================================== */
+/* 💻 タブレット～PC（600px以上） */
 @media screen and (min-width: 600px) {
   .container {
     flex-direction: row;
@@ -228,5 +233,27 @@ header input {
   .side-nav {
     position: relative;
     width: 120px;
+    border-top: none;
+  }
+
+  .bear-icon {
+    display: block;
   }
 }
+/* ✅ タイトル画像（ロゴ部分） */
+.moji {
+  display: block;
+  width: clamp(120px, 30vw, 250px); /* 画面幅に応じて可変（最小120px〜最大250px） */
+  height: auto;
+  margin: 0 auto 15px; /* 中央寄せ + 下に余白 */
+  object-fit: contain;
+}
+
+/* 🧸 クマの画像 */
+.bear-icon {
+  width: clamp(25px, 4vw, 45px); /* 画面幅に応じて変化 */
+  height: auto;
+  object-fit: contain;
+  margin-top: auto;
+}
+
