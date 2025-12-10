@@ -7,22 +7,18 @@ if (!isset($_SESSION['username'])) {
     exit("ログインしていません");
 }
 
-// ▼ customer_id を取得
-$stmt = $pdo->prepare("SELECT customer_id FROM customer WHERE email = ?");
-$stmt->execute([$_SESSION['username']]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!$user) {
-    exit("ユーザー情報が見つかりません。");
+// ▼ cart_id が送られてきているか確認
+if (!isset($_POST['cart_id'])) {
+    header("Location: cart.php");
+    exit;
 }
 
-$customer_id = $user['customer_id'];
+$cart_id = $_POST['cart_id'];
 
-// ▼ カートを空にする
-$stmt = $pdo->prepare("DELETE FROM cart WHERE customer_id = ?");
-$stmt->execute([$customer_id]);
+// ▼ cart_id の商品だけ削除する
+$stmt = $pdo->prepare("DELETE FROM cart WHERE cart_id = ?");
+$stmt->execute([$cart_id]);
 
-// ▼ 購入完了ページへ
+// ▼ カートへ戻る
 header("Location: cart.php");
 exit;
-?>
